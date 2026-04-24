@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WOSOL Concierge — خطة التسويق والتنفيذ</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:   #041026;
+      --navy-mid:    #16304E;
+      --navy-light:  #1F466D;
+      --beige-warm:  #EDE9E3;
+      --beige-sand:  #D1C7BA;
+      --white-soft:  #F6F4F1;
+      --text-body:   #2a3a50;
+      --text-light:  #6b7e92;
+      --border:      rgba(4, 16, 38, 0.09);
+    }
+
+    html { font-size: 16px; }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background-color: var(--white-soft);
+      color: var(--navy-deep);
+      line-height: 1.85;
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pattern-bg {
+      position: fixed; inset: 0; opacity: 0.022;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpolygon points='28,4 52,28 28,52 4,28' fill='none' stroke='%23041026' stroke-width='0.8'/%3E%3Cpolygon points='28,14 42,28 28,42 14,28' fill='none' stroke='%23041026' stroke-width='0.5'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    .page-wrapper {
+      position: relative; z-index: 1;
+      max-width: 960px; margin: 0 auto; padding: 0 32px 80px;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 40px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 72px;
+    }
+    .logo-block { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+    .logo-name  { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 0.18em; color: var(--navy-deep); line-height: 1; }
+    .logo-sub   { font-family: 'Poppins', sans-serif; font-size: 8.5px; font-weight: 400; letter-spacing: 0.30em; color: var(--navy-light); text-transform: uppercase; }
+    .header-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Title ── */
+    .title-block { margin-bottom: 72px; }
+    .doc-label { display: inline-block; font-size: 10px; letter-spacing: 0.22em; color: var(--navy-light); font-family: 'Poppins', sans-serif; text-transform: uppercase; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--beige-sand); }
+    .page-title { font-size: clamp(34px, 5vw, 54px); font-weight: 700; color: var(--navy-deep); line-height: 1.25; margin-bottom: 10px; }
+    .page-title-en { font-family: 'Poppins', sans-serif; font-size: clamp(13px, 2vw, 16px); font-weight: 300; color: var(--navy-light); letter-spacing: 0.14em; text-transform: uppercase; }
+
+    /* ── Exec Summary ── */
+    .exec-summary {
+      background-color: var(--navy-deep); color: var(--beige-warm);
+      padding: 44px 48px; margin-bottom: 80px; position: relative; overflow: hidden;
+    }
+    .exec-summary::after {
+      content: ''; position: absolute; bottom: -60px; left: -60px;
+      width: 240px; height: 240px; border: 1px solid rgba(237,233,227,0.06); border-radius: 50%;
+    }
+    .exec-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 20px; display: block; }
+    .exec-summary p { font-size: 17px; font-weight: 300; line-height: 2; color: var(--beige-warm); position: relative; z-index: 1; }
+    .exec-summary strong { font-weight: 600; color: #fff; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 80px; }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .section-num { font-family: 'Poppins', sans-serif; font-size: 11px; color: var(--beige-sand); font-weight: 400; letter-spacing: 0.1em; flex-shrink: 0; }
+    .section-title { font-size: 22px; font-weight: 700; color: var(--navy-deep); }
+    .section-title-en { font-family: 'Poppins', sans-serif; font-size: 10px; color: var(--text-light); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
+    .section-body { font-size: 15.5px; color: var(--text-body); line-height: 2; margin-bottom: 28px; }
+
+    /* ── Principle Block ── */
+    .principle-block {
+      border-right: 3px solid var(--navy-light);
+      padding: 24px 28px; background: var(--beige-warm); margin-bottom: 36px;
+    }
+    .principle-block p { font-size: 15.5px; color: var(--navy-deep); line-height: 2; }
+    .principle-block strong { font-weight: 700; }
+
+    /* ── Channel Cards ── */
+    .channel-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+
+    .channel-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 1fr 160px;
+      background: var(--white-soft);
+      gap: 0;
+    }
+    .channel-row.header-row {
+      background: var(--navy-deep);
+    }
+    .channel-row + .channel-row { border-top: 1px solid var(--border); }
+
+    .ch-cell {
+      padding: 20px 18px;
+      font-size: 13.5px;
+      color: var(--text-body);
+      line-height: 1.75;
+      border-left: 1px solid var(--border);
+    }
+    .ch-cell:last-child { border-left: none; }
+    .ch-cell.ch-name { font-size: 14px; font-weight: 700; color: var(--navy-deep); }
+
+    .header-row .ch-cell {
+      font-family: 'Poppins', sans-serif;
+      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--beige-sand); font-weight: 400; border-left: 1px solid rgba(255,255,255,0.06);
+    }
+    .header-row .ch-cell:last-child { border-left: none; }
+
+    .ch-role { color: var(--text-body); font-size: 13px; }
+    .kpi-badge {
+      display: inline-block; font-family: 'Poppins', sans-serif;
+      font-size: 10px; font-weight: 500; padding: 4px 10px;
+      background: var(--beige-warm); color: var(--navy-mid);
+      margin-top: 6px; margin-left: 4px;
+    }
+
+    /* ── Content Pillars ── */
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+    }
+    .pillar-cell {
+      background: var(--white-soft); padding: 28px 22px;
+    }
+    .pillar-cell:hover { background: var(--beige-warm); }
+    .pillar-icon {
+      font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--beige-sand); margin-bottom: 12px; display: block;
+    }
+    .pillar-title { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 10px; }
+    .pillar-examples { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .pillar-examples li {
+      font-size: 13px; color: var(--text-body); padding-right: 14px;
+      position: relative; line-height: 1.65;
+    }
+    .pillar-examples li::before { content: '—'; position: absolute; right: 0; color: var(--beige-sand); font-size: 11px; }
+
+    /* ── Content Do/Don't ── */
+    .dos-donts {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--border); border: 1px solid var(--border); margin-bottom: 28px;
+    }
+    .dd-col { padding: 28px 24px; }
+    .dd-col.do-col { background: #fff; }
+    .dd-col.dont-col { background: var(--beige-warm); }
+    .dd-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 16px; display: block; }
+    .do-col .dd-label { color: var(--navy-light); }
+    .dont-col .dd-label { color: #b0bcc8; }
+    .dd-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .dd-list li { font-size: 13.5px; padding-right: 16px; position: relative; line-height: 1.75; }
+    .do-col .dd-list li { color: var(--text-body); }
+    .dont-col .dd-list li { color: #8a9aaa; text-decoration: line-through; text-decoration-color: #ccc; }
+    .do-col .dd-list li::before { content: '✓'; position: absolute; right: 0; color: var(--navy-light); font-size: 11px; line-height: 1.8; }
+    .dont-col .dd-list li::before { content: '✕'; position: absolute; right: 0; color: #c0cdd8; font-size: 11px; line-height: 1.8; }
+
+    /* ── Campaign Cards ── */
+    .campaign-row { display: flex; flex-direction: column; gap: 20px; }
+    .campaign-card {
+      background: #fff; border: 1px solid var(--border);
+      display: grid; grid-template-columns: 220px 1fr;
+      overflow: hidden;
+    }
+    .campaign-side {
+      background: var(--navy-mid); padding: 28px 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .campaign-tag {
+      font-family: 'Poppins', sans-serif; font-size: 8.5px;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--beige-sand); margin-bottom: 14px; display: block;
+    }
+    .campaign-title { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.45; }
+    .campaign-period {
+      font-family: 'Poppins', sans-serif; font-size: 10px;
+      letter-spacing: 0.12em; color: rgba(237,233,227,0.6); margin-top: 16px;
+    }
+    .campaign-body { padding: 28px 24px; }
+    .campaign-body p { font-size: 14px; color: var(--text-body); line-height: 1.85; margin-bottom: 16px; }
+    .campaign-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .campaign-action {
+      font-size: 12px; padding: 5px 12px;
+      background: var(--beige-warm); color: var(--navy-mid); font-weight: 500;
+    }
+    .campaign-kpi { font-size: 12px; color: var(--text-light); font-family: 'Poppins', sans-serif; letter-spacing: 0.06em; }
+    .campaign-kpi strong { color: var(--navy-deep); }
+
+    /* ── Paid Ads ── */
+    .paid-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border); border: 1px solid var(--border);
+    }
+    .paid-cell { background: #fff; padding: 26px 20px; }
+    .paid-platform {
+      font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--navy-light); margin-bottom: 12px; display: block;
+    }
+    .paid-title { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 10px; }
+    .paid-desc { font-size: 13px; color: var(--text-body); line-height: 1.8; margin-bottom: 14px; }
+    .paid-target { font-size: 11.5px; color: var(--text-light); line-height: 1.7; }
+    .paid-target strong { color: var(--navy-mid); font-weight: 600; }
+
+    /* ── KPI Table ── */
+    .kpi-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .kpi-table thead tr { background: var(--navy-deep); }
+    .kpi-table thead th {
+      padding: 16px 20px; text-align: right; font-weight: 500;
+      font-size: 12px; color: var(--beige-warm); letter-spacing: 0.04em;
+    }
+    .kpi-table thead th:last-child { text-align: left; }
+    .kpi-table tbody tr { border-bottom: 1px solid var(--border); }
+    .kpi-table tbody tr:nth-child(even) { background: var(--beige-warm); }
+    .kpi-table tbody tr:nth-child(odd) { background: #fff; }
+    .kpi-table tbody td { padding: 15px 20px; color: var(--text-body); vertical-align: middle; line-height: 1.65; }
+    .kpi-table tbody td:first-child { font-weight: 700; color: var(--navy-deep); font-size: 13px; }
+    .kpi-num { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; color: var(--navy-light); }
+
+    /* ── Closing ── */
+    .closing-section { margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--border); }
+    .closing-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-light); margin-bottom: 24px; display: block; }
+    .closing-section h3 { font-size: 22px; font-weight: 700; color: var(--navy-deep); margin-bottom: 20px; line-height: 1.5; }
+    .closing-section p { font-size: 15px; color: var(--text-body); line-height: 2; }
+
+    /* ── Footer ── */
+    .site-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; color: var(--navy-deep); }
+    .footer-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Print ── */
+    @media print {
+      .pattern-bg { display: none; }
+      body { background: #fff; }
+      .exec-summary, .campaign-side, .kpi-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .kpi-table tbody tr:nth-child(even) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { page-break-inside: avoid; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 740px) {
+      .page-wrapper { padding: 0 20px 60px; }
+      .exec-summary { padding: 32px 22px; }
+      .channel-row { grid-template-columns: 1fr 1fr; }
+      .channel-row.header-row { display: none; }
+      .ch-cell.ch-name { grid-column: span 2; font-size: 15px; border-left: none; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .dos-donts { grid-template-columns: 1fr; }
+      .campaign-card { grid-template-columns: 1fr; }
+      .campaign-side { padding: 22px 20px; }
+      .paid-grid { grid-template-columns: 1fr 1fr; }
+      .site-footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 500px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+      .paid-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="pattern-bg"></div>
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo-block">
+      <span class="logo-name">WOSOL</span>
+      <span class="logo-sub">CONCIERGE</span>
+    </div>
+    <div class="header-meta">Marketing Plan · 2025</div>
+  </header>
+
+  <!-- Title -->
+  <div class="title-block">
+    <span class="doc-label">Strategy 03 of 07</span>
+    <h1 class="page-title">خطة التسويق والتنفيذ</h1>
+    <p class="page-title-en">Marketing Execution Plan</p>
+  </div>
+
+  <!-- Exec Summary -->
+  <div class="exec-summary">
+    <span class="exec-label">Executive Summary</span>
+    <p>
+      تسويق WOSOL لا يشبه تسويق أي شركة خدمات أخرى.
+      <strong>أسلوب "Post and Pray" — النشر اليومي وانتظار العملاء — يفشل تماماً في هذا النوع من البزنس.</strong>
+      السوشيال ليس قناة بيع مباشر — هو طبقة ثقة.
+      العميل يجيك من علاقة أو إحالة، ثم يتحقق من انستقرام.
+      هذه الخطة تُبني على 4 أهداف واضحة للمحتوى، لا على عدد المنشورات:
+      التثقيف، المصداقية، بناء جمهور ذي قيمة، والظهور كمرجع في المجال.
+    </p>
+  </div>
+
+  <!-- Section 1: Philosophy -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">المبدأ التوجيهي — التسويق كمحادثة لا كإعلان</div>
+        <div class="section-title-en">Marketing Philosophy · 4 Content Goals</div>
+      </div>
+    </div>
+
+    <div class="principle-block">
+      <p>
+        <strong>التسويق الصحيح لـ WOSOL = محادثة بشرية، لا أداء إعلاني.</strong><br>
+        حين تحاول أن تبيع أكثر — تبيع أقل. العميل الـ VIP يرفض كل ما يُشعره بالضغط.
+        الهدف من كل محتوى: أن يقول العميل "هذا يفهمني" — وليس "هذا يريد بيعي شيئاً."
+        كل قطعة محتوى تنتمي لهدف من 4 أهداف واضحة.
+      </p>
+    </div>
+
+    <div class="dos-donts">
+      <div class="dd-col do-col">
+        <span class="dd-label">الأهداف الأربعة للمحتوى</span>
+        <ul class="dd-list">
+          <li><strong>التثقيف:</strong> علّم السوق كيف يُعرّف شخصاً يحتاج WOSOL — فيصبح الجمهور مصدر إحالة</li>
+          <li><strong>المصداقية:</strong> أثبت أنك تُنجز فعلاً — قصص، كواليس، نتائج حقيقية</li>
+          <li><strong>بناء جمهور ذي قيمة:</strong> 200 متابع محلي مناسب أفضل من 20,000 عشوائي</li>
+          <li><strong>الظهور كمرجع:</strong> حين تظهر كقائد في مجالك، تتوقف المنافسة بالسعر</li>
+        </ul>
+      </div>
+      <div class="dd-col dont-col">
+        <span class="dd-label">ما يجب تجنبه كلياً</span>
+        <ul class="dd-list">
+          <li>"عروض رمضان — خصم 30% على باقة السفر"</li>
+          <li>فيديوهات تعريفية طويلة بأسلوب إعلان تجاري</li>
+          <li>قوائم خدمات وأسعار منشورة للعموم</li>
+          <li>محتوى يُحرج العميل أو يُشعره بأن حياته "فوضى"</li>
+          <li>الرد السريع والعشوائي على التعليقات بلا استراتيجية</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Channels -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">القنوات ودور كل منها</div>
+        <div class="section-title-en">Channel Strategy</div>
+      </div>
+    </div>
+
+    <div class="channel-grid">
+      <div class="channel-row header-row">
+        <div class="ch-cell">القناة</div>
+        <div class="ch-cell">الدور الاستراتيجي</div>
+        <div class="ch-cell">نوع المحتوى</div>
+        <div class="ch-cell">أهداف القياس</div>
+      </div>
+
+      <div class="channel-row">
+        <div class="ch-cell ch-name">Instagram</div>
+        <div class="ch-cell ch-role">بناء الصورة الفاخرة وإيصال المستوى البصري. أهم قناة لإقناع العميل بصرياً قبل أي نقاش.</div>
+        <div class="ch-cell">Reels قصيرة لتجارب حصرية، صور بلا نص مبالغ فيه، كواليس الخدمة، وجهات استثنائية</div>
+        <div class="ch-cell">
+          <span class="kpi-badge">Saves Rate</span>
+          <span class="kpi-badge">Profile Visits</span>
+          <span class="kpi-badge">DM Inquiries</span>
+        </div>
+      </div>
+
+      <div class="channel-row">
+        <div class="ch-cell ch-name">LinkedIn</div>
+        <div class="ch-cell ch-role">استهداف رجال الأعمال والمديرين التنفيذيين. المصداقية المهنية والتموضع كخبير في إدارة أسلوب الحياة.</div>
+        <div class="ch-cell">مقالات قصيرة عن إدارة الوقت والحياة، حالات دراسية مجهولة الهوية، نصائح للمسافر التنفيذي</div>
+        <div class="ch-cell">
+          <span class="kpi-badge">Connection Quality</span>
+          <span class="kpi-badge">Post Reach</span>
+          <span class="kpi-badge">Inbound Messages</span>
+        </div>
+      </div>
+
+      <div class="channel-row">
+        <div class="ch-cell ch-name">TikTok</div>
+        <div class="ch-cell ch-role">الوصول إلى الجيل القادم من صانعي الثروات. محتوى يُظهر الوصول الحصري بأسلوب خفيف وغير مباشر.</div>
+        <div class="ch-cell">فيديوهات قصيرة "لا يعرفها كثيرون"، وجهات وتجارب نادرة، حياة الأشخاص الاستثنائيين بأسلوب قصصي</div>
+        <div class="ch-cell">
+          <span class="kpi-badge">Watch Time</span>
+          <span class="kpi-badge">Shares</span>
+          <span class="kpi-badge">Follower Quality</span>
+        </div>
+      </div>
+
+      <div class="channel-row">
+        <div class="ch-cell ch-name">Google Search</div>
+        <div class="ch-cell ch-role">اصطياد من يبحث بنية شراء. العميل الجاهز يبحث عن "كونسيرج فاخر السعودية" أو "خدمات VIP الرياض".</div>
+        <div class="ch-cell">صفحة هبوط مُحسَّنة لـ SEO، محتوى مدونة متخصص، إعلانات بحث مستهدفة بكلمات مفتاحية دقيقة</div>
+        <div class="ch-cell">
+          <span class="kpi-badge">Qualified Clicks</span>
+          <span class="kpi-badge">Conversion Rate</span>
+          <span class="kpi-badge">Cost per Lead</span>
+        </div>
+      </div>
+
+      <div class="channel-row">
+        <div class="ch-cell ch-name">الشراكات</div>
+        <div class="ch-cell ch-role">أقوى قنوات الوصول لـ VIP. الشريك يُوصي بـ WOSOL لعملائه الحاليين — وهي بيئة ثقة جاهزة.</div>
+        <div class="ch-cell">لا محتوى رقمي — بل علاقات شخصية مع المصرفيين الخاصين، وكالات الطيران، محامي الأعمال، الفنادق الفاخرة</div>
+        <div class="ch-cell">
+          <span class="kpi-badge">Referrals Count</span>
+          <span class="kpi-badge">Partner CLV</span>
+          <span class="kpi-badge">Conversion Rate</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Content Pillars -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">ركائز المحتوى — أنواع تصنع الثقة الحقيقية</div>
+        <div class="section-title-en">Content Pillars · Story Over Information</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>قصة واحدة حقيقية تساوي 10 صور فاخرة. الدماغ يتجاهل المعلومات ويتفاعل مع التجربة. كل محتوى يُنشر يجب أن ينتمي لإحدى هذه الركائز — وإذا لم ينتمِ، لا يُنشر.</p>
+    </div>
+
+    <div class="pillars-grid">
+      <div class="pillar-cell">
+        <span class="pillar-icon">In-Action · الأهم</span>
+        <div class="pillar-title">المحتوى اليومي الحقيقي</div>
+        <ul class="pillar-examples">
+          <li>تجهيز رحلة — الخطوات قبل السفر بساعات</li>
+          <li>ترتيب حجز في مكان لا يُحجز بسهولة</li>
+          <li>مكالمة تنسيق خلف الكواليس</li>
+        </ul>
+      </div>
+      <div class="pillar-cell">
+        <span class="pillar-icon">Pillar 02</span>
+        <div class="pillar-title">القصص والتحولات</div>
+        <ul class="pillar-examples">
+          <li>وصل بقرار فجائي — وخلال 6 ساعات كل شيء كان جاهزاً</li>
+          <li>كيف وفّرنا 10 ساعات من وقت عميلنا هذا الأسبوع</li>
+          <li>طلب بدا مستحيلاً — وكيف أنجزناه</li>
+        </ul>
+      </div>
+      <div class="pillar-cell">
+        <span class="pillar-icon">Pillar 03</span>
+        <div class="pillar-title">FAQ — فانل مخفي</div>
+        <ul class="pillar-examples">
+          <li>"كيف أبدأ مع WOSOL؟" — كل سؤال شائع = منشور</li>
+          <li>"وش الفرق بين الباقات؟" — يزيل عائق الشراء</li>
+          <li>"كم يستغرق التنفيذ؟" — يُسرّع القرار</li>
+        </ul>
+      </div>
+      <div class="pillar-cell">
+        <span class="pillar-icon">Pillar 04</span>
+        <div class="pillar-title">الوصول الحصري</div>
+        <ul class="pillar-examples">
+          <li>أماكن لا تصلها بدون علاقات حقيقية</li>
+          <li>خدمة لا توفرها إلا الشبكة الصحيحة</li>
+          <li>تجربة لم يعرف عنها إلا القليلون</li>
+        </ul>
+      </div>
+      <div class="pillar-cell">
+        <span class="pillar-icon">Pillar 05</span>
+        <div class="pillar-title">الإنسان خلف البراند</div>
+        <ul class="pillar-examples">
+          <li>وجوه الفريق — الثقة تأتي من الشخص لا الشركة</li>
+          <li>قيم العمل التي لا نتنازل عنها</li>
+          <li>لماذا نختار عملاءنا بعناية</li>
+        </ul>
+      </div>
+      <div class="pillar-cell">
+        <span class="pillar-icon">Pillar 06</span>
+        <div class="pillar-title">الشراكات والعلاقات</div>
+        <ul class="pillar-examples">
+          <li>تعاون مع فندق أو علامة فاخرة حقيقية</li>
+          <li>لحظة من تجربة مشتركة مع شريك استراتيجي</li>
+          <li>توصية موثوقة من COI في شبكة WOSOL</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Campaigns -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">الحملات التسويقية الرئيسية</div>
+        <div class="section-title-en">Key Marketing Campaigns</div>
+      </div>
+    </div>
+
+    <div class="campaign-row">
+
+      <div class="campaign-card">
+        <div class="campaign-side">
+          <div>
+            <span class="campaign-tag">Campaign 01 · App Launch</span>
+            <div class="campaign-title">إطلاق تطبيق WOSOL — "وصولك في يدك"</div>
+          </div>
+          <div class="campaign-period">المرحلة: قبل الإطلاق + أول 30 يوماً</div>
+        </div>
+        <div class="campaign-body">
+          <p>حملة إطلاق هادئة ومتحكم بها — لا ضجيج جماهيري بل دعوة انتقائية. التطبيق يُقدَّم كامتداد للتجربة الشخصية لـ WOSOL، وليس كمنتج تقني.</p>
+          <div class="campaign-actions">
+            <span class="campaign-action">Waitlist حصرية للعملاء الحاليين</span>
+            <span class="campaign-action">فيديو تشويقي بدون كلام — صور فقط</span>
+            <span class="campaign-action">دعوة شخصية لكل عميل حالي</span>
+            <span class="campaign-action">Early Access لأول 50 عضواً</span>
+          </div>
+          <div class="campaign-kpi">KPI المستهدف: <strong>200 تحميل مؤهل · نسبة تفعيل 70%+</strong></div>
+        </div>
+      </div>
+
+      <div class="campaign-card">
+        <div class="campaign-side">
+          <div>
+            <span class="campaign-tag">Campaign 02 · Membership Launch</span>
+            <div class="campaign-title">إطلاق العضويات — "ليس للجميع"</div>
+          </div>
+          <div class="campaign-period">المرحلة: بعد استقرار التطبيق بشهر</div>
+        </div>
+        <div class="campaign-body">
+          <p>إطلاق منظومة العضويات بأسلوب يُعزز الحصرية. الرسالة الأساسية: العضوية ليست اشتراكاً — بل قرار بأن تُدار حياتك بمستوى مختلف.</p>
+          <div class="campaign-actions">
+            <span class="campaign-action">إطلاق 3 مستويات عضوية بشكل تدريجي</span>
+            <span class="campaign-action">محتوى يُظهر الفرق بين المستويات</span>
+            <span class="campaign-action">جلسات معرفة خاصة مع مدير الحساب</span>
+            <span class="campaign-action">هدية ترحيبية لكل عضو جديد</span>
+          </div>
+          <div class="campaign-kpi">KPI المستهدف: <strong>20 عضو في أول شهرين · CLV فوق 800K ريال</strong></div>
+        </div>
+      </div>
+
+      <div class="campaign-card">
+        <div class="campaign-side">
+          <div>
+            <span class="campaign-tag">Campaign 03 · Corporate</span>
+            <div class="campaign-title">حملة الشركات — "أعطِ فريقك ما يستحق"</div>
+          </div>
+          <div class="campaign-period">المرحلة: الربع الثالث من السنة</div>
+        </div>
+        <div class="campaign-body">
+          <p>استهداف الشركات الكبرى والعائلات التجارية لتقديم خدمة Concierge المؤسسية: سفر المديرين التنفيذيين، تنظيم الفعاليات الداخلية، عطاءات الشركات لعملائهم.</p>
+          <div class="campaign-actions">
+            <span class="campaign-action">عروض تقديمية مخصصة لكل شركة</span>
+            <span class="campaign-action">محتوى LinkedIn موجه لـ C-Suite</span>
+            <span class="campaign-action">باقة Corporate Pilot لأول 90 يوماً</span>
+            <span class="campaign-action">اجتماع تعريفي في مقر الشركة</span>
+          </div>
+          <div class="campaign-kpi">KPI المستهدف: <strong>5 عقود مؤسسية · متوسط عقد 400K+ ريال</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section 5: Paid Ads -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">الإعلانات المدفوعة — الاستهداف الدقيق</div>
+        <div class="section-title-en">Paid Media Strategy</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>الإعلان المدفوع لـ WOSOL يعمل بمنطق الجودة لا الكمية. ميزانية أصغر بتوجيه أدق تجلب عميلاً واحداً مؤهلاً أفضل من ألف ظهور عام.</p>
+    </div>
+
+    <div class="paid-grid">
+      <div class="paid-cell">
+        <span class="paid-platform">Meta Ads</span>
+        <div class="paid-title">Instagram &amp; Facebook</div>
+        <div class="paid-desc">إعلانات بصرية رفيعة المستوى تستهدف أصحاب الثروات والمديرين التنفيذيين في السعودية والخليج. لا عروض — بل صور تتكلم عن نفسها.</div>
+        <div class="paid-target"><strong>الاستهداف:</strong> دخل مرتفع، اهتمامات السفر الفاخر، الطيران الخاص، الساعات الفاخرة · KSA + UAE + Kuwait</div>
+      </div>
+      <div class="paid-cell">
+        <span class="paid-platform">Google Search</span>
+        <div class="paid-title">Search &amp; Display</div>
+        <div class="paid-desc">اصطياد البحث النشط: من يبحث عن "كونسيرج فاخر الرياض" أو "خدمات VIP السعودية" هو عميل جاهز للقرار — لا ينتظر إقناعاً طويلاً.</div>
+        <div class="paid-target"><strong>الكلمات المفتاحية:</strong> luxury concierge KSA, كونسيرج فاخر, VIP lifestyle management, private aviation Saudi, خدمات رجال أعمال</div>
+      </div>
+      <div class="paid-cell">
+        <span class="paid-platform">LinkedIn Ads</span>
+        <div class="paid-title">Sponsored Content</div>
+        <div class="paid-desc">استهداف C-Suite والمديرين في الشركات الكبرى. المحتوى يُقدَّم كرأي متخصص لا إعلان — وهو ما يناسب ذهنية هذه الشريحة.</div>
+        <div class="paid-target"><strong>الاستهداف:</strong> CEO, CFO, Managing Director · شركات فوق 500 موظف · قطاعات: تقنية، طاقة، عقارات، مال</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: KPIs -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">مؤشرات القياس والأداء</div>
+        <div class="section-title-en">KPIs & Performance Metrics</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>لا يُقاس نجاح تسويق WOSOL بعدد المتابعين أو الإعجابات. يُقاس بعدد المحادثات المؤهلة والعملاء المحوّلين.</p>
+    </div>
+
+    <table class="kpi-table">
+      <thead>
+        <tr>
+          <th>القناة</th>
+          <th>المؤشر الأساسي</th>
+          <th>الهدف الشهري</th>
+          <th>ملاحظة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Instagram</td>
+          <td>استفسارات DM مؤهلة</td>
+          <td><span class="kpi-num">10 – 15</span></td>
+          <td>المتابعون الجدد أقل أهمية من جودة من يتواصل</td>
+        </tr>
+        <tr>
+          <td>LinkedIn</td>
+          <td>رسائل Connection من C-Suite</td>
+          <td><span class="kpi-num">5 – 8</span></td>
+          <td>واحد يتحول = قيمة عالية جداً</td>
+        </tr>
+        <tr>
+          <td>TikTok</td>
+          <td>مشاهدات كاملة + حفظ المحتوى</td>
+          <td><span class="kpi-num">Save Rate 5%+</span></td>
+          <td>بناء وعي مدى بعيد، مردود أبطأ</td>
+        </tr>
+        <tr>
+          <td>Google Search</td>
+          <td>نقرات مؤهلة على صفحة الهبوط</td>
+          <td><span class="kpi-num">200 – 300</span></td>
+          <td>معدل تحويل مستهدف 3 – 5%</td>
+        </tr>
+        <tr>
+          <td>الشراكات</td>
+          <td>إحالات مستلمة من شركاء</td>
+          <td><span class="kpi-num">3 – 5</span></td>
+          <td>أعلى معدل تحويل من جميع القنوات</td>
+        </tr>
+        <tr>
+          <td>التطبيق</td>
+          <td>طلبات مُكتملة داخل التطبيق</td>
+          <td><span class="kpi-num">نمو 20% / شهر</span></td>
+          <td>مؤشر رضا العميل الأهم</td>
+        </tr>
+        <tr>
+          <td>الإجمالي</td>
+          <td>عملاء جدد مؤهلون شهرياً</td>
+          <td><span class="kpi-num">2 – 4</span></td>
+          <td>عميل واحد جيد = 800K+ ريال سنوياً</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Closing -->
+  <div class="closing-section">
+    <span class="closing-label">Executive Conclusion</span>
+    <h3>التسويق الأفضل لـ WOSOL هو الخدمة التي لا يصمت عنها عميلها</h3>
+    <p>
+      كل الخطة التسويقية أعلاه تهدف إلى شيء واحد: جلب العميل الصحيح إلى الباب.
+      ما يحدث بعد دخوله هو المسوّق الأقوى. حين تُنجز WOSOL ما لا يستطيع غيرها إنجازه،
+      يتحول العميل الراضي إلى منصة تسويق متحركة — يصف التجربة لمن حوله بتلقائية وبدون طلب.
+      هذا هو التسويق الذي يبني شركات لا تُنسى.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span class="footer-logo">WOSOL <span style="font-weight:300; letter-spacing:0.28em; font-size:8px; color: var(--text-light);">CONCIERGE</span></span>
+    <span class="footer-meta">Marketing Plan · Confidential · 2025</span>
+  </footer>
+
+</div>
+</body>
+</html>

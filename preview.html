@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WOSOL Concierge — تحليل المنافسين نسخة تنفيذية</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#041026;--navy2:#102845;--navy3:#17385e;--cream:#f7f4ef;--sand:#e7ded2;--line:rgba(4,16,38,.12);
+      --muted:#6a788b;--body:#26364a;--green:#1d7148;--green-bg:#e9f5ef;--red:#9c3228;--red-bg:#faebe9;--gold:#a7781c;--gold-bg:#fff5df;
+    }
+    html{font-size:16px;scroll-behavior:smooth}
+    body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--cream);color:var(--navy);line-height:1.85;-webkit-font-smoothing:antialiased}
+    body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(4,16,38,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(4,16,38,.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+    .wrap{position:relative;max-width:1080px;margin:0 auto;padding:34px 32px 80px}
+    header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding:14px 0 34px;margin-bottom:64px}
+    .logo{font-family:Poppins,sans-serif;letter-spacing:.18em;font-weight:600;font-size:25px;line-height:1;color:var(--navy)}
+    .logo small{display:block;font-size:9px;font-weight:400;letter-spacing:.34em;margin-top:8px;color:var(--navy3)}
+    .meta{text-align:left;font-family:Poppins,sans-serif;font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;line-height:1.8}
+    .label{font-family:Poppins,sans-serif;font-size:10px;letter-spacing:.22em;color:var(--navy3);text-transform:uppercase;margin-bottom:18px;display:inline-block;border-bottom:1px solid var(--sand);padding-bottom:10px}
+    h1{font-size:clamp(36px,6vw,66px);line-height:1.15;letter-spacing:-.03em;margin-bottom:12px}
+    .subtitle{font-family:Poppins,sans-serif;text-transform:uppercase;letter-spacing:.17em;color:var(--muted);font-size:13px;margin-bottom:34px}
+    .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:18px;margin-bottom:76px}
+    .hero{background:var(--navy);color:#fff;padding:44px 44px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+    .hero::after{content:"";position:absolute;left:-70px;bottom:-90px;width:250px;height:250px;border:1px solid rgba(255,255,255,.08);border-radius:50%}
+    .hero .eyebrow{font-family:Poppins,sans-serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--sand);margin-bottom:18px}
+    .hero p{font-size:22px;line-height:1.85;font-weight:400;max-width:700px;position:relative;z-index:1}
+    .hero strong{color:#fff;font-weight:700}
+    .stats{display:grid;gap:18px}
+    .stat{background:#fff;border:1px solid var(--line);padding:26px 24px}
+    .stat b{display:block;font-family:Poppins,sans-serif;font-size:31px;line-height:1;color:var(--navy);margin-bottom:10px;direction:ltr;text-align:right}
+    .stat span{font-size:13px;color:var(--body);display:block;line-height:1.7}
+    section{margin-bottom:76px}.head{display:flex;gap:18px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:32px}.num{font-family:Poppins,sans-serif;font-size:12px;color:var(--sand);letter-spacing:.16em}.head h2{font-size:25px;line-height:1.35}.head p{font-family:Poppins,sans-serif;color:var(--muted);font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-top:4px}
+    .note{background:#fff;border-right:4px solid var(--navy3);padding:28px 30px;margin-bottom:26px;color:var(--body);font-size:16px}.note strong{color:var(--navy)}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);padding:28px;min-height:210px}.tag{font-family:Poppins,sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:12px}.card h3{font-size:17px;margin-bottom:10px}.card p{font-size:13.5px;color:var(--body);line-height:1.8}.danger{border-top:3px solid var(--red)}.opportunity{border-top:3px solid var(--green)}.watch{border-top:3px solid var(--gold)}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:13.5px;overflow:hidden}th{background:var(--navy);color:#fff;padding:15px 16px;text-align:right;font-weight:600}td{padding:14px 16px;border-bottom:1px solid var(--line);color:var(--body);vertical-align:top}tr:nth-child(even) td{background:#fbfaf8}td:first-child{font-weight:700;color:var(--navy)}.center{text-align:center}.good{color:var(--green);font-weight:700}.bad{color:var(--red);font-weight:700}.partial{color:var(--gold);font-weight:700}.wosol td{background:var(--navy)!important;color:#fff!important}.target td{background:var(--green-bg)!important;color:var(--navy)!important}
+    .timeline{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}.phase{display:grid;grid-template-columns:170px 1fr 220px;background:#fff}.phase .when{background:var(--navy);color:#fff;padding:24px;font-family:Poppins,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.phase .what{padding:24px}.phase .what h3{font-size:18px;margin-bottom:8px}.phase .what p{font-size:13.5px;color:var(--body)}.phase .kpi{padding:24px;background:#fbfaf8}.phase .kpi b{display:block;color:var(--green);font-size:15px;margin-bottom:6px}.phase .kpi span{font-size:12.5px;color:var(--body);display:block;line-height:1.7}
+    .decision{background:linear-gradient(135deg,var(--navy),var(--navy3));color:#fff;padding:50px 46px;text-align:center}.decision span{font-family:Poppins,sans-serif;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--sand)}.decision h2{font-size:clamp(22px,3vw,32px);line-height:1.65;margin-top:18px}.footer{border-top:1px solid var(--line);margin-top:62px;padding-top:26px;display:flex;justify-content:space-between;color:var(--muted);font-family:Poppins,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+    .print-btn{position:fixed;left:22px;bottom:22px;background:var(--navy);color:#fff;border:none;padding:12px 18px;border-radius:999px;font-family:'IBM Plex Sans Arabic';cursor:pointer;box-shadow:0 12px 35px rgba(4,16,38,.22);z-index:10}
+    @media(max-width:840px){.hero-grid,.cards{grid-template-columns:1fr}.phase{grid-template-columns:1fr}.phase .when{min-height:auto}.wrap{padding:24px 18px 60px}header{margin-bottom:44px}.hero{padding:32px 26px}.hero p{font-size:18px}table{font-size:12px}th,td{padding:11px 10px}.footer{flex-direction:column;gap:10px}.print-btn{display:none}}
+    @media print{body{background:#fff}.print-btn{display:none}.wrap{max-width:100%;padding:0 18px}section,.hero-grid{break-inside:avoid}.hero,.decision,.phase .when,th{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+  </style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">طباعة / PDF</button>
+<div class="wrap">
+  <header>
+    <div class="logo">WOSOL<small>CONCIERGE</small></div>
+    <div class="meta">Competitive Analysis<br>Hardcore Strategy · 2025</div>
+  </header>
+
+  <main>
+    <span class="label">Strategy 08 — Competitive Intelligence</span>
+    <h1>تحليل المنافسين<br>نسخة تنفيذية بدون حشو</h1>
+    <div class="subtitle">Competitor Landscape · Strategic Gaps · Execution Priorities</div>
+
+    <div class="hero-grid">
+      <div class="hero">
+        <div>
+          <div class="eyebrow">Executive Summary</div>
+          <p>
+            WOSOL لا تعاني من نقص عملاء. المشكلة الحقيقية أن النمو الحالي قائم على <strong>Word of Mouth</strong> وعلاقات صاحب الشركة، وهذا النمو له سقف. المنافسون يبنون أنظمة رقمية وعضويات واضحة، بينما WOSOL تمتلك أصلًا أقوى: <strong>عملاء حقيقيين وثقة عالية</strong>. المطلوب الآن تحويل هذه الثقة إلى نظام نمو قابل للقياس.
+          </p>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>800K–1M</b><span>متوسط إنفاق سنوي تقريبي للعميل الواحد داخل WOSOL.</span></div>
+        <div class="stat"><b>2011</b><span>خبرة وعلاقات متراكمة، لكنها غير محوّلة إلى Growth Engine واضح.</span></div>
+        <div class="stat"><b>0</b><span>نظام إحالة رسمي، عضويات منشورة، وفانل تحويل موثق حتى الآن.</span></div>
+      </div>
+    </div>
+
+    <section>
+      <div class="head"><span class="num">01</span><div><h2>الوضع الحقيقي</h2><p>Core Reality</p></div></div>
+      <div class="note">
+        WOSOL تمتلك ما يصعب شراؤه: علاقات، عملاء High Net Worth، وسجل تنفيذ حقيقي. لكنها لا تمتلك حتى الآن ما يصعب التوسع بدونه: <strong>نظام عضويات، فانل تحويل، محتوى يثبت الثقة، ونظام إحالة قابل للتتبع.</strong>
+      </div>
+      <div class="cards">
+        <div class="card opportunity"><span class="tag">قوة قائمة</span><h3>العلاقات والسمعة</h3><p>مصدر العملاء الحالي قوي، لكنه غير موثق ولا قابل للتكرار بدون صاحب العلاقة الأساسي.</p></div>
+        <div class="card watch"><span class="tag">ميزة قيد الإطلاق</span><h3>التطبيق</h3><p>التطبيق فرصة ممتازة فقط إذا ارتبط بعضويات، SLA، تتبع طلبات، وتقارير استخدام.</p></div>
+        <div class="card danger"><span class="tag">الخطر</span><h3>النمو غير قابل للتوسع</h3><p>الاعتماد على العلاقات الشخصية فقط يجعل النمو بطيئًا، محدودًا، وصعب القياس.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="head"><span class="num">02</span><div><h2>المشهد التنافسي المختصر</h2><p>Competitive Landscape</p></div></div>
+      <table>
+        <thead><tr><th>المنافس</th><th>موقعه</th><th>قوته</th><th>نقطة ضعفه</th><th>ما يعنيه لـ WOSOL</th></tr></thead>
+        <tbody>
+          <tr><td>Quintessentially</td><td>عالمي / فاخر</td><td>عضويات، حضور عالمي، نظام خدمة واضح</td><td>ليس سعودي الجذور، وقد يبدو بعيدًا ثقافيًا</td><td>المنافس الأخطر إذا دخل الرياض بعمق</td></tr>
+          <tr><td>Lorindale</td><td>سعودي / Lifestyle</td><td>براند سعودي، محتوى، عضويات</td><td>حضور الرياض أقل وضوحًا، ولا يمتلك تطبيقًا قويًا</td><td>يثبت أن السوق المحلي قابل للتموضع الفاخر</td></tr>
+          <tr><td>Concierge Saudia</td><td>محلي / On-demand</td><td>خصوصية وخدمة 24/7</td><td>ضعف رقمي وغياب نموذج عضويات</td><td>منافس ضعيف استراتيجيًا لكنه موجود في نفس المساحة</td></tr>
+          <tr><td>Roam KSA</td><td>سياحي / تجارب</td><td>محتوى وتجارب مرتبطة بالسياحة</td><td>ليس Lifestyle Management مستمرًا</td><td>يتقاطع مع WOSOL في التجارب لا في العضوية</td></tr>
+          <tr><td>Ahlan Arabia</td><td>B2B / MICE</td><td>فعاليات، رحلات شركات، تنفيذ فاخر</td><td>بعيد عن إدارة حياة الأفراد VIP</td><td>منافس جزئي وربما شريك محتمل</td></tr>
+          <tr class="wosol"><td>WOSOL الآن</td><td>محلي / علاقات VIP</td><td>عملاء حقيقيون وثقة عالية</td><td>لا Growth System واضح</td><td>الأصل قوي، النظام ضعيف</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="head"><span class="num">03</span><div><h2>مصفوفة القياس</h2><p>Benchmarking Matrix</p></div></div>
+      <table>
+        <thead><tr><th>اللاعب</th><th class="center">عضويات</th><th class="center">تطبيق</th><th class="center">محتوى</th><th class="center">شراكات</th><th class="center">SLA</th><th class="center">Referral</th></tr></thead>
+        <tbody>
+          <tr><td>Quintessentially</td><td class="center good">✓</td><td class="center good">✓</td><td class="center good">✓</td><td class="center good">✓</td><td class="center good">✓</td><td class="center partial">◐</td></tr>
+          <tr><td>Lorindale</td><td class="center good">✓</td><td class="center partial">◐</td><td class="center good">✓</td><td class="center good">✓</td><td class="center good">✓</td><td class="center bad">✗</td></tr>
+          <tr><td>Concierge Saudia</td><td class="center bad">✗</td><td class="center bad">✗</td><td class="center partial">◐</td><td class="center partial">◐</td><td class="center partial">◐</td><td class="center bad">✗</td></tr>
+          <tr><td>Roam KSA</td><td class="center bad">✗</td><td class="center bad">✗</td><td class="center good">✓</td><td class="center good">✓</td><td class="center partial">◐</td><td class="center bad">✗</td></tr>
+          <tr><td>Ahlan Arabia</td><td class="center bad">✗</td><td class="center bad">✗</td><td class="center partial">◐</td><td class="center good">✓</td><td class="center bad">✗</td><td class="center bad">✗</td></tr>
+          <tr class="wosol"><td>WOSOL الآن</td><td class="center">✗</td><td class="center">◐</td><td class="center">✗</td><td class="center">◐</td><td class="center">✗</td><td class="center">✗</td></tr>
+          <tr class="target"><td>WOSOL الهدف</td><td class="center good">✓</td><td class="center good">✓</td><td class="center good">✓</td><td class="center good">✓</td><td class="center good">✓</td><td class="center good">✓</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="head"><span class="num">04</span><div><h2>الفجوات القابلة للاستغلال</h2><p>Strategic Gaps</p></div></div>
+      <div class="cards">
+        <div class="card opportunity"><span class="tag">فرصة 01</span><h3>عضوية + تطبيق</h3><p>لا يوجد لاعب محلي واضح يجمع بين عضوية مسعّرة وتطبيق يخدم العميل بشكل يومي. هذه نافذة WOSOL.</p></div>
+        <div class="card opportunity"><span class="tag">فرصة 02</span><h3>تموضع رجل الأعمال</h3><p>المنافسون يتكلمون عن الفخامة والسفر. WOSOL تستطيع امتلاك موقع: إدارة حياة رجل الأعمال في الرياض.</p></div>
+        <div class="card opportunity"><span class="tag">فرصة 03</span><h3>Referral Engine</h3><p>عميل واحد بهذا المستوى يعرف عملاء بنفس المستوى. المطلوب تحويل الرضا إلى إحالة قابلة للتتبع.</p></div>
+        <div class="card danger"><span class="tag">تهديد 01</span><h3>Quintessentially</h3><p>إذا توسعوا محليًا بعمق، سيملكون النظام بينما WOSOL لا تزال تعتمد على العلاقات فقط.</p></div>
+        <div class="card danger"><span class="tag">تهديد 02</span><h3>الفجوة الرقمية</h3><p>غياب المحتوى يجعل العميل الجديد لا يكتشف WOSOL في مرحلة البحث والمقارنة.</p></div>
+        <div class="card danger"><span class="tag">تهديد 03</span><h3>سقف العلاقات الشخصية</h3><p>كل نمو يعتمد على شخص واحد سيصل إلى سقف. المطلوب توزيع مصادر العملاء.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="head"><span class="num">05</span><div><h2>التحول الاستراتيجي المطلوب</h2><p>Required Shift</p></div></div>
+      <table>
+        <thead><tr><th>من</th><th>إلى</th><th>الأثر</th></tr></thead>
+        <tbody>
+          <tr><td>خدمة تُطلب عند الحاجة</td><td>عضوية يُشترك فيها</td><td>إيراد متكرر وولاء أعلى</td></tr>
+          <tr><td>واتساب فقط</td><td>واتساب + تطبيق + CRM بسيط</td><td>تتبع، سرعة، وقياس تجربة العميل</td></tr>
+          <tr><td>Word of Mouth عشوائي</td><td>Referral System</td><td>نمو منخفض التكلفة وقابل للقياس</td></tr>
+          <tr><td>صور فاخرة عامة</td><td>محتوى قصصي يثبت الثقة</td><td>تحويل السوشيال من واجهة إلى Validation Layer</td></tr>
+          <tr><td>شراكات غير موثقة</td><td>COI Network</td><td>مصادر عملاء مؤهلة بدل حملات واسعة</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="head"><span class="num">06</span><div><h2>خطة التنفيذ المختصرة</h2><p>Execution Roadmap</p></div></div>
+      <div class="timeline">
+        <div class="phase"><div class="when">0–30 Days</div><div class="what"><h3>تثبيت العرض</h3><p>صياغة الباقات، الأسعار، شروط العضوية، وSLA واضح لكل مستوى.</p></div><div class="kpi"><b>KPI</b><span>3 باقات جاهزة + صفحة بيع واحدة + سكربت مبيعات.</span></div></div>
+        <div class="phase"><div class="when">31–60 Days</div><div class="what"><h3>إطلاق الفانل</h3><p>Landing Page، نموذج تأهيل، واتساب، Google Sheet CRM، وتتبّع مصدر العميل.</p></div><div class="kpi"><b>KPI</b><span>20 Lead مؤهل + 5 اجتماعات + أول عضويات مدفوعة.</span></div></div>
+        <div class="phase"><div class="when">61–120 Days</div><div class="what"><h3>Referral & COI</h3><p>بناء قائمة Private Bankers، فنادق، Wealth Managers، وشركاء خدمات فاخرة.</p></div><div class="kpi"><b>KPI</b><span>10 شركاء نشطين + 5 إحالات قابلة للتتبع.</span></div></div>
+        <div class="phase"><div class="when">121–180 Days</div><div class="what"><h3>تفعيل التطبيق والمحتوى</h3><p>ربط التطبيق بتجربة العضوية، وإطلاق محتوى يثبت الثقة بدل النشر العام.</p></div><div class="kpi"><b>KPI</b><span>30 عضو نشط + معدل احتفاظ شهري واضح.</span></div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="head"><span class="num">07</span><div><h2>مؤشرات القياس</h2><p>KPIs That Matter</p></div></div>
+      <div class="cards">
+        <div class="card"><span class="tag">Primary KPI</span><h3>Active Members</h3><p>عدد الأعضاء النشطين شهريًا هو المؤشر الأهم، لأنه يقيس الإيراد والعلاقة في نفس الوقت.</p></div>
+        <div class="card"><span class="tag">Revenue KPI</span><h3>MRR / ARR</h3><p>قيمة الاشتراكات الشهرية والسنوية، مع فصل الإيراد المتكرر عن الطلبات الإضافية.</p></div>
+        <div class="card"><span class="tag">Growth KPI</span><h3>Referral Rate</h3><p>نسبة العملاء أو الشركاء الذين جلبوا عملاء جدد خلال آخر 90 يوم.</p></div>
+        <div class="card"><span class="tag">Sales KPI</span><h3>Lead-to-Member</h3><p>نسبة التحويل من Lead مؤهل إلى عضو فعلي.</p></div>
+        <div class="card"><span class="tag">Experience KPI</span><h3>Request SLA</h3><p>سرعة الرد والتنفيذ حسب مستوى العضوية.</p></div>
+        <div class="card"><span class="tag">Quality KPI</span><h3>Average Spend</h3><p>متوسط الإنفاق السنوي لكل عضو، وربطه بمستوى العضوية.</p></div>
+      </div>
+    </section>
+
+    <div class="decision">
+      <span>Final Decision</span>
+      <h2>WOSOL لا تحتاج منافسة أكثر.<br>تحتاج نظامًا يحوّل الثقة الحالية إلى نمو يُقاس.</h2>
+    </div>
+
+    <section style="margin-top:72px;margin-bottom:0">
+      <div class="head"><span class="num">08</span><div><h2>الخلاصة التنفيذية</h2><p>Executive Conclusion</p></div></div>
+      <div class="note">
+        أقوى فرصة أمام WOSOL ليست في إطلاق حملات إعلانية واسعة، بل في بناء <strong>Luxury Growth Engine</strong> يجمع بين العضويات، التطبيق، الشراكات، الإحالات، والمحتوى الذي يثبت الثقة. السوق مفتوح، لكن النافذة لن تبقى مفتوحة طويلًا. اللاعب الذي يربط الفخامة بالنظام أولًا سيملك الفئة.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><span>WOSOL · CONCIERGE</span><span>Competitive Analysis · Confidential · 2025</span></footer>
+</div>
+</body>
+</html>

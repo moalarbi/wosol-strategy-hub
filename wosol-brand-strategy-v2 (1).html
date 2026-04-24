@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WOSOL Concierge — استراتيجية تموضع البراند</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:   #041026;
+      --navy-mid:    #16304E;
+      --navy-light:  #1F466D;
+      --beige-warm:  #EDE9E3;
+      --beige-sand:  #D1C7BA;
+      --white-soft:  #F6F4F1;
+      --text-body:   #2a3a50;
+      --text-light:  #6b7e92;
+      --border:      rgba(4, 16, 38, 0.10);
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background-color: var(--white-soft);
+      color: var(--navy-deep);
+      line-height: 1.85;
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pattern-bg {
+      position: fixed; inset: 0; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30Z' fill='none' stroke='%23041026' stroke-width='1'/%3E%3Cpath d='M30 15 L45 30 L30 45 L15 30Z' fill='none' stroke='%23041026' stroke-width='0.6'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    .page-wrapper {
+      position: relative; z-index: 1;
+      max-width: 960px; margin: 0 auto; padding: 0 32px 80px;
+    }
+
+    /* ── Header ── */
+    .site-header { display: flex; align-items: center; justify-content: space-between; padding: 40px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 72px; }
+    .logo-block { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+    .logo-name { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 0.18em; color: var(--navy-deep); line-height: 1; }
+    .logo-sub  { font-family: 'Poppins', sans-serif; font-size: 8.5px; font-weight: 400; letter-spacing: 0.30em; color: var(--navy-light); text-transform: uppercase; }
+    .header-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Title ── */
+    .title-block { margin-bottom: 72px; }
+    .doc-label { display: inline-block; font-size: 10px; letter-spacing: 0.22em; color: var(--navy-light); font-family: 'Poppins', sans-serif; text-transform: uppercase; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--beige-sand); }
+    .page-title { font-size: clamp(34px, 5vw, 54px); font-weight: 700; color: var(--navy-deep); line-height: 1.25; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .page-title-en { font-family: 'Poppins', sans-serif; font-size: clamp(13px, 2vw, 16px); font-weight: 300; color: var(--navy-light); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+
+    /* ── Exec Summary ── */
+    .exec-summary { background-color: var(--navy-deep); color: var(--beige-warm); padding: 44px 48px; margin-bottom: 80px; position: relative; overflow: hidden; }
+    .exec-summary::before { content: ''; position: absolute; top: -40px; left: -40px; width: 200px; height: 200px; border: 1px solid rgba(237,233,227,0.08); border-radius: 50%; }
+    .exec-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 20px; display: block; }
+    .exec-summary p { font-size: 17px; font-weight: 300; line-height: 2; color: var(--beige-warm); position: relative; z-index: 1; }
+    .exec-summary strong { font-weight: 600; color: #fff; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 80px; }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .section-num { font-family: 'Poppins', sans-serif; font-size: 11px; color: var(--beige-sand); font-weight: 400; letter-spacing: 0.1em; flex-shrink: 0; }
+    .section-title { font-size: 22px; font-weight: 700; color: var(--navy-deep); letter-spacing: -0.01em; }
+    .section-title-en { font-family: 'Poppins', sans-serif; font-size: 10px; color: var(--text-light); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
+    .section-body { font-size: 15.5px; color: var(--text-body); line-height: 2; }
+
+    /* ── Definition Block ── */
+    .definition-block { border-right: 3px solid var(--navy-light); padding: 24px 28px; background: var(--beige-warm); margin-bottom: 24px; }
+    .definition-block p { font-size: 16.5px; font-weight: 400; color: var(--navy-deep); line-height: 1.95; }
+    .definition-block strong { font-weight: 700; color: var(--navy-deep); }
+
+    /* ── Promise Block ── */
+    .brand-promise { background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%); padding: 52px 48px; text-align: center; margin-bottom: 28px; position: relative; }
+    .brand-promise .promise-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.30em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 22px; display: block; }
+    .brand-promise .promise-text { font-size: clamp(18px, 3vw, 26px); font-weight: 600; color: #ffffff; line-height: 1.65; max-width: 680px; margin: 0 auto; }
+
+    /* ── Cards Grid ── */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 8px; }
+    .card { background: #ffffff; border: 1px solid var(--border); padding: 32px 28px; position: relative; }
+    .card::before { content: ''; position: absolute; top: 0; right: 0; width: 3px; height: 40px; background: var(--navy-light); }
+    .card-title { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 12px; letter-spacing: 0.01em; }
+    .card-body { font-size: 14px; color: var(--text-body); line-height: 1.9; }
+
+    /* ── Values Grid ── */
+    .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 8px; }
+    .value-item { background: var(--white-soft); padding: 32px 28px; }
+    .value-item:hover { background: var(--beige-warm); }
+    .value-num { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 300; color: var(--beige-sand); line-height: 1; margin-bottom: 14px; }
+    .value-title { font-size: 15px; font-weight: 700; color: var(--navy-deep); margin-bottom: 10px; }
+    .value-desc { font-size: 13.5px; color: var(--text-body); line-height: 1.85; }
+
+    /* ── Comparison Table ── */
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14.5px; }
+    .compare-table thead tr { background: var(--navy-deep); color: var(--beige-warm); }
+    .compare-table thead th { padding: 18px 24px; text-align: right; font-weight: 600; font-size: 13px; letter-spacing: 0.03em; }
+    .compare-table thead th:last-child { text-align: left; }
+    .compare-table tbody tr { border-bottom: 1px solid var(--border); }
+    .compare-table tbody tr:nth-child(even) { background: var(--beige-warm); }
+    .compare-table tbody tr:nth-child(odd) { background: #ffffff; }
+    .compare-table tbody td { padding: 16px 24px; color: var(--text-body); vertical-align: top; line-height: 1.75; }
+    .compare-table tbody td:first-child { font-weight: 600; color: var(--navy-deep); font-size: 13px; }
+    .compare-table .td-regular { color: #8a9aaa; }
+    .compare-table .td-wosol { color: var(--navy-deep); font-weight: 500; }
+
+    /* ── Tone Chips ── */
+    .tone-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .tone-chip { display: flex; flex-direction: column; gap: 6px; padding: 20px 24px; background: #ffffff; border: 1px solid var(--border); flex: 1; min-width: 160px; }
+    .tone-chip .chip-label { font-size: 13px; font-weight: 700; color: var(--navy-deep); }
+    .tone-chip .chip-not { font-size: 12px; color: #b0bcc8; text-decoration: line-through; }
+
+    /* ── Insight Block (new) ── */
+    .insight-block {
+      background: var(--navy-deep); color: var(--beige-warm);
+      padding: 32px 36px; margin-bottom: 28px;
+      border-right: 4px solid var(--beige-sand);
+      position: relative;
+    }
+    .insight-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--beige-sand); margin-bottom: 14px; display: block; }
+    .insight-block p { font-size: 16px; font-weight: 300; line-height: 2; color: var(--beige-warm); }
+    .insight-block strong { color: #fff; font-weight: 600; }
+
+    /* ── Global Comparison (new) ── */
+    .global-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 8px; }
+    .global-card { background: #fff; padding: 26px 22px; }
+    .global-card:hover { background: var(--beige-warm); }
+    .gc-brand { font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.14em; color: var(--navy-light); text-transform: uppercase; margin-bottom: 10px; display: block; }
+    .gc-lesson { font-size: 13px; font-weight: 700; color: var(--navy-deep); margin-bottom: 8px; }
+    .gc-detail { font-size: 13px; color: var(--text-body); line-height: 1.8; }
+
+    /* ── Feeling Timeline ── */
+    .journey-steps { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+    .journey-step { display: flex; gap: 28px; align-items: flex-start; }
+    .step-line-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 40px; }
+    .step-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--navy-light); margin-top: 6px; flex-shrink: 0; }
+    .step-connector { width: 1px; flex: 1; background: var(--beige-sand); min-height: 36px; }
+    .step-content { padding-bottom: 36px; }
+    .step-moment { font-size: 11px; font-family: 'Poppins', sans-serif; color: var(--navy-light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+    .step-title { font-size: 15px; font-weight: 700; color: var(--navy-deep); margin-bottom: 8px; }
+    .step-desc { font-size: 14px; color: var(--text-body); line-height: 1.85; }
+
+    /* ── Message Examples ── */
+    .message-examples { display: flex; flex-direction: column; gap: 20px; margin-top: 8px; }
+    .msg-block { background: var(--beige-warm); padding: 28px 32px; border-right: 3px solid var(--navy-deep); }
+    .msg-context { font-size: 10.5px; font-family: 'Poppins', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy-light); margin-bottom: 12px; }
+    .msg-text { font-size: 16px; font-weight: 500; color: var(--navy-deep); line-height: 1.75; }
+    .msg-bad { background: var(--white-soft); border-right: 3px solid var(--beige-sand); opacity: 0.65; }
+    .msg-bad .msg-context { color: #aab5c0; }
+    .msg-bad .msg-text { color: #8a9aaa; text-decoration: line-through; text-decoration-color: #ccc; }
+
+    /* ── Closing ── */
+    .closing-section { margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--border); }
+    .closing-section .closing-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-light); margin-bottom: 24px; display: block; }
+    .closing-section h3 { font-size: 22px; font-weight: 700; color: var(--navy-deep); margin-bottom: 20px; line-height: 1.5; }
+    .closing-section p { font-size: 15px; color: var(--text-body); line-height: 2; max-width: 720px; }
+
+    /* ── Footer ── */
+    .site-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; color: var(--navy-deep); }
+    .footer-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Print ── */
+    @media print {
+      .pattern-bg { display: none; }
+      body { background: #fff; }
+      .exec-summary, .brand-promise, .insight-block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .compare-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .compare-table tbody tr:nth-child(even) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page-wrapper { padding: 0 24px; }
+      .section { page-break-inside: avoid; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .page-wrapper { padding: 0 20px 60px; }
+      .site-header { margin-bottom: 48px; }
+      .exec-summary { padding: 32px 24px; }
+      .brand-promise { padding: 36px 24px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .global-grid { grid-template-columns: 1fr 1fr; }
+      .compare-table { font-size: 13px; }
+      .compare-table thead th, .compare-table tbody td { padding: 12px 14px; }
+      .tone-grid { flex-direction: column; }
+      .site-footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="pattern-bg"></div>
+
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo-block">
+      <span class="logo-name">WOSOL</span>
+      <span class="logo-sub">CONCIERGE</span>
+    </div>
+    <div class="header-meta">Brand Strategy Document · 2025</div>
+  </header>
+
+  <!-- Title -->
+  <div class="title-block">
+    <span class="doc-label">Strategy 01 of 07</span>
+    <h1 class="page-title">استراتيجية تموضع البراند</h1>
+    <p class="page-title-en">Brand Positioning Strategy</p>
+  </div>
+
+  <!-- Executive Summary -->
+  <div class="exec-summary">
+    <span class="exec-label">Executive Summary</span>
+    <p>
+      المشكلة الحقيقية لـ WOSOL ليست في جودة الخدمة — الخدمة استثنائية.
+      المشكلة في أن السوق لا يرى ما يفعله WOSOL بوضوح كافٍ.
+      العميل يبحث عن شخص <strong>يثق فيه قبل أن يطلب منه</strong>،
+      وهذه الثقة لا تُباع ولا تُعلَن — تُبنى.
+      هذه الصفحة لا تصف براند WOSOL فحسب،
+      بل تُحدد كيف يُترجَم هذا البراند إلى <strong>انطباع حقيقي يجعل العميل يقول: هذا هو المكان الصحيح.</strong>
+    </p>
+  </div>
+
+  <!-- Section 1: The Real Problem -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">تشخيص المشكلة الحقيقية</div>
+        <div class="section-title-en">The Real Problem</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>في أي بزنس قائم على الخدمة والعلاقات، تكون المشكلة نادرًا في الجودة. WOSOL تُنفّذ بمستوى عالٍ — هذا ثابت. لكن النمو توقف لأن الطريقة التي تُعرّف بها WOSOL نفسها لم تتطور بنفس السرعة.</p>
+    </div>
+
+    <div class="cards-grid" style="margin-bottom: 28px;">
+      <div class="card">
+        <div class="card-title">المشكلة الأولى — الغموض</div>
+        <div class="card-body">حين يُسأل أحدهم "وش WOSOL؟" والإجابة تأتي بقائمة خدمات، العميل يضيع. العقل المشتت لا يتخذ قرارًا. "Confused mind never buys."</div>
+      </div>
+      <div class="card">
+        <div class="card-title">المشكلة الثانية — غياب الثقة المبكرة</div>
+        <div class="card-body">العميل الـ VIP لا يشتري من شركة مجهولة. يشتري من شخص يعرفه، أو من جهة أوصت بها ثقة سابقة. الثقة لا تُبنى بالإعلان، تُبنى بالحضور الإنساني الصحيح.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">المشكلة الثالثة — نمط التسويق</div>
+        <div class="card-body">كل ما زاد الضغط البيعي، قلّ الاهتمام. العميل الثري يرفض كل ما يشعره بأنه "يُباع". التسويق الصحيح لـ WOSOL يُقنع بدون أن يبيع.</div>
+      </div>
+    </div>
+
+    <div class="insight-block">
+      <span class="insight-label">Core Insight</span>
+      <p>
+        <strong>الفكرة الجوهرية:</strong> WOSOL لا تبيع خدمات — تبيع ثقة.
+        وهذه الثقة لا يُوصل إليها بالإعلان المدفوع، بل بطريقة ظهور البراند:
+        كيف يتكلم، ماذا يُظهر، وكيف يجعل العميل يشعر قبل أن يُقرر.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 2: New Identity -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">تعريف WOSOL الجديد</div>
+        <div class="section-title-en">Redefined Identity</div>
+      </div>
+    </div>
+
+    <div class="definition-block">
+      <p>
+        WOSOL ليست شركة كونسيرج.
+        WOSOL هي <strong>الشريك الصامت الذي يُدير تفاصيل حياة رجل الأعمال</strong>
+        — من رحلة فجائية تحتاج ترتيبها في أربع ساعات،
+        إلى مناسبة تُصمَّم حتى في غياب صاحبها.
+        هذا ليس وصفًا للخدمات — هذا وصف لطبيعة العلاقة.
+      </p>
+    </div>
+
+    <div class="section-body">
+      <p>
+        نشتغل مع أشخاص وقتهم ثمين، وتفاصيل حياتهم كثيرة.
+        ندير هذه التفاصيل كاملةً بصمت وكفاءة،
+        حتى يتفرغوا لما يُحسنونه ويهتمون به.
+        هذا ليس ترف — هذا استثمار في وقتهم وراحة بالهم.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 3: The Brand Promise -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">الوعد الأساسي للبراند</div>
+        <div class="section-title-en">Core Brand Promise</div>
+      </div>
+    </div>
+
+    <div class="brand-promise">
+      <span class="promise-label">WOSOL Promise</span>
+      <p class="promise-text">
+        "ندير تفاصيل حياتك — بصمت، بسرعة، وبمستوى يليق بمن أنت."
+      </p>
+    </div>
+
+    <div class="section-body">
+      <p>
+        الوعد الحقيقي لا يُقال في الإعلانات — يُعاش في كل تفصيلة.
+        من أول رسالة واتساب إلى لحظة تسليم الخدمة وما بعدها.
+        العميل لا يتذكر ما قالته WOSOL، يتذكر ما شعر به حين تعامل معها.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 4: Brand Persona -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">شخصية البراند — من هي WOSOL؟</div>
+        <div class="section-title-en">Brand Persona</div>
+      </div>
+    </div>
+
+    <div class="section-body" style="margin-bottom: 28px;">
+      <p>إذا كانت WOSOL شخصًا، فهي رجل خبرة بالغ الهدوء، يعرف قيمته دون أن يُعلنها. يتصرف قبل أن تطلب، ويُنجز قبل أن تسأل. لا يضغط، لا يُلح، لا يتباهى.</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-title">واثق بدون ادعاء</div>
+        <div class="card-body">WOSOL لا تحتاج أن تثبت نفسها — تجربة الخدمة الأولى هي الدليل. الثقة بالنفس تظهر في هدوء الأسلوب، لا في ضجيج الإعلانات.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">يستبق الاحتياج</div>
+        <div class="card-body">لا يستجيب فقط — يستبق. يعرف من تجربته السابقة مع العميل ما الذي قد يحتاجه، ويُعدّه قبل الطلب. هذا ما يُميز البراند الحقيقي عن مزود الخدمة.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">كتوم وأمين</div>
+        <div class="card-body">الخصوصية ليست ميزة — هي أساس الثقة عند هذا النوع من العملاء. ما يُشارَك مع WOSOL يبقى في WOSOL. دائمًا وبلا استثناء.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">يختار عملاءه</div>
+        <div class="card-body">WOSOL لا تسعى لاستقطاب الجميع — تعمل مع من يُقدّر المستوى ويفهم قيمة الخدمة. هذا الاختيار الانتقائي هو ما يُحافظ على جودة التجربة للعملاء الحاليين.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Voice & Tone -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">نبرة الصوت</div>
+        <div class="section-title-en">Brand Voice & Tone</div>
+      </div>
+    </div>
+
+    <div class="section-body" style="margin-bottom: 28px;">
+      <p>نبرة WOSOL هي نبرة من يعرف ما يستطيع تحقيقه ولا يحتاج إلى المبالغة في وصفه. هادئة في الشكل، محكمة في المضمون.</p>
+    </div>
+
+    <div class="tone-grid">
+      <div class="tone-chip">
+        <span class="chip-label">واثقة وهادئة</span>
+        <span class="chip-not">مُتحمسة ومبالَغ فيها</span>
+      </div>
+      <div class="tone-chip">
+        <span class="chip-label">راقية وطبيعية</span>
+        <span class="chip-not">متصنعة أو جامدة</span>
+      </div>
+      <div class="tone-chip">
+        <span class="chip-label">شخصية ودافئة</span>
+        <span class="chip-not">بيروقراطية أو رسمية زائداً</span>
+      </div>
+      <div class="tone-chip">
+        <span class="chip-label">تدعو ولا تضغط</span>
+        <span class="chip-not">تطلب أو تُلح</span>
+      </div>
+    </div>
+
+    <div class="insight-block" style="margin-top: 28px;">
+      <span class="insight-label">مبدأ الصوت</span>
+      <p>
+        التسويق الصحيح لـ WOSOL لا يبيع — <strong>يدعو</strong>.
+        كل رسالة تسويقية يجب أن تُجيب على سؤال واحد في ذهن العميل:
+        "هل هؤلاء يفهمون حياتي ومستواها؟"
+        الإجابة لا تأتي من الكلمات، بل من طريقة قول الكلمات.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 6: Brand Values -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">قيم البراند</div>
+        <div class="section-title-en">Brand Values</div>
+      </div>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-num">01</div>
+        <div class="value-title">الثقة أولاً</div>
+        <div class="value-desc">قبل أي خدمة، WOSOL تبني ثقة. العميل لا يوكّل تفاصيل حياته لجهة لا يثق بها تمامًا.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">02</div>
+        <div class="value-title">الاستباق</div>
+        <div class="value-desc">لا ننتظر الطلب. نفهم العميل بما يكفي لنقترح ما يحتاجه قبل أن يدرك أنه يحتاجه.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">03</div>
+        <div class="value-title">الخصوصية المطلقة</div>
+        <div class="value-desc">ما يشاركه العميل معنا هو أمانة. السرية ليست سياسة — هي طبيعة كل شخص في الفريق.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">04</div>
+        <div class="value-title">التحول لا الخدمة</div>
+        <div class="value-desc">لا نبيع مهام. نبيع النتيجة: راحة البال، توفير الوقت، والحياة التي تسير بلا تفاصيل مُرهِقة.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">05</div>
+        <div class="value-title">الوضوح</div>
+        <div class="value-desc">العقل المشتت لا يقرر. كل تواصل مع العميل يجب أن يكون واضحًا، مختصرًا، ومحددًا في خطوته التالية.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">06</div>
+        <div class="value-title">الانتقائية</div>
+        <div class="value-desc">نختار من نخدم. هذا ليس غرورًا — بل ضمان أن كل عميل يحظى بالمستوى الذي يستحقه دون تنازل.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7: Global Benchmark -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">ما تعلمناه من الرواد العالميين</div>
+        <div class="section-title-en">Global Benchmark Insights</div>
+      </div>
+    </div>
+
+    <div class="section-body" style="margin-bottom: 28px;">
+      <p>أقوى شركات الكونسيرج في العالم نجحت لأنها ما باعت خدمات — باعت مفتاح الوصول إلى ما لا يصل إليه الآخرون. هذه أبرز الدروس التي تنطبق على WOSOL مباشرةً.</p>
+    </div>
+
+    <div class="global-grid">
+      <div class="global-card">
+        <span class="gc-brand">Quintessentially</span>
+        <div class="gc-lesson">بيع الوصول لا الخدمة</div>
+        <div class="gc-detail">نجحوا لأنهم لم يقولوا "نرتب لك رحلة" — قالوا "نفتح لك أبوابًا لا تُفتح لغيرك."</div>
+      </div>
+      <div class="global-card">
+        <span class="gc-brand">Knightsbridge Circle</span>
+        <div class="gc-lesson">الحصرية هي المنتج</div>
+        <div class="gc-detail">رسوم عضوية تتجاوز 25,000 دولار سنويًا — لأن العميل يشتري الانتماء لدائرة لا يدخلها إلا القليل.</div>
+      </div>
+      <div class="global-card">
+        <span class="gc-brand">Ten Lifestyle</span>
+        <div class="gc-lesson">نظام لا مجرد خدمة</div>
+        <div class="gc-detail">نموا لأنهم بنوا membership model واضحًا يحول العميل من "طلب واحد" إلى علاقة سنوية متكررة.</div>
+      </div>
+      <div class="global-card">
+        <span class="gc-brand">Velocity Black</span>
+        <div class="gc-lesson">التجربة فوق الخدمة</div>
+        <div class="gc-detail">كل شيء مصمم حول ما يشعر به العميل — لا حول ما يحصل عليه. الإحساس هو المنتج الحقيقي.</div>
+      </div>
+    </div>
+
+    <div class="insight-block" style="margin-top: 28px;">
+      <span class="insight-label">الدرس المشترك بينهم جميعًا</span>
+      <p>
+        هذه الشركات لم تكن الوحيدة في سوقها — لكنها كانت <strong>الأوضح في تعريف من تخدم ولماذا</strong>.
+        WOSOL لديها نفس الإمكانية، والفرق يبدأ من وضوح الرسالة.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 8: WOSOL vs Generic -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">WOSOL مقابل الكونسيرج العادي</div>
+        <div class="section-title-en">WOSOL vs. Generic Concierge</div>
+      </div>
+    </div>
+
+    <div class="section-body" style="margin-bottom: 28px;">
+      <p>الفرق ليس في قائمة الخدمات. الفرق في طبيعة العلاقة وعمق الفهم للعميل.</p>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">الجانب</th>
+          <th class="td-regular" style="width: 37%;">كونسيرج تقليدي</th>
+          <th style="width: 37%; text-align: right;">WOSOL Concierge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>نقطة البداية</td>
+          <td class="td-regular">ينتظر الطلب ثم يُنفّذ</td>
+          <td class="td-wosol">يستبق الاحتياج ويقترح الحل</td>
+        </tr>
+        <tr>
+          <td>طبيعة العلاقة</td>
+          <td class="td-regular">مزود خدمة ينتهي دوره بتسليم الطلب</td>
+          <td class="td-wosol">شريك يبني فهمًا متراكمًا يُحسّن مع الوقت</td>
+        </tr>
+        <tr>
+          <td>أسلوب التسويق</td>
+          <td class="td-regular">قوائم خدمات وعروض وخصومات</td>
+          <td class="td-wosol">حضور هادئ يبني ثقة قبل أي طلب</td>
+        </tr>
+        <tr>
+          <td>نوع العميل المستهدف</td>
+          <td class="td-regular">كل من يحتاج خدمة</td>
+          <td class="td-wosol">رجل أعمال وقته ثمين ولا يقبل تجربة دون مستوى</td>
+        </tr>
+        <tr>
+          <td>الخصوصية</td>
+          <td class="td-regular">مستوى مقبول من السرية</td>
+          <td class="td-wosol">سرية مطلقة كمبدأ غير قابل للنقاش</td>
+        </tr>
+        <tr>
+          <td>معيار النجاح</td>
+          <td class="td-regular">تنفيذ الطلب في الوقت المحدد</td>
+          <td class="td-wosol">العميل يشعر أن الأمور تسير وحدها</td>
+        </tr>
+        <tr>
+          <td>التوسع</td>
+          <td class="td-regular">يعتمد على الإعلانات والعدد</td>
+          <td class="td-wosol">يعتمد على جودة العلاقات والعمق لا الكم</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 9: How the Client Feels -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">كيف يشعر العميل مع WOSOL</div>
+        <div class="section-title-en">The Client Experience Journey</div>
+      </div>
+    </div>
+
+    <div class="section-body" style="margin-bottom: 32px;">
+      <p>الشعور هو المنتج الحقيقي. كل خدمة هي وسيلة للوصول إلى شعور محدد يصعب نسيانه ويستحيل إيجاده في مكان آخر.</p>
+    </div>
+
+    <div class="journey-steps">
+      <div class="journey-step">
+        <div class="step-line-col">
+          <div class="step-dot"></div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-moment">أول تواصل</div>
+          <div class="step-title">شعور بأنه وجد من يفهمه</div>
+          <div class="step-desc">لا استجواب، لا أسئلة إدارية ممللة. محادثة إنسانية حقيقية تُثبت من الدقيقة الأولى أن هذا الفريق يفهم طبيعة حياة العميل وتوقعاته.</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-line-col">
+          <div class="step-dot"></div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-moment">أثناء الخدمة</div>
+          <div class="step-title">شعور بأن الأمور تسير وحدها</div>
+          <div class="step-desc">لا متابعة متعبة، لا أسئلة متكررة، لا طلب للتوضيح في كل خطوة. WOSOL تُنجز وتُبلغ. العميل يعيش حياته بينما الفريق يُدير التفاصيل بصمت.</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-line-col">
+          <div class="step-dot"></div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-moment">بعد الخدمة</div>
+          <div class="step-title">شعور بأن هذا المستوى لن يجده في مكان آخر</div>
+          <div class="step-desc">ليس لأن الخدمة كانت ممتازة فحسب، بل لأن طريقة التعامل كانت استثنائية. اللحظات الصغيرة التي لم يطلبها، التفاصيل التي لاحظها الفريق — هذا ما يصنع الولاء الحقيقي.</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="step-line-col">
+          <div class="step-dot"></div>
+        </div>
+        <div class="step-content">
+          <div class="step-moment">على المدى البعيد</div>
+          <div class="step-title">شعور بأن WOSOL جزء لا يُستغنى عنه</div>
+          <div class="step-desc">في هذه المرحلة، العميل لا يُقارن WOSOL بأي بديل. يُعرّفها لمحيطه كجزء من هويته — "عندي ناس يرتبون لي كل شيء." هنا اكتمل التموضع الحقيقي.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 10: Marketing Messages -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">الرسائل التسويقية — ما يُقال وما لا يُقال</div>
+        <div class="section-title-en">Right vs. Wrong Messaging</div>
+      </div>
+    </div>
+
+    <div class="section-body" style="margin-bottom: 28px;">
+      <p>
+        العميل الـ VIP لا يُقنع بالعروض والخصومات.
+        لا يُقنع بالإحراج من واقعه الحالي.
+        ولا يتفاعل مع محتوى يُشعره بأنه "يُباع".
+        يُقنع فقط بالفهم العميق — حين يرى أن WOSOL تتحدث عن حياته بالضبط.
+      </p>
+    </div>
+
+    <div class="message-examples">
+      <div class="msg-block msg-bad">
+        <div class="msg-context">رسالة خاطئة — تبيع بشكل مباشر</div>
+        <div class="msg-text">"احجز الآن واستفد من عرض العضوية الحصرية!"</div>
+      </div>
+      <div class="msg-block">
+        <div class="msg-context">رسالة WOSOL — تدعو بدون ضغط</div>
+        <div class="msg-text">"وقتك أثمن من أن يُصرف في تفاصيل يمكن لغيرك إدارتها."</div>
+      </div>
+
+      <div class="msg-block msg-bad">
+        <div class="msg-context">رسالة خاطئة — تُحرج العميل</div>
+        <div class="msg-text">"إذا حياتك فوضى وما تقدر تنظم وقتك، نحن هنا نساعدك."</div>
+      </div>
+      <div class="msg-block">
+        <div class="msg-context">رسالة WOSOL — تحترم العميل</div>
+        <div class="msg-text">"إذا وقتك مليان وتبغى ترتاح من التفاصيل — هذا بالضبط ما نفعله."</div>
+      </div>
+
+      <div class="msg-block msg-bad">
+        <div class="msg-context">رسالة خاطئة — قائمة خدمات باردة</div>
+        <div class="msg-text">"نقدم: سفر، إقامات، يخوت، طيران خاص، تسوق، فعاليات..."</div>
+      </div>
+      <div class="msg-block">
+        <div class="msg-context">رسالة WOSOL — قصة تبيع بدون بيع</div>
+        <div class="msg-text">"وصل الرياض بقرار فجائي. لم يكن عنده وقت لترتيب أي شيء. خلال ست ساعات كان كل شيء جاهزًا — بدون أن يطلب أكثر من مكالمة واحدة."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closing -->
+  <div class="closing-section">
+    <span class="closing-label">Executive Conclusion</span>
+    <h3>WOSOL لا تحتاج أن تُثبت نفسها — تحتاج أن تُوضّح من هي لمن يستحق</h3>
+    <p>
+      التموضع الصحيح لا يُبنى بإعلان أو حملة موسمية.
+      يُبنى بكل كلمة تُقال، وكل تفصيلة تُنفَّذ، وكل عميل يخرج بشعور لا يجده في مكان آخر.
+      حين تكون الهوية واضحة والوعد حقيقيًا والتجربة متسقة — يتحول العميل الراضي إلى مصدر نمو طبيعي لا يحتاج إعلانًا.
+      الهدف ليس أن يعرف الجميع WOSOL.
+      الهدف أن يقول الشخص الصحيح: <em>"هذا المستوى لا أجده في أي مكان آخر."</em>
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span class="footer-logo">WOSOL <span style="font-weight:300; letter-spacing:0.28em; font-size:8px; color: var(--text-light);">CONCIERGE</span></span>
+    <span class="footer-meta">Brand Strategy v2 · Confidential · 2025</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WOSOL Concierge — استراتيجية الشراكات والتوسع</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:   #041026;
+      --navy-mid:    #16304E;
+      --navy-light:  #1F466D;
+      --beige-warm:  #EDE9E3;
+      --beige-sand:  #D1C7BA;
+      --white-soft:  #F6F4F1;
+      --text-body:   #2a3a50;
+      --text-light:  #6b7e92;
+      --border:      rgba(4, 16, 38, 0.09);
+      --gold-muted:  #b0965a;
+      --gold-light:  #d4b97a;
+    }
+
+    html { font-size: 16px; }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background-color: var(--white-soft);
+      color: var(--navy-deep);
+      line-height: 1.85;
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pattern-bg {
+      position: fixed; inset: 0; opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Ccircle cx='45' cy='45' r='40' fill='none' stroke='%23041026' stroke-width='0.5'/%3E%3Ccircle cx='45' cy='45' r='25' fill='none' stroke='%23041026' stroke-width='0.3'/%3E%3Cpath d='M5 45 L85 45 M45 5 L45 85 M16 16 L74 74 M74 16 L16 74' stroke='%23041026' stroke-width='0.25'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    .page-wrapper { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 32px 80px; }
+
+    /* ── Header ── */
+    .site-header { display: flex; align-items: center; justify-content: space-between; padding: 40px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 72px; }
+    .logo-block { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+    .logo-name  { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 0.18em; color: var(--navy-deep); line-height: 1; }
+    .logo-sub   { font-family: 'Poppins', sans-serif; font-size: 8.5px; font-weight: 400; letter-spacing: 0.30em; color: var(--navy-light); text-transform: uppercase; }
+    .header-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Title ── */
+    .title-block { margin-bottom: 72px; }
+    .doc-label { display: inline-block; font-size: 10px; letter-spacing: 0.22em; color: var(--navy-light); font-family: 'Poppins', sans-serif; text-transform: uppercase; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--beige-sand); }
+    .page-title { font-size: clamp(32px, 5vw, 52px); font-weight: 700; color: var(--navy-deep); line-height: 1.25; margin-bottom: 10px; }
+    .page-title-en { font-family: 'Poppins', sans-serif; font-size: clamp(12px, 2vw, 15px); font-weight: 300; color: var(--navy-light); letter-spacing: 0.14em; text-transform: uppercase; }
+
+    /* ── Exec Summary ── */
+    .exec-summary { background-color: var(--navy-deep); padding: 44px 48px; margin-bottom: 80px; position: relative; overflow: hidden; }
+    .exec-summary::before { content: ''; position: absolute; top: -60px; left: 80px; width: 240px; height: 240px; border: 1px solid rgba(237,233,227,0.06); border-radius: 50%; }
+    .exec-summary::after  { content: ''; position: absolute; bottom: -80px; right: -40px; width: 280px; height: 280px; border: 1px solid rgba(237,233,227,0.04); border-radius: 50%; }
+    .exec-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 20px; display: block; }
+    .exec-summary p { font-size: 17px; font-weight: 300; line-height: 2; color: var(--beige-warm); position: relative; z-index: 1; }
+    .exec-summary strong { font-weight: 600; color: #fff; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 80px; }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .section-num { font-family: 'Poppins', sans-serif; font-size: 11px; color: var(--beige-sand); font-weight: 400; letter-spacing: 0.1em; flex-shrink: 0; }
+    .section-title { font-size: 22px; font-weight: 700; color: var(--navy-deep); }
+    .section-title-en { font-family: 'Poppins', sans-serif; font-size: 10px; color: var(--text-light); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
+    .section-body { font-size: 15.5px; color: var(--text-body); line-height: 2; margin-bottom: 28px; }
+
+    /* ── Principle Block ── */
+    .principle-block { border-right: 4px solid var(--navy-light); padding: 28px 28px; background: var(--beige-warm); margin-bottom: 36px; }
+    .principle-block p { font-size: 15.5px; color: var(--navy-deep); line-height: 2; }
+    .principle-block strong { font-weight: 700; }
+
+    /* ── Partnership Category ── */
+    .partner-category { margin-bottom: 40px; }
+    .partner-cat-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 22px; background: var(--navy-mid); margin-bottom: 1px;
+    }
+    .partner-cat-num { font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.16em; color: var(--beige-sand); text-transform: uppercase; flex-shrink: 0; }
+    .partner-cat-title { font-size: 16px; font-weight: 700; color: #fff; }
+    .partner-cat-en { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(237,233,227,0.45); margin-top: 3px; }
+
+    .partner-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border); border: 1px solid var(--border); border-top: none;
+    }
+    .partner-card { background: #fff; padding: 24px 20px; }
+    .partner-card:hover { background: var(--beige-warm); }
+    .pc-icon { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beige-sand); margin-bottom: 10px; display: block; }
+    .pc-name { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 8px; }
+    .pc-value { font-size: 13px; color: var(--text-body); line-height: 1.8; margin-bottom: 12px; }
+    .pc-wosol-gets { font-size: 11.5px; color: var(--navy-light); font-weight: 600; }
+
+    /* ── Affiliate System ── */
+    .affiliate-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px;
+    }
+    .affiliate-block { background: #fff; border: 1px solid var(--border); padding: 32px 28px; }
+    .affiliate-block.dark { background: var(--navy-deep); }
+    .aff-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); margin-bottom: 14px; display: block; }
+    .affiliate-block.dark .aff-label { color: var(--beige-sand); }
+    .aff-title { font-size: 17px; font-weight: 700; color: var(--navy-deep); margin-bottom: 12px; }
+    .affiliate-block.dark .aff-title { color: #fff; }
+    .aff-body { font-size: 13.5px; color: var(--text-body); line-height: 1.9; }
+    .affiliate-block.dark .aff-body { color: var(--beige-warm); font-weight: 300; }
+
+    .commission-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 13px; }
+    .commission-table thead tr { background: var(--beige-warm); }
+    .commission-table thead th { padding: 12px 16px; text-align: right; font-weight: 700; font-size: 11px; color: var(--navy-deep); letter-spacing: 0.04em; }
+    .commission-table tbody tr { border-bottom: 1px solid var(--border); }
+    .commission-table tbody tr:nth-child(odd) { background: var(--white-soft); }
+    .commission-table tbody tr:nth-child(even) { background: #fff; }
+    .commission-table tbody td { padding: 12px 16px; color: var(--text-body); line-height: 1.6; }
+    .commission-table tbody td:first-child { font-weight: 600; color: var(--navy-deep); }
+    .comm-val { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; color: var(--navy-light); }
+
+    /* ── Code Block ── */
+    .codes-flow {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 28px;
+    }
+    .code-step { background: var(--white-soft); padding: 24px 18px; position: relative; }
+    .code-step-num { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--beige-sand); margin-bottom: 10px; display: block; }
+    .code-step-title { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 8px; }
+    .code-step-desc { font-size: 12.5px; color: var(--text-body); line-height: 1.75; }
+    .code-example {
+      margin-top: 10px; background: var(--navy-deep); color: var(--gold-light);
+      font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.12em;
+      padding: 6px 10px; display: inline-block;
+    }
+
+    /* ── Global Destinations ── */
+    .destinations-intro { margin-bottom: 32px; }
+
+    /* Visual Map — SVG world dots */
+    .world-map-wrapper {
+      background: var(--navy-deep); padding: 40px 32px;
+      margin-bottom: 32px; position: relative; overflow: hidden;
+    }
+    .world-map-wrapper::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(31,70,109,0.4) 1px, transparent 1px);
+      background-size: 24px 24px; opacity: 0.4;
+    }
+    .map-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 24px; display: block; position: relative; z-index: 1; }
+    .map-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; position: relative; z-index: 1; }
+    .map-subtitle { font-size: 13px; color: var(--beige-warm); font-weight: 300; line-height: 1.8; margin-bottom: 28px; position: relative; z-index: 1; }
+
+    .destinations-dots {
+      display: flex; flex-wrap: wrap; gap: 12px; position: relative; z-index: 1;
+    }
+    .dest-dot {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.06); padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .dest-pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold-light); flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(212,185,122,0.2);
+    }
+    .dest-name { font-family: 'Poppins', sans-serif; font-size: 11px; letter-spacing: 0.12em; color: #fff; font-weight: 500; }
+    .dest-region { font-size: 10px; color: rgba(237,233,227,0.45); }
+
+    /* ── Destination Cards ── */
+    .dest-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 28px; }
+    .dest-card { background: #fff; border: 1px solid var(--border); overflow: hidden; }
+    .dest-card-header { padding: 20px 20px 16px; border-bottom: 1px solid var(--border); }
+    .dest-region-badge { font-family: 'Poppins', sans-serif; font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; display: block; }
+    .dest-city { font-size: 18px; font-weight: 700; color: var(--navy-deep); margin-bottom: 4px; }
+    .dest-country { font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.12em; color: var(--navy-light); }
+    .dest-card-body { padding: 16px 20px; }
+    .dest-services { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .dest-services li { font-size: 13px; color: var(--text-body); padding-right: 14px; position: relative; line-height: 1.6; }
+    .dest-services li::before { content: '—'; position: absolute; right: 0; color: var(--beige-sand); font-size: 11px; }
+    .dest-partner-note { margin-top: 12px; font-size: 11.5px; color: var(--navy-light); font-weight: 600; padding-top: 10px; border-top: 1px solid var(--border); }
+
+    /* ── Expansion Roadmap ── */
+    .expansion-phases {
+      display: flex; flex-direction: column; gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+    }
+    .exp-phase { background: #fff; display: grid; grid-template-columns: 200px 1fr; }
+    .exp-phase + .exp-phase { border-top: 1px solid var(--border); }
+    .exp-phase-side { padding: 28px 22px; display: flex; flex-direction: column; justify-content: center; }
+    .exp-phase-side.p1 { background: var(--beige-warm); }
+    .exp-phase-side.p2 { background: var(--navy-light); }
+    .exp-phase-side.p3 { background: var(--navy-mid); }
+    .exp-phase-side.p4 { background: var(--navy-deep); }
+    .exp-phase-period { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+    .p1 .exp-phase-period { color: var(--text-light); }
+    .p2 .exp-phase-period, .p3 .exp-phase-period, .p4 .exp-phase-period { color: var(--beige-sand); }
+    .exp-phase-name { font-size: 15px; font-weight: 700; }
+    .p1 .exp-phase-name { color: var(--navy-deep); }
+    .p2 .exp-phase-name, .p3 .exp-phase-name, .p4 .exp-phase-name { color: #fff; }
+    .exp-phase-geo { font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.1em; margin-top: 8px; }
+    .p1 .exp-phase-geo { color: var(--text-light); }
+    .p2 .exp-phase-geo, .p3 .exp-phase-geo, .p4 .exp-phase-geo { color: rgba(237,233,227,0.5); }
+    .exp-phase-body { padding: 28px 28px; }
+    .exp-phase-title { font-size: 15px; font-weight: 700; color: var(--navy-deep); margin-bottom: 10px; }
+    .exp-phase-desc { font-size: 13.5px; color: var(--text-body); line-height: 1.85; margin-bottom: 14px; }
+    .exp-phase-targets { display: flex; flex-wrap: wrap; gap: 7px; }
+    .exp-target { font-size: 11.5px; padding: 4px 11px; background: var(--beige-warm); color: var(--navy-mid); font-weight: 500; }
+
+    /* ── Gateway Block ── */
+    .gateway-block { background: linear-gradient(145deg, var(--navy-mid) 0%, var(--navy-deep) 100%); padding: 52px 48px; position: relative; overflow: hidden; }
+    .gateway-block::before { content: ''; position: absolute; top: -60px; right: 60px; width: 260px; height: 260px; border: 1px solid rgba(237,233,227,0.06); border-radius: 50%; }
+    .gateway-block::after  { content: ''; position: absolute; bottom: -80px; left: -40px; width: 300px; height: 300px; border: 1px solid rgba(237,233,227,0.04); border-radius: 50%; }
+    .gateway-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 20px; display: block; position: relative; z-index: 1; }
+    .gateway-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 16px; line-height: 1.45; position: relative; z-index: 1; }
+    .gateway-body { font-size: 15px; color: var(--beige-warm); font-weight: 300; line-height: 2; margin-bottom: 32px; max-width: 680px; position: relative; z-index: 1; }
+    .gateway-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); position: relative; z-index: 1; }
+    .gw-pillar { background: rgba(255,255,255,0.04); padding: 22px 18px; }
+    .gw-pillar-num { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.16em; color: var(--beige-sand); margin-bottom: 10px; display: block; }
+    .gw-pillar-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .gw-pillar-desc { font-size: 12px; color: rgba(237,233,227,0.55); line-height: 1.7; }
+
+    /* ── Partnership Rules ── */
+    .rules-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .rule-cell { background: var(--white-soft); padding: 28px 22px; }
+    .rule-cell:hover { background: #fff; }
+    .rule-num { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 300; color: var(--beige-sand); margin-bottom: 12px; line-height: 1; }
+    .rule-title { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 8px; }
+    .rule-desc { font-size: 13px; color: var(--text-body); line-height: 1.85; }
+
+    /* ── Closing ── */
+    .closing-section { margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--border); }
+    .closing-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-light); margin-bottom: 24px; display: block; }
+    .closing-section h3 { font-size: 22px; font-weight: 700; color: var(--navy-deep); margin-bottom: 20px; line-height: 1.5; }
+    .closing-section p { font-size: 15px; color: var(--text-body); line-height: 2; }
+
+    /* ── Series Closing ── */
+    .series-closing {
+      margin-top: 48px; padding: 40px 44px;
+      background: var(--navy-deep); position: relative; overflow: hidden;
+    }
+    .series-closing::before { content: ''; position: absolute; top: -40px; left: -40px; width: 200px; height: 200px; border: 1px solid rgba(237,233,227,0.06); border-radius: 50%; }
+    .sc-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--gold-muted); text-transform: uppercase; margin-bottom: 16px; display: block; position: relative; z-index: 1; }
+    .sc-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 14px; position: relative; z-index: 1; line-height: 1.5; }
+    .sc-body { font-size: 14px; color: var(--beige-warm); line-height: 2; font-weight: 300; position: relative; z-index: 1; }
+    .sc-docs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; position: relative; z-index: 1; }
+    .sc-doc { font-size: 11px; padding: 6px 14px; background: rgba(255,255,255,0.07); color: var(--beige-sand); font-family: 'Poppins', sans-serif; letter-spacing: 0.08em; }
+
+    /* ── Footer ── */
+    .site-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; color: var(--navy-deep); }
+    .footer-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Print ── */
+    @media print {
+      .pattern-bg { display: none; }
+      body { background: #fff; }
+      .exec-summary, .world-map-wrapper, .gateway-block, .series-closing,
+      .partner-cat-header,
+      .exp-phase-side.p2, .exp-phase-side.p3, .exp-phase-side.p4 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { page-break-inside: avoid; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 740px) {
+      .page-wrapper { padding: 0 20px 60px; }
+      .exec-summary { padding: 32px 22px; }
+      .partner-cards { grid-template-columns: 1fr 1fr; }
+      .affiliate-grid { grid-template-columns: 1fr; }
+      .codes-flow { grid-template-columns: 1fr 1fr; }
+      .dest-cards { grid-template-columns: 1fr 1fr; }
+      .exp-phase { grid-template-columns: 1fr; }
+      .exp-phase-side { padding: 16px 20px; }
+      .gateway-block { padding: 36px 22px; }
+      .gateway-pillars { grid-template-columns: 1fr 1fr; }
+      .rules-grid { grid-template-columns: 1fr; }
+      .site-footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 500px) {
+      .partner-cards { grid-template-columns: 1fr; }
+      .codes-flow { grid-template-columns: 1fr; }
+      .dest-cards { grid-template-columns: 1fr; }
+      .gateway-pillars { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="pattern-bg"></div>
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo-block">
+      <span class="logo-name">WOSOL</span>
+      <span class="logo-sub">CONCIERGE</span>
+    </div>
+    <div class="header-meta">Partnerships & Expansion · 2025</div>
+  </header>
+
+  <!-- Title -->
+  <div class="title-block">
+    <span class="doc-label">Strategy 07 of 07</span>
+    <h1 class="page-title">استراتيجية الشراكات والتوسع</h1>
+    <p class="page-title-en">Partnerships & Global Expansion Strategy</p>
+  </div>
+
+  <!-- Exec Summary -->
+  <div class="exec-summary">
+    <span class="exec-label">Executive Summary</span>
+    <p>
+      بدل ما تبحث عن العميل مباشرة — ابحث عن الشخص الذي عنده العميل.
+      <strong>شريك واحد قوي = 10 عملاء. أفضل من 50 شريك ضعيف.</strong>
+      هذه الصفحة تُصمّم شبكة COI Network مبنية على علاقات حقيقية —
+      لا على قوائم وعقود — تُعزز تجربة العميل وتُوسّع حضور WOSOL
+      من الرياض إلى الخليج إلى أبرز الوجهات العالمية لرجال الأعمال.
+    </p>
+  </div>
+
+  <!-- Section 1: Why Partnerships -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">منطق الشراكات في بزنس Luxury Concierge</div>
+        <div class="section-title-en">The Partnership Logic</div>
+      </div>
+    </div>
+
+    <div class="principle-block">
+      <p>
+        <strong>الشراكة الجيدة لـ WOSOL لها شرطان:</strong> أن تُضيف قيمة حقيقية لحياة العميل،
+        وأن تُحوّل الشريك إلى مصدر عملاء موثوق. الشراكة التي تحقق الأمرين معاً
+        هي الأثمن — وهذا هو المعيار الوحيد لأي علاقة شراكة تدخل إليها WOSOL.
+      </p>
+    </div>
+
+    <div class="rules-grid">
+      <div class="rule-cell">
+        <div class="rule-num">01</div>
+        <div class="rule-title">الشريك يخدم نفس العميل</div>
+        <div class="rule-desc">لا شراكة مع جهة لا تخدم شريحة High Net Worth أو رجال الأعمال. التوافق في الشريحة أهم من حجم الشركة أو شهرتها.</div>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-num">02</div>
+        <div class="rule-title">الشريك يرفع المستوى لا يُخففه</div>
+        <div class="rule-desc">كل شريك يُذكر باسمه أمام عميل WOSOL يجب أن يكون بمستوى لا يُشككه في جودة WOSOL ذاتها. سمعة الشريك انعكاس مباشر.</div>
+      </div>
+      <div class="rule-cell">
+        <div class="rule-num">03</div>
+        <div class="rule-title">الشراكة تبدأ بالعلاقة لا العقد</div>
+        <div class="rule-desc">أفضل الشراكات تبدأ بعلاقة شخصية قبل أي اتفاقية. الاتفاقية تُرسّم ما هو قائم — لا تُوجده. الثقة أولاً، التوثيق بعد كذلك.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Partner Categories -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">فئات الشراكة التسع</div>
+        <div class="section-title-en">Nine Partnership Categories</div>
+      </div>
+    </div>
+
+    <!-- Category 1 -->
+    <div class="partner-category">
+      <div class="partner-cat-header">
+        <span class="partner-cat-num">Cat 01</span>
+        <div>
+          <div class="partner-cat-title">الفنادق والمنتجعات الفاخرة</div>
+          <div class="partner-cat-en">Luxury Hotels & Resorts</div>
+        </div>
+      </div>
+      <div class="partner-cards">
+        <div class="partner-card">
+          <span class="pc-icon">محلي · السعودية والخليج</span>
+          <div class="pc-name">فنادق Rosewood · Four Seasons · Aman</div>
+          <div class="pc-value">حجوزات VIP بأولوية، ترقيات غرف حصرية، وصول لخدمات الضيافة الخاصة لعملاء WOSOL.</div>
+          <div class="pc-wosol-gets">WOSOL تحصل: عمولة 10-15% + أولوية حجز</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">دولي · الوجهات الفاخرة</span>
+          <div class="pc-name">Mandarin Oriental · Belmond · Bulgari Hotels</div>
+          <div class="pc-value">اتفاقيات مع شبكات الفنادق الدولية في الوجهات المستهدفة. توصيات متبادلة لعملاء الزيارة.</div>
+          <div class="pc-wosol-gets">WOSOL تحصل: عمولة + إحالات عملاء دوليين</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">حصري · Boutique Properties</span>
+          <div class="pc-name">فيلات وإقامات خاصة حصرية</div>
+          <div class="pc-value">وصول حصري لعقارات لا تُتاح للعموم — فيلات مملوكة، قلاع، إقامات تاريخية. هذا ما لا توفره أي منصة حجز.</div>
+          <div class="pc-wosol-gets">WOSOL تحصل: وصول نادر + هامش تفاوضي عالٍ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 2 -->
+    <div class="partner-category">
+      <div class="partner-cat-header">
+        <span class="partner-cat-num">Cat 02</span>
+        <div>
+          <div class="partner-cat-title">الطيران الخاص وشركات اليخوت</div>
+          <div class="partner-cat-en">Private Aviation & Yacht Charters</div>
+        </div>
+      </div>
+      <div class="partner-cards">
+        <div class="partner-card">
+          <span class="pc-icon">طيران خاص</span>
+          <div class="pc-name">شركات Jet Charter المعتمدة</div>
+          <div class="pc-value">اتفاقيات تفضيلية مع شركات طيران خاصة في السعودية والإمارات وأوروبا. أولوية حجز وأسعار مفاوض عليها.</div>
+          <div class="pc-wosol-gets">WOSOL تحصل: عمولة 8-12% + أولوية رحلات</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">يخوت · Mediterranean & Gulf</span>
+          <div class="pc-name">وكالات يخوت فاخرة</div>
+          <div class="pc-value">شراكات مع وكالات استئجار يخوت في البحر المتوسط والخليج. إمكانية تنظيم رحلات بحرية متكاملة.</div>
+          <div class="pc-wosol-gets">WOSOL تحصل: عمولة 10% + إدارة الرحلة كاملة</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">هليكوبتر وتنقلات خاصة</span>
+          <div class="pc-name">خدمات التنقل الجوي القصير</div>
+          <div class="pc-value">تنقلات هليكوبتر للوصول لوجهات لا تصلها الطائرات الكبيرة — جزر، مرتفعات، مواقع حصرية.</div>
+          <div class="pc-wosol-gets">WOSOL تحصل: تجربة حصرية لا مثيل لها</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 3 -->
+    <div class="partner-category">
+      <div class="partner-cat-header">
+        <span class="partner-cat-num">Cat 03</span>
+        <div>
+          <div class="partner-cat-title">البنوك وإدارة الثروات</div>
+          <div class="partner-cat-en">Private Banking & Wealth Management</div>
+        </div>
+      </div>
+      <div class="partner-cards">
+        <div class="partner-card">
+          <span class="pc-icon">Private Banking</span>
+          <div class="pc-name">المصرفيون الخاصون وثروات VIP</div>
+          <div class="pc-value">المصرفي الخاص يخدم نفس العميل ويبني معه علاقة عميقة. توصية WOSOL منه تعني الانضمام الشبه الفوري.</div>
+          <div class="pc-wosol-gets">أعلى معدل تحويل — العميل جاهز ومؤهل مسبقاً</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">Family Offices</span>
+          <div class="pc-name">مكاتب العائلات الثرية</div>
+          <div class="pc-value">Family Office يُدير ثروة وحياة عائلة كاملة. شراكة واحدة قد تعني 5-10 أعضاء من نفس العائلة.</div>
+          <div class="pc-wosol-gets">WOSOL تحصل: عملاء متعددون من إحالة واحدة</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">Wealth Management Firms</span>
+          <div class="pc-name">شركات الاستشارات الاستثمارية</div>
+          <div class="pc-value">علاقة تبادلية: WOSOL ترشح خدماتهم المالية لعملائها، وهم يرشحون WOSOL لعملائهم الجدد.</div>
+          <div class="pc-wosol-gets">علاقة win-win مبنية على ثقة مشتركة</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 4 -->
+    <div class="partner-category">
+      <div class="partner-cat-header">
+        <span class="partner-cat-num">Cat 04</span>
+        <div>
+          <div class="partner-cat-title">الصحة والعافية الفاخرة</div>
+          <div class="partner-cat-en">Luxury Health & Wellness</div>
+        </div>
+      </div>
+      <div class="partner-cards">
+        <div class="partner-card">
+          <span class="pc-icon">عيادات فاخرة</span>
+          <div class="pc-name">عيادات Executive Health Check</div>
+          <div class="pc-value">برامج فحص صحي شاملة للمديرين التنفيذيين — محلياً وفي أوروبا وسويسرا. WOSOL ترتب ويدفع كجزء من الخدمة.</div>
+          <div class="pc-wosol-gets">خدمة عالية القيمة نادرة في السوق السعودي</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">Wellness Retreats</span>
+          <div class="pc-name">منتجعات التعافي والتأمل الفاخرة</div>
+          <div class="pc-value">ترتيب رحلات تعافٍ في سويسرا، بالي، أو جبال الألب. تجربة شاملة يصعب إيجادها دون علاقات WOSOL.</div>
+          <div class="pc-wosol-gets">WOSOL تحصل: عمولة عالية + فارق تجربة كبير</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">Personal Training & Nutrition</span>
+          <div class="pc-name">كوتشينج صحي فاخر</div>
+          <div class="pc-value">تنسيق جلسات تدريب شخصية مع مدربين دوليين، خبراء تغذية، وبرامج صحة مخصصة للمسافر التنفيذي.</div>
+          <div class="pc-wosol-gets">خدمة تكاملية ترفع مستوى الاشتراك الشهري</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 5 -->
+    <div class="partner-category">
+      <div class="partner-cat-header">
+        <span class="partner-cat-num">Cat 05</span>
+        <div>
+          <div class="partner-cat-title">نوادي رجال الأعمال والعلامات الفاخرة</div>
+          <div class="partner-cat-en">Business Clubs & Luxury Brands</div>
+        </div>
+      </div>
+      <div class="partner-cards">
+        <div class="partner-card">
+          <span class="pc-icon">Business Clubs</span>
+          <div class="pc-name">نوادي رجال الأعمال المغلقة</div>
+          <div class="pc-value">الحضور في الأحداث المغلقة لنوادي رجال الأعمال المحلية والدولية. البيئة التي ينشط فيها عميل WOSOL بشكل طبيعي.</div>
+          <div class="pc-wosol-gets">وصول مباشر للعميل في بيئته الطبيعية</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">Luxury Fashion & Watches</span>
+          <div class="pc-name">ساعات وأزياء فاخرة</div>
+          <div class="pc-value">خدمة Personal Shopping مع علامات ساعات ومجوهرات فاخرة — Patek Philippe, Hermès, Rolls-Royce. WOSOL تُؤمّن الوصول.</div>
+          <div class="pc-wosol-gets">تجربة تسوق لا تحدث دون علاقات معتمدة</div>
+        </div>
+        <div class="partner-card">
+          <span class="pc-icon">Event Management</span>
+          <div class="pc-name">شركات تنظيم الفعاليات الفاخرة</div>
+          <div class="pc-value">شراكة مع منظمي حفلات وفعاليات VIP — إحالة متبادلة وتنفيذ مشترك للمناسبات الكبرى لعملاء WOSOL.</div>
+          <div class="pc-wosol-gets">WOSOL تحصل: عمولة + قدرة تنفيذية أكبر</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Affiliate System -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">نظام الإحالة والعمولات</div>
+        <div class="section-title-en">Referral & Affiliate Program</div>
+      </div>
+    </div>
+
+    <div class="affiliate-grid">
+      <div class="affiliate-block">
+        <span class="aff-label">Referral Philosophy</span>
+        <div class="aff-title">الإحالة في WOSOL ليست برنامج نقاط — هي علاقة ثقة</div>
+        <div class="aff-body">
+          الشريك الذي يُحيل عميلاً لـ WOSOL يضع سمعته على المحك.
+          لذلك، المكافأة يجب أن تكون على مستوى هذا الوزن.
+          لا أكواد خصم رخيصة — بل امتيازات حقيقية تعكس شكر WOSOL لمن وثق بها أمام عملائه.
+        </div>
+        <table class="commission-table">
+          <thead>
+            <tr>
+              <th>نوع الشريك</th>
+              <th>نوع المكافأة</th>
+              <th>القيمة</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>مصرفي خاص</td>
+              <td>عمولة نقدية</td>
+              <td><span class="comm-val">5 – 8%</span> من قيمة العضوية الأولى</td>
+            </tr>
+            <tr>
+              <td>فندق أو منتجع</td>
+              <td>عمولة متبادلة</td>
+              <td><span class="comm-val">10%</span> + إرسال عملاء WOSOL أولاً</td>
+            </tr>
+            <tr>
+              <td>محامي أعمال</td>
+              <td>امتياز خدمة</td>
+              <td>خدمة كونسيرج مجانية لشهر + عمولة</td>
+            </tr>
+            <tr>
+              <td>عميل VIP يُحيل</td>
+              <td>تجربة حصرية</td>
+              <td>خدمة فاخرة مجانية + نقاط مضاعفة</td>
+            </tr>
+            <tr>
+              <td>شركة طيران/يخت</td>
+              <td>إحالة متبادلة</td>
+              <td>أولوية حجز + عمولة 8%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="affiliate-block dark">
+        <span class="aff-label" style="color:var(--beige-sand);">Partner Code System</span>
+        <div class="aff-title">نظام أكواد الشركاء</div>
+        <div class="aff-body">
+          كل شريك يحصل على كود فريد يُتيح التتبع الدقيق وإسناد الإحالة.
+          الكود ليس للخصم — بل للتعريف والتتبع.
+          حين يُرسل شريك عميلاً، يستطيع WOSOL أن يعرف من أين جاء وكيف يُقدّر هذه الثقة.
+        </div>
+      </div>
+    </div>
+
+    <div class="codes-flow">
+      <div class="code-step">
+        <span class="code-step-num">Step 01</span>
+        <div class="code-step-title">إنشاء الكود</div>
+        <div class="code-step-desc">كل شريك يحصل على كود فريد عند توقيع الاتفاقية.</div>
+        <div class="code-example">WSL-[PARTNER]-2025</div>
+      </div>
+      <div class="code-step">
+        <span class="code-step-num">Step 02</span>
+        <div class="code-step-title">الإحالة</div>
+        <div class="code-step-desc">الشريك يُشارك الكود مع عملائه عند التوصية بـ WOSOL.</div>
+        <div class="code-example">WSL-BANK-2025</div>
+      </div>
+      <div class="code-step">
+        <span class="code-step-num">Step 03</span>
+        <div class="code-step-title">التتبع والتسجيل</div>
+        <div class="code-step-desc">عند تواصل العميل الجديد، يُسجَّل الكود ويُربط بالشريك تلقائياً.</div>
+      </div>
+      <div class="code-step">
+        <span class="code-step-num">Step 04</span>
+        <div class="code-step-title">المكافأة</div>
+        <div class="code-step-desc">عند تحويل العميل لعضو، يحصل الشريك على مكافأته المتفق عليها.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Global Destinations -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">WOSOL كبوابة عالمية للتجارب الفاخرة</div>
+        <div class="section-title-en">Global Destination Network</div>
+      </div>
+    </div>
+
+    <div class="world-map-wrapper">
+      <span class="map-label">WOSOL Global Network · 2025 — 2027</span>
+      <div class="map-title">من الرياض إلى العالم</div>
+      <div class="map-subtitle">شبكة وجهات عالمية مبنية على علاقات حقيقية لا على قوائم مواقع الحجز</div>
+      <div class="destinations-dots">
+        <div class="dest-dot">
+          <div class="dest-pulse"></div>
+          <div><div class="dest-name">الرياض</div><div class="dest-region">المقر الرئيسي</div></div>
+        </div>
+        <div class="dest-dot">
+          <div class="dest-pulse"></div>
+          <div><div class="dest-name">دبي</div><div class="dest-region">الخليج العربي</div></div>
+        </div>
+        <div class="dest-dot">
+          <div class="dest-pulse"></div>
+          <div><div class="dest-name">لندن</div><div class="dest-region">المملكة المتحدة</div></div>
+        </div>
+        <div class="dest-dot">
+          <div class="dest-pulse"></div>
+          <div><div class="dest-name">باريس</div><div class="dest-region">فرنسا</div></div>
+        </div>
+        <div class="dest-dot">
+          <div class="dest-pulse"></div>
+          <div><div class="dest-name">موناكو</div><div class="dest-region">ريفييرا فرنسية</div></div>
+        </div>
+        <div class="dest-dot">
+          <div class="dest-pulse"></div>
+          <div><div class="dest-name">سويسرا</div><div class="dest-region">جنيف · زيورخ</div></div>
+        </div>
+        <div class="dest-dot">
+          <div class="dest-pulse"></div>
+          <div><div class="dest-name">ليك كومو</div><div class="dest-region">إيطاليا</div></div>
+        </div>
+        <div class="dest-dot">
+          <div class="dest-pulse"></div>
+          <div><div class="dest-name">نيويورك</div><div class="dest-region">الولايات المتحدة</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-cards">
+      <div class="dest-card">
+        <div class="dest-card-header">
+          <span class="dest-region-badge">Gulf · Priority Market</span>
+          <div class="dest-city">دبي</div>
+          <div class="dest-country">UAE · First Expansion</div>
+        </div>
+        <div class="dest-card-body">
+          <ul class="dest-services">
+            <li>شراكات Burj Al Arab · Atlantis The Royal</li>
+            <li>نادي رجال الأعمال DIFC</li>
+            <li>وكالات طيران خاص Sharjah / DWC</li>
+            <li>فعاليات Abu Dhabi Grand Prix</li>
+            <li>Personal Shopping في Dubai Mall وبرج خليفة</li>
+          </ul>
+          <div class="dest-partner-note">مكتب تمثيل أو شريك محلي مرخص خلال السنة الأولى</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-header">
+          <span class="dest-region-badge">Europe · Heritage Capital</span>
+          <div class="dest-city">لندن</div>
+          <div class="dest-country">United Kingdom</div>
+        </div>
+        <div class="dest-card-body">
+          <ul class="dest-services">
+            <li>Claridge's · The Connaught · Savoy</li>
+            <li>Mayfair Private Members Clubs</li>
+            <li>Harley Street Medical · Private clinics</li>
+            <li>Harrods Personal Shopping</li>
+            <li>Chelsea FC & Premier League Suites</li>
+          </ul>
+          <div class="dest-partner-note">شبكة علاقات مبنية عبر وكيل محلي موثوق</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-header">
+          <span class="dest-region-badge">Europe · Luxury Capital</span>
+          <div class="dest-city">باريس</div>
+          <div class="dest-country">France</div>
+        </div>
+        <div class="dest-card-body">
+          <ul class="dest-services">
+            <li>Hôtel de Crillon · Le Meurice · Ritz Paris</li>
+            <li>Champs-Élysées Private Shopping</li>
+            <li>Michelin Star Restaurants reservations</li>
+            <li>Fashion Week VIP Access</li>
+            <li>Museum Private Tours (Louvre / Versailles)</li>
+          </ul>
+          <div class="dest-partner-note">تجارب لا تتاح إلا بعلاقات مباشرة</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-header">
+          <span class="dest-region-badge">Europe · Ultra Luxury</span>
+          <div class="dest-city">موناكو</div>
+          <div class="dest-country">Principality of Monaco</div>
+        </div>
+        <div class="dest-card-body">
+          <ul class="dest-services">
+            <li>Monte-Carlo Beach Hotel</li>
+            <li>Formula 1 Monaco Grand Prix — Suites</li>
+            <li>استئجار يخوت Mediterranean</li>
+            <li>Casino de Monte-Carlo VIP</li>
+            <li>ميناء هرقل — صيانة ومرافئ يخوت</li>
+          </ul>
+          <div class="dest-partner-note">الوجهة الأبرز لعميل Private Tier</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-header">
+          <span class="dest-region-badge">Europe · Health & Wealth</span>
+          <div class="dest-city">سويسرا</div>
+          <div class="dest-country">Geneva · Zurich · St. Moritz</div>
+        </div>
+        <div class="dest-card-body">
+          <ul class="dest-services">
+            <li>Clinique La Prairie · Longevity wellness</li>
+            <li>Private banking meetings Geneva</li>
+            <li>St. Moritz ski chalets حصرية</li>
+            <li>Davos experience للمديرين التنفيذيين</li>
+            <li>مصانع ساعات Swiss — زيارات VIP</li>
+          </ul>
+          <div class="dest-partner-note">مزيج الصحة والثروة والفخامة النادر</div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-header">
+          <span class="dest-region-badge">Americas · Global Hub</span>
+          <div class="dest-city">نيويورك</div>
+          <div class="dest-country">United States</div>
+        </div>
+        <div class="dest-card-body">
+          <ul class="dest-services">
+            <li>The Mark · Four Seasons · Aman New York</li>
+            <li>Broadway & Met Opera VIP experience</li>
+            <li>Wall Street executive meetings support</li>
+            <li>Fifth Avenue Private Shopping</li>
+            <li>Michelin restaurants impossible reservations</li>
+          </ul>
+          <div class="dest-partner-note">تجارب لا تحجز إلا عبر علاقات حقيقية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Expansion Roadmap -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">خطة التوسع التدريجية</div>
+        <div class="section-title-en">Phased Expansion Roadmap</div>
+      </div>
+    </div>
+
+    <div class="expansion-phases">
+      <div class="exp-phase">
+        <div class="exp-phase-side p1">
+          <span class="exp-phase-period">المرحلة الأولى · 2025</span>
+          <div class="exp-phase-name">التعمق المحلي</div>
+          <div class="exp-phase-geo">الرياض · جدة · الدمام</div>
+        </div>
+        <div class="exp-phase-body">
+          <div class="exp-phase-title">تحكيم القاعدة في السوق السعودي</div>
+          <div class="exp-phase-desc">
+            قبل أي توسع جغرافي، يجب أن يكون نموذج العمل في الرياض محكماً وقابلاً للتكرار.
+            توسيع الشراكات المحلية في جدة والمنطقة الشرقية، بناء قاعدة عملاء Corporate في شركات الطاقة والتقنية.
+            إطلاق التطبيق بشكل كامل وتسجيل أول 30 عضواً مؤهلاً.
+          </div>
+          <div class="exp-phase-targets">
+            <span class="exp-target">30 عضو فعّال</span>
+            <span class="exp-target">8 شراكات محلية</span>
+            <span class="exp-target">2 عقد مؤسسي</span>
+            <span class="exp-target">إطلاق التطبيق كاملاً</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-phase">
+        <div class="exp-phase-side p2">
+          <span class="exp-phase-period">المرحلة الثانية · 2026</span>
+          <div class="exp-phase-name">توسع خليجي</div>
+          <div class="exp-phase-geo">دبي · أبوظبي · الكويت</div>
+        </div>
+        <div class="exp-phase-body">
+          <div class="exp-phase-title">بوابة الخليج العربي</div>
+          <div class="exp-phase-desc">
+            دبي هي المحطة الخليجية الأولى والأهم. الشراكات مع فنادق DIFC والطيران الإماراتي الخاص تُفتح باباً لعملاء دوليين يمرون عبر الإمارات.
+            الكويت سوق واعد بثروات عائلية ضخمة وشبكة علاقات محلية يمكن الدخول إليها عبر شريك موثوق.
+          </div>
+          <div class="exp-phase-targets">
+            <span class="exp-target">مكتب تمثيل دبي</span>
+            <span class="exp-target">5 شراكات إماراتية</span>
+            <span class="exp-target">شريك محلي الكويت</span>
+            <span class="exp-target">20 عضو خليجي</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-phase">
+        <div class="exp-phase-side p3">
+          <span class="exp-phase-period">المرحلة الثالثة · 2026 — 2027</span>
+          <div class="exp-phase-name">البوابة الأوروبية</div>
+          <div class="exp-phase-geo">لندن · باريس · موناكو · سويسرا</div>
+        </div>
+        <div class="exp-phase-body">
+          <div class="exp-phase-title">WOSOL في عقر الفخامة الأوروبية</div>
+          <div class="exp-phase-desc">
+            معظم عملاء WOSOL يسافرون لأوروبا بانتظام. وجود WOSOL في لندن وباريس وموناكو يعني أنهم لا يتركون نظامهم خلفهم حين يسافرون.
+            الحضور هنا لا يتطلب مكاتب — يتطلب علاقات حقيقية مع فنادق ومطاعم ومنظمي فعاليات محليين يعرفون عملاء WOSOL قبل وصولهم.
+          </div>
+          <div class="exp-phase-targets">
+            <span class="exp-target">شبكة لندن — باريس</span>
+            <span class="exp-target">وجود موناكو Grand Prix</span>
+            <span class="exp-target">شراكات Swiss wellness</span>
+            <span class="exp-target">خدمة لكل رحلة أوروبية</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-phase">
+        <div class="exp-phase-side p4">
+          <span class="exp-phase-period">المرحلة الرابعة · 2027+</span>
+          <div class="exp-phase-name">حضور عالمي</div>
+          <div class="exp-phase-geo">نيويورك · آسيا · المزيد</div>
+        </div>
+        <div class="exp-phase-body">
+          <div class="exp-phase-title">WOSOL تتبع عميلها أينما ذهب</div>
+          <div class="exp-phase-desc">
+            في هذه المرحلة، WOSOL ليست شركة سعودية تعمل دولياً — بل خدمة عالمية انطلقت من الرياض.
+            التوسع لا يعني فتح مكاتب في كل مدينة — بل بناء شبكة شركاء في كل وجهة يُزورها عملاء WOSOL،
+            بحيث يشعر العميل بنفس المستوى في طوكيو أو نيويورك أو سنغافورة.
+          </div>
+          <div class="exp-phase-targets">
+            <span class="exp-target">نيويورك — بوسطن</span>
+            <span class="exp-target">طوكيو — سنغافورة</span>
+            <span class="exp-target">شبكة دولية متكاملة</span>
+            <span class="exp-target">100+ عضو عالمياً</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: Gateway -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">WOSOL كبوابة عالمية — لا مجرد كونسيرج</div>
+        <div class="section-title-en">WOSOL as a Global Access Gateway</div>
+      </div>
+    </div>
+
+    <div class="gateway-block">
+      <span class="gateway-label">The Gateway Vision</span>
+      <div class="gateway-title">الفرق بين شركة تُنفّذ وشركة تُوصّل</div>
+      <div class="gateway-body">
+        الكونسيرج العادي يُنفّذ ما يُطلب منه.
+        WOSOL تُوصّل العميل إلى عوالم لم يعرف أنها موجودة.
+        هذا الفرق هو ما يُبرر السعر، ويُعمّق الولاء، ويجعل التوصية من فم عميل WOSOL أقوى من أي إعلان.
+        شبكة الشراكات العالمية هي الأداة التي تُحوّل هذا الوعد من فكرة إلى تجربة يعيشها العميل.
+      </div>
+      <div class="gateway-pillars">
+        <div class="gw-pillar">
+          <span class="gw-pillar-num">Pillar 01</span>
+          <div class="gw-pillar-title">وصول لا يُباع</div>
+          <div class="gw-pillar-desc">تجارب لا تجدها على أي موقع حجز — تحتاج علاقة حقيقية لتُؤمَّن</div>
+        </div>
+        <div class="gw-pillar">
+          <span class="gw-pillar-num">Pillar 02</span>
+          <div class="gw-pillar-title">شبكة متوسعة</div>
+          <div class="gw-pillar-desc">كلما اتسعت الشبكة، زادت قيمة WOSOL للعميل — حتى بدون طلب إضافي منه</div>
+        </div>
+        <div class="gw-pillar">
+          <span class="gw-pillar-num">Pillar 03</span>
+          <div class="gw-pillar-title">اتساق عالمي</div>
+          <div class="gw-pillar-desc">نفس المستوى سواء كان العميل في الرياض أو باريس أو دبي — بلا استثناء</div>
+        </div>
+        <div class="gw-pillar">
+          <span class="gw-pillar-num">Pillar 04</span>
+          <div class="gw-pillar-title">معرفة محلية</div>
+          <div class="gw-pillar-desc">في كل وجهة، شريك يعرف الخفايا والتفاصيل التي لا تظهر لغير المقيمين</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closing -->
+  <div class="closing-section">
+    <span class="closing-label">Executive Conclusion</span>
+    <h3>الشراكة الحقيقية تُوسّع ما تستطيع WOSOL تقديمه — بدون أن تُثقل ما تُقدمه</h3>
+    <p>
+      كل شراكة تدخلها WOSOL يجب أن تجعل حياة العميل أفضل وأسهل وأكثر ثراءً.
+      ليس لأن الشريك يدفع عمولة — بل لأن وجوده في شبكة WOSOL يُضيف بُعداً جديداً
+      لما يستطيع الفريق تقديمه.
+      حين تنظر WOSOL إلى خريطتها العالمية بعد خمس سنوات،
+      الهدف ليس عدد الدول — بل عمق العلاقات في كل مدينة وصلت إليها.
+    </p>
+  </div>
+
+  <!-- Series Closing -->
+  <div class="series-closing">
+    <span class="sc-label">WOSOL Growth Strategy Series · Complete</span>
+    <div class="sc-title">المنظومة الاستراتيجية الكاملة لـ WOSOL Concierge — 7 وثائق</div>
+    <div class="sc-body">
+      هذه الوثائق السبع تُمثّل الأساس الاستراتيجي الكامل لتحويل WOSOL
+      من شركة تعتمد على العلاقات الشخصية إلى نظام نمو فاخر قابل للتوسع.
+      كل وثيقة مستقلة في موضوعها، ومترابطة في رؤيتها —
+      لأن البراند والنمو والتسويق والفانل والعضوية والتجربة والشراكات
+      ليست ملفات منفصلة. هي جسد واحد.
+    </div>
+    <div class="sc-docs">
+      <span class="sc-doc">01 · استراتيجية تموضع البراند</span>
+      <span class="sc-doc">02 · استراتيجية النمو الشاملة</span>
+      <span class="sc-doc">03 · خطة التسويق والتنفيذ</span>
+      <span class="sc-doc">04 · استراتيجية الفانل والتحويل</span>
+      <span class="sc-doc">05 · العضويات والإيرادات</span>
+      <span class="sc-doc">06 · تجربة العميل والاحتفاظ</span>
+      <span class="sc-doc">07 · الشراكات والتوسع</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span class="footer-logo">WOSOL <span style="font-weight:300; letter-spacing:0.28em; font-size:8px; color: var(--text-light);">CONCIERGE</span></span>
+    <span class="footer-meta">Partnerships & Expansion · Confidential · 2025</span>
+  </footer>
+
+</div>
+</body>
+</html>

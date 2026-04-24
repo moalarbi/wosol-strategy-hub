@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WOSOL Concierge — استراتيجية تجربة العميل والاحتفاظ به</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:   #041026;
+      --navy-mid:    #16304E;
+      --navy-light:  #1F466D;
+      --beige-warm:  #EDE9E3;
+      --beige-sand:  #D1C7BA;
+      --white-soft:  #F6F4F1;
+      --text-body:   #2a3a50;
+      --text-light:  #6b7e92;
+      --border:      rgba(4, 16, 38, 0.09);
+      --gold-muted:  #b0965a;
+      --gold-light:  #d4b97a;
+    }
+
+    html { font-size: 16px; }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background-color: var(--white-soft);
+      color: var(--navy-deep);
+      line-height: 1.85;
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pattern-bg {
+      position: fixed; inset: 0; opacity: 0.022;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M0 40 Q20 20 40 40 Q60 60 80 40' fill='none' stroke='%23041026' stroke-width='0.6'/%3E%3Cpath d='M0 40 Q20 60 40 40 Q60 20 80 40' fill='none' stroke='%23041026' stroke-width='0.3'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    .page-wrapper { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 32px 80px; }
+
+    /* ── Header ── */
+    .site-header { display: flex; align-items: center; justify-content: space-between; padding: 40px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 72px; }
+    .logo-block { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+    .logo-name  { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 0.18em; color: var(--navy-deep); line-height: 1; }
+    .logo-sub   { font-family: 'Poppins', sans-serif; font-size: 8.5px; font-weight: 400; letter-spacing: 0.30em; color: var(--navy-light); text-transform: uppercase; }
+    .header-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Title ── */
+    .title-block { margin-bottom: 72px; }
+    .doc-label { display: inline-block; font-size: 10px; letter-spacing: 0.22em; color: var(--navy-light); font-family: 'Poppins', sans-serif; text-transform: uppercase; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--beige-sand); }
+    .page-title { font-size: clamp(30px, 5vw, 50px); font-weight: 700; color: var(--navy-deep); line-height: 1.25; margin-bottom: 10px; }
+    .page-title-en { font-family: 'Poppins', sans-serif; font-size: clamp(11px, 2vw, 14px); font-weight: 300; color: var(--navy-light); letter-spacing: 0.14em; text-transform: uppercase; }
+
+    /* ── Exec Summary ── */
+    .exec-summary { background-color: var(--navy-deep); padding: 44px 48px; margin-bottom: 80px; position: relative; overflow: hidden; }
+    .exec-summary::before { content: ''; position: absolute; top: -50px; right: 80px; width: 220px; height: 220px; border: 1px solid rgba(237,233,227,0.06); border-radius: 50%; }
+    .exec-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 20px; display: block; }
+    .exec-summary p { font-size: 17px; font-weight: 300; line-height: 2; color: var(--beige-warm); position: relative; z-index: 1; }
+    .exec-summary strong { font-weight: 600; color: #fff; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 80px; }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .section-num { font-family: 'Poppins', sans-serif; font-size: 11px; color: var(--beige-sand); font-weight: 400; letter-spacing: 0.1em; flex-shrink: 0; }
+    .section-title { font-size: 22px; font-weight: 700; color: var(--navy-deep); }
+    .section-title-en { font-family: 'Poppins', sans-serif; font-size: 10px; color: var(--text-light); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
+    .section-body { font-size: 15.5px; color: var(--text-body); line-height: 2; margin-bottom: 28px; }
+
+    /* ── Principle Block ── */
+    .principle-block { border-right: 4px solid var(--navy-light); padding: 28px 28px; background: var(--beige-warm); margin-bottom: 36px; }
+    .principle-block p { font-size: 15.5px; color: var(--navy-deep); line-height: 2; }
+    .principle-block strong { font-weight: 700; }
+
+    /* ── 7-Day Timeline ── */
+    .sevenday-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .day-cell { background: var(--white-soft); padding: 20px 14px; }
+    .day-cell:hover { background: var(--beige-warm); }
+    .day-cell.highlight { background: var(--navy-deep); }
+    .day-num {
+      font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 300;
+      color: var(--beige-sand); line-height: 1; margin-bottom: 10px;
+    }
+    .day-cell.highlight .day-num { color: rgba(209,199,186,0.4); }
+    .day-label { font-size: 11.5px; font-weight: 700; color: var(--navy-deep); margin-bottom: 8px; line-height: 1.4; }
+    .day-cell.highlight .day-label { color: #fff; }
+    .day-action { font-size: 11px; color: var(--text-body); line-height: 1.65; }
+    .day-cell.highlight .day-action { color: var(--beige-warm); }
+
+    /* ── Onboarding Steps ── */
+    .onboard-steps { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .onboard-step {
+      display: grid; grid-template-columns: 64px 1fr;
+      background: #fff;
+    }
+    .onboard-step + .onboard-step { border-top: 1px solid var(--border); }
+    .step-badge {
+      background: var(--navy-mid); display: flex; align-items: center; justify-content: center;
+      font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 300;
+      color: rgba(237,233,227,0.5); flex-shrink: 0;
+    }
+    .step-body { padding: 20px 24px; }
+    .step-title { font-size: 15px; font-weight: 700; color: var(--navy-deep); margin-bottom: 6px; }
+    .step-desc { font-size: 13.5px; color: var(--text-body); line-height: 1.8; }
+    .step-timing { font-family: 'Poppins', sans-serif; font-size: 9.5px; letter-spacing: 0.14em; color: var(--navy-light); text-transform: uppercase; margin-top: 8px; }
+
+    /* ── Account Manager ── */
+    .am-block { background: var(--navy-deep); padding: 44px 48px; margin-bottom: 28px; position: relative; overflow: hidden; }
+    .am-block::after { content: ''; position: absolute; top: -60px; left: -60px; width: 260px; height: 260px; border: 1px solid rgba(237,233,227,0.05); border-radius: 50%; }
+    .am-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 20px; display: block; }
+    .am-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 14px; line-height: 1.45; position: relative; z-index: 1; }
+    .am-body { font-size: 14.5px; color: var(--beige-warm); font-weight: 300; line-height: 2; margin-bottom: 28px; position: relative; z-index: 1; }
+    .am-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); position: relative; z-index: 1; }
+    .am-pillar { background: rgba(255,255,255,0.04); padding: 20px 16px; }
+    .am-pillar-num { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.16em; color: var(--beige-sand); margin-bottom: 10px; display: block; }
+    .am-pillar-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .am-pillar-desc { font-size: 12px; color: rgba(237,233,227,0.55); line-height: 1.7; }
+
+    /* ── Request Flow ── */
+    .request-flow {
+      display: flex; align-items: stretch; gap: 0;
+      background: var(--border); border: 1px solid var(--border);
+      overflow: hidden; margin-bottom: 28px;
+    }
+    .rf-step {
+      flex: 1; padding: 26px 18px; background: var(--white-soft);
+      position: relative; display: flex; flex-direction: column; gap: 10px;
+    }
+    .rf-step + .rf-step { border-right: 1px solid var(--border); }
+    .rf-step::after {
+      content: ''; position: absolute;
+      left: -10px; top: 50%; transform: translateY(-50%);
+      width: 0; height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid var(--white-soft);
+    }
+    .rf-step:first-child::after { display: none; }
+    .rf-num { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.18em; color: var(--beige-sand); text-transform: uppercase; }
+    .rf-title { font-size: 13px; font-weight: 700; color: var(--navy-deep); }
+    .rf-time { font-family: 'Poppins', sans-serif; font-size: 10px; color: var(--navy-light); font-weight: 500; }
+    .rf-desc { font-size: 12px; color: var(--text-body); line-height: 1.65; }
+
+    /* ── SLA Grid ── */
+    .sla-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 28px; }
+    .sla-cell { background: #fff; padding: 28px 22px; text-align: center; }
+    .sla-tier { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 14px; display: block; }
+    .sla-time { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 300; color: var(--navy-deep); line-height: 1; margin-bottom: 6px; }
+    .sla-unit { font-size: 12px; color: var(--text-light); margin-bottom: 10px; }
+    .sla-note { font-size: 12.5px; color: var(--text-body); line-height: 1.65; }
+    .sla-days { font-size: 11px; font-family: 'Poppins', sans-serif; color: var(--navy-light); margin-top: 8px; font-weight: 500; }
+
+    /* ── Experience Layers ── */
+    .layers-wrapper { position: relative; }
+    .exp-layer {
+      border: 1px solid var(--border);
+      margin-bottom: 1px; overflow: hidden;
+    }
+    .exp-layer-header {
+      display: grid; grid-template-columns: 220px 1fr;
+      background: var(--white-soft);
+    }
+    .exp-layer-label-col {
+      background: var(--navy-mid); padding: 24px 20px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .exp-layer-en { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--beige-sand); margin-bottom: 8px; }
+    .exp-layer-ar { font-size: 16px; font-weight: 700; color: #fff; }
+    .exp-layer-body { padding: 24px 24px; }
+    .exp-layer-desc { font-size: 14px; color: var(--text-body); line-height: 1.85; margin-bottom: 14px; }
+    .exp-layer-items { display: flex; flex-wrap: wrap; gap: 8px; }
+    .exp-item { font-size: 12px; padding: 5px 12px; background: var(--beige-warm); color: var(--navy-mid); font-weight: 500; }
+
+    /* ── Surprise System ── */
+    .surprise-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .surprise-card { background: #fff; border: 1px solid var(--border); padding: 28px 24px; position: relative; }
+    .surprise-card::before { content: ''; position: absolute; top: 0; right: 0; width: 3px; height: 36px; background: var(--gold-muted); }
+    .surprise-when { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-muted); margin-bottom: 12px; display: block; }
+    .surprise-title { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 10px; }
+    .surprise-desc { font-size: 13px; color: var(--text-body); line-height: 1.8; }
+
+    /* ── Loyalty Points ── */
+    .loyalty-block { background: var(--beige-warm); padding: 40px 44px; margin-bottom: 8px; }
+    .loyalty-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--text-light); margin-bottom: 20px; display: block; }
+    .loyalty-title { font-size: 19px; font-weight: 700; color: var(--navy-deep); margin-bottom: 14px; }
+    .loyalty-body { font-size: 14px; color: var(--text-body); line-height: 2; margin-bottom: 28px; }
+    .loyalty-tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+    .loyalty-tier { background: #fff; padding: 20px 16px; text-align: center; }
+    .loy-name { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); margin-bottom: 10px; display: block; }
+    .loy-points { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 300; color: var(--navy-deep); line-height: 1; margin-bottom: 6px; }
+    .loy-per { font-size: 11px; color: var(--text-light); margin-bottom: 10px; }
+    .loy-benefit { font-size: 12px; color: var(--text-body); line-height: 1.65; }
+
+    /* ── Reports ── */
+    .reports-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .report-card { border: 1px solid var(--border); overflow: hidden; }
+    .report-header { padding: 22px 24px; }
+    .report-card:first-child .report-header { background: var(--navy-mid); }
+    .report-card:last-child .report-header { background: var(--navy-deep); }
+    .report-tag { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--beige-sand); margin-bottom: 10px; display: block; }
+    .report-title { font-size: 17px; font-weight: 700; color: #fff; }
+    .report-body { background: #fff; padding: 22px 24px; }
+    .report-items { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .report-items li { font-size: 13.5px; color: var(--text-body); padding-right: 16px; position: relative; line-height: 1.65; }
+    .report-items li::before { content: '—'; position: absolute; right: 0; color: var(--beige-sand); font-size: 11px; }
+
+    /* ── Reactivation ── */
+    .reactivate-steps { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .reactivate-step { background: #fff; display: grid; grid-template-columns: 180px 1fr; }
+    .reactivate-step + .reactivate-step { border-top: 1px solid var(--border); }
+    .react-phase { background: var(--beige-warm); padding: 20px 18px; display: flex; flex-direction: column; justify-content: center; }
+    .react-phase-num { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.14em; color: var(--text-light); text-transform: uppercase; margin-bottom: 6px; }
+    .react-phase-name { font-size: 14px; font-weight: 700; color: var(--navy-deep); }
+    .react-body { padding: 20px 22px; }
+    .react-title { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 6px; }
+    .react-desc { font-size: 13px; color: var(--text-body); line-height: 1.8; }
+
+    /* ── Upsell Triangle ── */
+    .upsell-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 28px; }
+    .upsell-cell { background: var(--white-soft); padding: 28px 22px; }
+    .upsell-cell:hover { background: #fff; }
+    .upsell-num { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 300; color: var(--beige-sand); margin-bottom: 12px; line-height: 1; }
+    .upsell-title { font-size: 14px; font-weight: 700; color: var(--navy-deep); margin-bottom: 8px; }
+    .upsell-desc { font-size: 13px; color: var(--text-body); line-height: 1.8; }
+
+    /* ── Trinity Block ── */
+    .trinity { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; background: var(--navy-deep); }
+    .trinity-cell { padding: 36px 28px; border-left: 1px solid rgba(255,255,255,0.06); }
+    .trinity-cell:last-child { border-left: none; }
+    .trinity-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--beige-sand); margin-bottom: 14px; display: block; }
+    .trinity-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .trinity-body { font-size: 13px; color: var(--beige-warm); line-height: 1.85; font-weight: 300; }
+
+    /* ── Closing ── */
+    .closing-section { margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--border); }
+    .closing-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-light); margin-bottom: 24px; display: block; }
+    .closing-section h3 { font-size: 22px; font-weight: 700; color: var(--navy-deep); margin-bottom: 20px; line-height: 1.5; }
+    .closing-section p { font-size: 15px; color: var(--text-body); line-height: 2; }
+
+    /* ── Footer ── */
+    .site-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; color: var(--navy-deep); }
+    .footer-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Print ── */
+    @media print {
+      .pattern-bg { display: none; }
+      body { background: #fff; }
+      .exec-summary, .am-block, .trinity,
+      .report-card .report-header,
+      .onboard-step .step-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { page-break-inside: avoid; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 740px) {
+      .page-wrapper { padding: 0 20px 60px; }
+      .exec-summary { padding: 32px 22px; }
+      .sevenday-grid { grid-template-columns: repeat(4, 1fr); }
+      .onboard-step { grid-template-columns: 48px 1fr; }
+      .am-block { padding: 32px 22px; }
+      .am-pillars { grid-template-columns: 1fr 1fr; }
+      .request-flow { flex-direction: column; }
+      .rf-step::after { display: none; }
+      .sla-grid { grid-template-columns: 1fr; }
+      .exp-layer-header { grid-template-columns: 1fr; }
+      .exp-layer-label-col { padding: 16px 20px; }
+      .surprise-grid { grid-template-columns: 1fr; }
+      .loyalty-tiers { grid-template-columns: 1fr 1fr; }
+      .reports-grid { grid-template-columns: 1fr; }
+      .reactivate-step { grid-template-columns: 1fr; }
+      .react-phase { border-bottom: 1px solid var(--border); }
+      .upsell-principles { grid-template-columns: 1fr; }
+      .trinity { grid-template-columns: 1fr; }
+      .trinity-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
+      .site-footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .sevenday-grid { grid-template-columns: repeat(3, 1fr); }
+      .am-pillars { grid-template-columns: 1fr; }
+      .loyalty-tiers { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="pattern-bg"></div>
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo-block">
+      <span class="logo-name">WOSOL</span>
+      <span class="logo-sub">CONCIERGE</span>
+    </div>
+    <div class="header-meta">Client Experience & Retention · 2025</div>
+  </header>
+
+  <!-- Title -->
+  <div class="title-block">
+    <span class="doc-label">Strategy 06 of 07</span>
+    <h1 class="page-title">استراتيجية تجربة العميل والاحتفاظ به</h1>
+    <p class="page-title-en">Customer Experience & Retention Strategy</p>
+  </div>
+
+  <!-- Exec Summary -->
+  <div class="exec-summary">
+    <span class="exec-label">Executive Summary</span>
+    <p>
+      الاحتفاظ بالعميل في WOSOL ليس مهمة فريق الخدمة — هو نتيجة حتمية لتجربة مُصممة بعناية.
+      <strong>السيستم الذي لا يُستخدم ما له قيمة.</strong>
+      هذه الصفحة لا تكتفي بتصميم تجربة العميل —
+      بل تُحدد Weekly Huddle كأداة تتبع داخلية أسبوعية،
+      ونظام Referral Engine كامل يُحوّل رضا العميل إلى مصدر نمو منهجي.
+    </p>
+  </div>
+
+  <!-- Section 1: First 7 Days -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">أول 7 أيام — بناء الانطباع الذي لا يُمحى</div>
+        <div class="section-title-en">The First 7 Days</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>الأسبوع الأول يُحدد العلاقة للسنوات القادمة. كل لحظة فيه مُصممة لتُرسّخ شعوراً واحداً: "أنا في المكان الصحيح."</p>
+    </div>
+
+    <div class="sevenday-grid">
+      <div class="day-cell highlight">
+        <div class="day-num">01</div>
+        <div class="day-label">يوم الانضمام</div>
+        <div class="day-action">رسالة ترحيب شخصية بخط اليد + هدية استقبال WOSOL تُسلَّم للمنزل أو المكتب</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-num">02</div>
+        <div class="day-label">التعارف مع المدير</div>
+        <div class="day-action">مكالمة قصيرة مع مدير الحساب الشخصي لفهم التفضيلات والأولويات</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-num">03</div>
+        <div class="day-label">إعداد الملف</div>
+        <div class="day-action">بناء الملف الشخصي الكامل: تفضيلات السفر، الطعام، المناسبات، الأسرة</div>
+      </div>
+      <div class="day-cell highlight">
+        <div class="day-num">04</div>
+        <div class="day-label">أول طلب</div>
+        <div class="day-action">تنفيذ أول طلب بمستوى يتجاوز التوقعات — هذا هو أقوى لحظة في العلاقة</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-num">05</div>
+        <div class="day-label">متابعة الرضا</div>
+        <div class="day-action">مكالمة أو رسالة قصيرة: "كيف كانت التجربة؟" — قبل أن يُفكر هو في التقييم</div>
+      </div>
+      <div class="day-cell">
+        <div class="day-num">06</div>
+        <div class="day-label">اقتراح استباقي</div>
+        <div class="day-action">اقتراح خدمة قد يحتاجها بناءً على ما شاركه — يُثبت أن الفريق يستمع ويفكر</div>
+      </div>
+      <div class="day-cell highlight">
+        <div class="day-num">07</div>
+        <div class="day-label">تقرير الأسبوع</div>
+        <div class="day-action">ملخص خفيف بما تم إنجازه + تأكيد الخطوات القادمة. العميل يرى القيمة بالأرقام</div>
+      </div>
+    </div>
+
+    <div class="principle-block">
+      <p>
+        <strong>المبدأ الذهبي:</strong> في الأسبوع الأول، لا تنتظر العميل أن يطلب.
+        كن حاضراً، مُبادراً، ومتنبئاً. حين يقول "لم أكن أتوقع هذا" في الأسبوع الأول —
+        فقد كسبته للسنوات القادمة.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 2: Onboarding -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">رحلة الانضمام — Onboarding</div>
+        <div class="section-title-en">Membership Onboarding Journey</div>
+      </div>
+    </div>
+
+    <div class="onboard-steps">
+      <div class="onboard-step">
+        <div class="step-badge">1</div>
+        <div class="step-body">
+          <div class="step-title">الاستقبال الرسمي — Welcome Package</div>
+          <div class="step-desc">حقيبة WOSOL الفاخرة تُسلَّم شخصياً أو بالبريد المميز. تحتوي على: بطاقة العضوية، دليل الخدمات، ورسالة ترحيب شخصية موقعة.</div>
+          <div class="step-timing">اليوم الأول · فيزيائي ورقمي</div>
+        </div>
+      </div>
+      <div class="onboard-step">
+        <div class="step-badge">2</div>
+        <div class="step-body">
+          <div class="step-title">جلسة التعارف — Discovery Session</div>
+          <div class="step-desc">30 دقيقة مع مدير الحساب لاستكشاف أسلوب حياة العميل، أولوياته، ومواعيده المتكررة. لا استمارات — حوار إنساني فقط.</div>
+          <div class="step-timing">اليوم 2 — 3 · واتساب أو لقاء شخصي</div>
+        </div>
+      </div>
+      <div class="onboard-step">
+        <div class="step-badge">3</div>
+        <div class="step-body">
+          <div class="step-title">بناء الملف الشخصي — Life Profile</div>
+          <div class="step-desc">توثيق التفضيلات الكاملة: الإقامات المفضلة، نوع الطعام، مقاسات الملابس، تواريخ المناسبات، أسماء أفراد الأسرة، التفضيلات الصحية.</div>
+          <div class="step-timing">اليوم 3 — 5 · داخلي وسري</div>
+        </div>
+      </div>
+      <div class="onboard-step">
+        <div class="step-badge">4</div>
+        <div class="step-body">
+          <div class="step-title">تفعيل التطبيق — App Activation</div>
+          <div class="step-desc">تهيئة التطبيق بإعدادات مخصصة، شرح بسيط للميزات، وتأكيد قنوات التواصل المفضلة. التطبيق يجب أن يبدو مألوفاً من أول استخدام.</div>
+          <div class="step-timing">اليوم 4 · رقمي وتفاعلي</div>
+        </div>
+      </div>
+      <div class="onboard-step">
+        <div class="step-badge">5</div>
+        <div class="step-body">
+          <div class="step-title">أول تجربة حقيقية — First Service</div>
+          <div class="step-desc">تنفيذ الطلب الأول بمستوى يتجاوز ما توقعه. الهدف ليس إنجاز الطلب — بل خلق لحظة يُحدّث عنها لمعارفه.</div>
+          <div class="step-timing">أول أسبوع · استثنائي دائماً</div>
+        </div>
+      </div>
+      <div class="onboard-step">
+        <div class="step-badge">6</div>
+        <div class="step-body">
+          <div class="step-title">ملخص الأسبوع الأول — Week One Report</div>
+          <div class="step-desc">تقرير خفيف يُرسل في اليوم السابع: ما تم تنفيذه، ما تم حفظه في ملف الحياة، والخطوات القادمة. يُشعره بأن WOSOL تُدير لا تنتظر.</div>
+          <div class="step-timing">اليوم السابع · واتساب أو PDF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Account Manager -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">مدير الحساب الشخصي</div>
+        <div class="section-title-en">Dedicated Account Manager</div>
+      </div>
+    </div>
+
+    <div class="am-block">
+      <span class="am-label">Account Manager Role</span>
+      <div class="am-title">مدير الحساب ليس موظف خدمة — هو وجه WOSOL في حياة العميل</div>
+      <div class="am-body">
+        العميل لا يتعامل مع شركة — يتعامل مع شخص يعرفه، يثق به، ويشعر أنه يفهمه أكثر من أي مزود خدمة آخر.
+        مدير الحساب هو العلاقة. إذا تغير، يجب أن يكون الانتقال سلساً بحيث لا يشعر العميل بالفرق.
+      </div>
+      <div class="am-pillars">
+        <div class="am-pillar">
+          <span class="am-pillar-num">01</span>
+          <div class="am-pillar-title">معرفة عميقة</div>
+          <div class="am-pillar-desc">يعرف اسم زوجته، تفضيلات أبنائه، وموعد رحلته القادمة قبل أن يذكرها</div>
+        </div>
+        <div class="am-pillar">
+          <span class="am-pillar-num">02</span>
+          <div class="am-pillar-title">استباقية دائمة</div>
+          <div class="am-pillar-desc">يُبلّغه قبل أن يسأل، ويقترح قبل أن يفكر. المبادرة هي قيمته الأساسية</div>
+        </div>
+        <div class="am-pillar">
+          <span class="am-pillar-num">03</span>
+          <div class="am-pillar-title">حضور بلا إزعاج</div>
+          <div class="am-pillar-desc">متاح حين يُحتاج، صامت حين لا يُطلب. يقرأ اللحظة ويتصرف بناءً عليها</div>
+        </div>
+        <div class="am-pillar">
+          <span class="am-pillar-num">04</span>
+          <div class="am-pillar-title">أمانة مطلقة</div>
+          <div class="am-pillar-desc">حافظ لكل ما يُشارَك معه. السرية ليست إجراءً — هي شخصيته وأسلوب عمله</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Request Flow -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">طريقة استقبال الطلبات وتنفيذها</div>
+        <div class="section-title-en">Request & Execution Flow</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>من لحظة إرسال الطلب إلى التأكيد — كل ثانية فيها مُصممة لتُشعر العميل بأن الأمور تسير بمنتهى السلاسة.</p>
+    </div>
+
+    <div class="request-flow">
+      <div class="rf-step">
+        <div class="rf-num">01</div>
+        <div class="rf-title">استقبال الطلب</div>
+        <div class="rf-time">فوري</div>
+        <div class="rf-desc">واتساب أو تطبيق — رد تأكيد آلي + بشري خلال الـ SLA المحدد</div>
+      </div>
+      <div class="rf-step">
+        <div class="rf-num">02</div>
+        <div class="rf-title">الفهم والتأكيد</div>
+        <div class="rf-time">15 — 30 دقيقة</div>
+        <div class="rf-desc">مدير الحساب يُؤكد التفاصيل، يُضيف اقتراحات، يُحدد التوقع بوضوح</div>
+      </div>
+      <div class="rf-step">
+        <div class="rf-num">03</div>
+        <div class="rf-title">التنفيذ</div>
+        <div class="rf-time">بحسب الطلب</div>
+        <div class="rf-desc">العميل لا يرى التفاصيل — يرى النتيجة فقط. المجهود خلف الكواليس</div>
+      </div>
+      <div class="rf-step">
+        <div class="rf-num">04</div>
+        <div class="rf-title">التحديث اللحظي</div>
+        <div class="rf-time">خلال التنفيذ</div>
+        <div class="rf-desc">تحديثات دورية دون إثقال. العميل يعرف أن الأمور تسير — ولا يحتاج للمتابعة</div>
+      </div>
+      <div class="rf-step">
+        <div class="rf-num">05</div>
+        <div class="rf-title">الإغلاق والمتابعة</div>
+        <div class="rf-time">24 ساعة بعد</div>
+        <div class="rf-desc">تأكيد الإنجاز + سؤال رضا مختصر. يُوثَّق في ملف العميل</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: SLA -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">معايير الاستجابة — SLA</div>
+        <div class="section-title-en">Service Level Agreement</div>
+      </div>
+    </div>
+
+    <div class="sla-grid">
+      <div class="sla-cell">
+        <span class="sla-tier">Access</span>
+        <div class="sla-time">4</div>
+        <div class="sla-unit">ساعات عمل</div>
+        <div class="sla-note">رد أولي مضمون خلال 4 ساعات عمل. إغلاق الطلب خلال 24 ساعة للطلبات القياسية.</div>
+        <div class="sla-days">أيام العمل · الأحد — الخميس</div>
+      </div>
+      <div class="sla-cell" style="background: var(--beige-warm);">
+        <span class="sla-tier">Signature</span>
+        <div class="sla-time">2</div>
+        <div class="sla-unit">ساعة — 7 أيام</div>
+        <div class="sla-note">رد أولي خلال ساعتين طوال أيام الأسبوع. متاحية في عطل نهاية الأسبوع للطلبات المهمة.</div>
+        <div class="sla-days">7 أيام · السبت والأحد مشمولان</div>
+      </div>
+      <div class="sla-cell">
+        <span class="sla-tier">Private</span>
+        <div class="sla-time">فوري</div>
+        <div class="sla-unit">24 / 7 / 365</div>
+        <div class="sla-note">متاحية فورية بلا استثناء. مدير حساب لا يخدم سوى 3 عملاء لضمان هذا المستوى.</div>
+        <div class="sla-days">طوال السنة · لا استثناءات</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: Experience Layers -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">طبقات تجربة العميل</div>
+        <div class="section-title-en">Experience Layers</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>التجربة الاستثنائية لا تحدث في لحظة واحدة — تتراكم عبر طبقات متعددة كل منها يُضيف بُعداً جديداً للعلاقة.</p>
+    </div>
+
+    <div class="layers-wrapper">
+      <div class="exp-layer">
+        <div class="exp-layer-header">
+          <div class="exp-layer-label-col">
+            <div class="exp-layer-en">Layer 01</div>
+            <div class="exp-layer-ar">طبقة الإنجاز</div>
+          </div>
+          <div class="exp-layer-body">
+            <div class="exp-layer-desc">الأساس الذي لا تفاوض فيه: تنفيذ الطلب بالمستوى المتفق عليه، في الوقت المحدد، بلا أعذار. هذا الحد الأدنى المطلوب — ليس إنجازاً يُحتفل به.</div>
+            <div class="exp-layer-items">
+              <span class="exp-item">دقة التنفيذ</span>
+              <span class="exp-item">الالتزام بالوقت</span>
+              <span class="exp-item">الشفافية الكاملة</span>
+              <span class="exp-item">لا أعذار — حلول فقط</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-layer">
+        <div class="exp-layer-header">
+          <div class="exp-layer-label-col" style="background: var(--navy-light);">
+            <div class="exp-layer-en">Layer 02</div>
+            <div class="exp-layer-ar">طبقة الاهتمام</div>
+          </div>
+          <div class="exp-layer-body">
+            <div class="exp-layer-desc">ما يُفرّق WOSOL عن الجميع: التفاصيل الصغيرة التي لم يطلبها العميل لكنها تُثبت أننا نسمعه. تذكّر ما قاله بالأمس، ملاحظة تفضيل لم يكرره، اقتراح يُثبت الفهم.</div>
+            <div class="exp-layer-items">
+              <span class="exp-item">تذكر التفضيلات</span>
+              <span class="exp-item">ملاحظة التفاصيل</span>
+              <span class="exp-item">اقتراح استباقي</span>
+              <span class="exp-item">الإضافة بلا طلب</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-layer">
+        <div class="exp-layer-header">
+          <div class="exp-layer-label-col" style="background: #041a30;">
+            <div class="exp-layer-en">Layer 03</div>
+            <div class="exp-layer-ar">طبقة المفاجأة</div>
+          </div>
+          <div class="exp-layer-body">
+            <div class="exp-layer-desc">اللحظات التي تُصنع القصص: شيء لم يتوقعه، لحظة تجعله يُخبر أصدقاءه. ليست ضرورة في كل طلب، لكنها يجب أن تحدث بانتظام كافٍ لتكون جزءاً من انطباعه عن WOSOL.</div>
+            <div class="exp-layer-items">
+              <span class="exp-item">هدية في مناسبة لم يذكرها</span>
+              <span class="exp-item">ترقية مفاجئة</span>
+              <span class="exp-item">لحظة تجاوز التوقعات</span>
+              <span class="exp-item">تجربة لم يطلبها</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7: Surprises -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">نظام المفاجآت والتجارب الخاصة</div>
+        <div class="section-title-en">Surprise & Delight System</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>المفاجأة ليست هدية — هي لحظة تُثبت للعميل أنه في ذاكرة WOSOL حتى حين لا يكون يتواصل معها.</p>
+    </div>
+
+    <div class="surprise-grid">
+      <div class="surprise-card">
+        <span class="surprise-when">مناسبات شخصية</span>
+        <div class="surprise-title">الأعياد والذكريات</div>
+        <div class="surprise-desc">ميلاد العميل، ذكرى زواجه، عيد ميلاد أبنائه الذين ذكرهم مرة — لحظة توقيع هدية بلا مناسبة رسمية تُرسّخ شعور "هم يعرفونني."</div>
+      </div>
+      <div class="surprise-card">
+        <span class="surprise-when">بعد تجربة استثنائية</span>
+        <div class="surprise-title">لحظة الذروة</div>
+        <div class="surprise-desc">بعد رحلة نجحت بامتياز أو حفلة سارت بشكل مثالي — إرسال صورة، مقتطف من اللحظة، أو هدية تُذكّره بها بعد أسبوع. يُوطّد الانطباع.</div>
+      </div>
+      <div class="surprise-card">
+        <span class="surprise-when">دون مناسبة محددة</span>
+        <div class="surprise-title">المفاجأة العشوائية</div>
+        <div class="surprise-desc">في يوم عادي، يصل شيء من WOSOL بلا سبب. هذه المفاجأة هي الأقوى لأنها لا تُنتظر — وتُثبت أن العلاقة تتجاوز الطلبات والفواتير.</div>
+      </div>
+      <div class="surprise-card">
+        <span class="surprise-when">عند بلوغ إنجاز</span>
+        <div class="surprise-title">الاحتفاء بنجاحاته</div>
+        <div class="surprise-desc">أتمّ صفقة كبرى؟ نال جائزة؟ أنجب طفلاً؟ WOSOL التي تُحتفي بلحظاته بعمق وتفصيل هي WOSOL التي يتحدث عنها لمحيطه.</div>
+      </div>
+      <div class="surprise-card">
+        <span class="surprise-when">قبل سفر أو حدث</span>
+        <div class="surprise-title">الاستعداد المسبق</div>
+        <div class="surprise-desc">قبل رحلة بيوم: رسالة "كل شيء جاهز" مع تفاصيل مدروسة لم يطلبها — الجو، التوقيت، ملاحظة عن المطعم الذي أوصت به. يُشعره بأنه محمول.</div>
+      </div>
+      <div class="surprise-card">
+        <span class="surprise-when">ذكرى العضوية</span>
+        <div class="surprise-title">الذكرى السنوية</div>
+        <div class="surprise-desc">في الذكرى السنوية لانضمامه، تقرير سنوي جميل بما أنجزته WOSOL له + هدية تعبّر عن تقدير العلاقة. يُذكّره بقيمة ما يحصل عليه ويُجدد الالتزام.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 8: Loyalty Points -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">نظام النقاط والولاء</div>
+        <div class="section-title-en">Loyalty Points System</div>
+      </div>
+    </div>
+
+    <div class="loyalty-block">
+      <span class="loyalty-label">WOSOL Loyalty Program</span>
+      <div class="loyalty-title">النقاط ليست خصماً — هي امتياز إضافي</div>
+      <div class="loyalty-body">
+        نظام النقاط في WOSOL مصمم لرفع القيمة لا تخفيضها. كل نقطة تُحوَّل إلى تجربة أو خدمة إضافية —
+        وليس إلى فاتورة أقل. هذا يُعزز الشعور بالامتياز لا بالصفقة.
+      </div>
+      <div class="loyalty-tiers">
+        <div class="loyalty-tier">
+          <span class="loy-name">Access</span>
+          <div class="loy-points">1x</div>
+          <div class="loy-per">نقطة لكل 100 ريال</div>
+          <div class="loy-benefit">قابلة لطلبات إضافية أو ترقية جزئية</div>
+        </div>
+        <div class="loyalty-tier">
+          <span class="loy-name">Signature</span>
+          <div class="loy-points">2x</div>
+          <div class="loy-per">نقطة مضاعفة</div>
+          <div class="loy-benefit">ترقية عضوية أو تجارب خاصة</div>
+        </div>
+        <div class="loyalty-tier">
+          <span class="loy-name">Private</span>
+          <div class="loy-points">3x</div>
+          <div class="loy-per">نقاط VIP</div>
+          <div class="loy-benefit">وصول لتجارب حصرية غير متاحة للعموم</div>
+        </div>
+        <div class="loyalty-tier">
+          <span class="loy-name">Corporate</span>
+          <div class="loy-points">Pool</div>
+          <div class="loy-per">نقاط مؤسسية مجمّعة</div>
+          <div class="loy-benefit">هدايا للموظفين أو عطاءات مؤسسية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 9: Reports -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">تقارير الأداء للعميل VIP</div>
+        <div class="section-title-en">Client Performance Reports</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>التقرير ليس ورقة محاسبة — هو إثبات للقيمة. كل تقرير يُظهر للعميل ما أنجزت WOSOL له، وما الذي يمكن تطويره في المرحلة القادمة.</p>
+    </div>
+
+    <div class="reports-grid">
+      <div class="report-card">
+        <div class="report-header">
+          <span class="report-tag">Signature · Monthly Report</span>
+          <div class="report-title">التقرير الشهري</div>
+        </div>
+        <div class="report-body">
+          <ul class="report-items">
+            <li>عدد الطلبات المنفّذة وتفاصيلها</li>
+            <li>الوقت المُوفَّر للعميل (ساعات تقديرية)</li>
+            <li>ملخص المدفوعات والنقاط المتراكمة</li>
+            <li>اقتراحات الشهر القادم بناءً على التقويم</li>
+            <li>أي تحديث في تفضيلات العميل تم تسجيله</li>
+          </ul>
+        </div>
+      </div>
+      <div class="report-card">
+        <div class="report-header">
+          <span class="report-tag">Private · Quarterly Strategic Report</span>
+          <div class="report-title">التقرير الربع سنوي الاستراتيجي</div>
+        </div>
+        <div class="report-body">
+          <ul class="report-items">
+            <li>تحليل أنماط الطلبات والاحتياجات المتكررة</li>
+            <li>تقرير صحة ومقترحات ترتيبات الفترة القادمة</li>
+            <li>مراجعة التفضيلات وتحديث ملف الحياة</li>
+            <li>اقتراحات استراتيجية لرفع جودة الحياة</li>
+            <li>فرص خاصة متاحة للعميل خلال الربع القادم</li>
+            <li>ملخص إجمالي CLV مع تقدير العام القادم</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 10: Reactivation -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">إعادة تفعيل العملاء السابقين</div>
+        <div class="section-title-en">Win-Back Strategy</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>العميل الذي غادر ليس خسارة دائمة. في الغالب، غياب العميل لا يعني عدم الرضا — بل تغير الظروف أو نسيان القيمة. إعادة التواصل الصحيح تُعيده بثقة أكبر من المرة الأولى.</p>
+    </div>
+
+    <div class="reactivate-steps">
+      <div class="reactivate-step">
+        <div class="react-phase">
+          <div class="react-phase-num">30 يوماً بعد آخر طلب</div>
+          <div class="react-phase-name">مرحلة الصمت</div>
+        </div>
+        <div class="react-body">
+          <div class="react-title">تواصل خفيف بلا ضغط</div>
+          <div class="react-desc">رسالة قصيرة من مدير الحساب: "مررت على ذهني شيء قد يهمك..." يُشعره بأن WOSOL فكّرت فيه. لا إشارة لغيابه، لا مطالبة بطلب.</div>
+        </div>
+      </div>
+      <div class="reactivate-step">
+        <div class="react-phase">
+          <div class="react-phase-num">60 يوماً بعد آخر طلب</div>
+          <div class="react-phase-name">مرحلة القيمة</div>
+        </div>
+        <div class="react-body">
+          <div class="react-title">عرض قيمة مخصص</div>
+          <div class="react-desc">مشاركة فرصة حصرية أو تجربة يعلم مدير الحساب أنها ستستهويه. ليس ترويجاً — بل "وجدت شيئاً يليق بك." يُجدد الارتباط بطريقة طبيعية.</div>
+        </div>
+      </div>
+      <div class="reactivate-step">
+        <div class="react-phase">
+          <div class="react-phase-num">90 يوماً بعد آخر طلب</div>
+          <div class="react-phase-name">مرحلة التواصل</div>
+        </div>
+        <div class="react-body">
+          <div class="react-title">مكالمة شخصية من مدير الحساب</div>
+          <div class="react-desc">مكالمة دافئة وغير رسمية — سؤال عن أحواله، مشاركة أي جديد في WOSOL يمسّه، وسؤال مباشر: "هل هناك شيء نقدر نساعدك فيه الفترة الجاية؟"</div>
+        </div>
+      </div>
+      <div class="reactivate-step">
+        <div class="react-phase">
+          <div class="react-phase-num">6 أشهر بدون تجديد</div>
+          <div class="react-phase-name">مرحلة الإعادة</div>
+        </div>
+        <div class="react-body">
+          <div class="react-title">عرض عودة مُخصص</div>
+          <div class="react-desc">عرض خاص لإعادة التفعيل: تجربة استكشافية مجانية، أو شهر تجريبي بشروط مرنة. لا يُقدَّم على أنه "خصم" — بل على أنه "دعوة للعودة."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 11: Upsell -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">رفع قيمة العميل بدون إزعاجه</div>
+        <div class="section-title-en">Value Expansion Without Pressure</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>رفع الإنفاق لدى العميل الـ VIP لا يتم بالإقناع المباشر — يتم عبر تعميق الثقة حتى يطلب هو من تلقاء نفسه المزيد.</p>
+    </div>
+
+    <div class="upsell-principles">
+      <div class="upsell-cell">
+        <div class="upsell-num">01</div>
+        <div class="upsell-title">افتح باباً بدل أن تدفعه</div>
+        <div class="upsell-desc">بدل قول "يمكننا إضافة خدمة الصحة والعافية"، قل: "لاحظت أن لديك رحلة طويلة — لو أردت نرتب لك برنامج تعافٍ عند وصولك." الباب يُفتح بالسياق، لا بقائمة الخدمات.</div>
+      </div>
+      <div class="upsell-cell">
+        <div class="upsell-num">02</div>
+        <div class="upsell-title">اقترح في اللحظة المناسبة</div>
+        <div class="upsell-desc">بعد تجربة ناجحة هي أفضل لحظة للاقتراح. الرضا يفتح الذهن. قبل الفاتورة أو بعد شكوى — الوقت الخاطئ يُغلق الباب حتى لو كان المقترح ممتازاً.</div>
+      </div>
+      <div class="upsell-cell">
+        <div class="upsell-num">03</div>
+        <div class="upsell-title">أثبت القيمة قبل الطلب</div>
+        <div class="upsell-desc">حين تُثبت WOSOL قيمة لم يدفع عليها العميل بعد — يصبح رفع السعر أو توسيع الخدمة محادثة طبيعية. القيمة المُثبتة تبيع نفسها.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 12: Trinity -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <div>
+        <div class="section-title">ثالوث تجربة WOSOL</div>
+        <div class="section-title-en">The WOSOL Experience Trinity</div>
+      </div>
+    </div>
+
+    <div class="trinity">
+      <div class="trinity-cell">
+        <span class="trinity-label">Pillar 01</span>
+        <div class="trinity-title">الفخامة</div>
+        <div class="trinity-body">
+          ليست في الثمن — بل في التفاصيل. كيف يُغلَّف الطلب، كيف تُصاغ الرسالة، كيف يُنجز العمل بدقة لا تُرى عادةً. الفخامة الحقيقية تُشعَر ولا تُعلَن.
+        </div>
+      </div>
+      <div class="trinity-cell">
+        <span class="trinity-label">Pillar 02</span>
+        <div class="trinity-title">الخصوصية</div>
+        <div class="trinity-body">
+          كل ما يُشاركه العميل مع WOSOL يبقى في WOSOL. لا أسماء تُذكر، لا قصص تُروى خارج الفريق. الخصوصية ليست سياسة — هي ثقافة الشركة بأكملها وسبب وجودها.
+        </div>
+      </div>
+      <div class="trinity-cell">
+        <span class="trinity-label">Pillar 03</span>
+        <div class="trinity-title">السرعة</div>
+        <div class="trinity-body">
+          وقت العميل الـ VIP هو أثمن ما يملكه. السرعة في الاستجابة والتنفيذ هي الترجمة العملية لاحترامه. كل دقيقة وُفِّرت عليه هي قيمة حقيقية ملموسة أضافتها WOSOL.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closing -->
+  <div class="closing-section">
+    <span class="closing-label">Executive Conclusion</span>
+    <h3>الاحتفاظ بالعميل ليس مهمة — هو نتيجة طبيعية لتجربة مُصممة ونظام يُتابَع أسبوعياً</h3>
+    <p>
+      السيستم الذي لا يُستخدم ما له قيمة.
+      لذلك: Weekly Huddle أسبوعية لتتبع الـ Leads والإيراد والرضا —
+      ونظام Referral Engine يُدار بانتظام لتحويل كل عميل راضٍ إلى مصدر نمو.
+      حين يُصمَّم كل لحظة في رحلة العميل لتُشعره بأنه مفهوم ومُحترَم —
+      لا يحتاج فريق WOSOL أن يُقنعه بالتجديد.
+      هو يُجدد لأن التوقف يعني العودة إلى عالم أقل اهتماماً بتفاصيل حياته.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span class="footer-logo">WOSOL <span style="font-weight:300; letter-spacing:0.28em; font-size:8px; color: var(--text-light);">CONCIERGE</span></span>
+    <span class="footer-meta">CX & Retention v2 · Confidential · 2025</span>
+  </footer>
+
+</div>
+</body>
+</html>

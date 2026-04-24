@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WOSOL Concierge — استراتيجية العضويات والإيرادات</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy-deep:   #041026;
+      --navy-mid:    #16304E;
+      --navy-light:  #1F466D;
+      --beige-warm:  #EDE9E3;
+      --beige-sand:  #D1C7BA;
+      --white-soft:  #F6F4F1;
+      --text-body:   #2a3a50;
+      --text-light:  #6b7e92;
+      --border:      rgba(4, 16, 38, 0.09);
+      --gold-muted:  #b0965a;
+      --gold-light:  #d4b97a;
+    }
+
+    html { font-size: 16px; }
+    body {
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      background-color: var(--white-soft);
+      color: var(--navy-deep);
+      line-height: 1.85;
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pattern-bg {
+      position: fixed; inset: 0; opacity: 0.022;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Crect x='6' y='6' width='60' height='60' fill='none' stroke='%23041026' stroke-width='0.6'/%3E%3Crect x='20' y='20' width='32' height='32' fill='none' stroke='%23041026' stroke-width='0.4'/%3E%3Cline x1='6' y1='36' x2='66' y2='36' stroke='%23041026' stroke-width='0.3'/%3E%3Cline x1='36' y1='6' x2='36' y2='66' stroke='%23041026' stroke-width='0.3'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    .page-wrapper { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 32px 80px; }
+
+    /* ── Header ── */
+    .site-header { display: flex; align-items: center; justify-content: space-between; padding: 40px 0 36px; border-bottom: 1px solid var(--border); margin-bottom: 72px; }
+    .logo-block { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
+    .logo-name  { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 0.18em; color: var(--navy-deep); line-height: 1; }
+    .logo-sub   { font-family: 'Poppins', sans-serif; font-size: 8.5px; font-weight: 400; letter-spacing: 0.30em; color: var(--navy-light); text-transform: uppercase; }
+    .header-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Title ── */
+    .title-block { margin-bottom: 72px; }
+    .doc-label { display: inline-block; font-size: 10px; letter-spacing: 0.22em; color: var(--navy-light); font-family: 'Poppins', sans-serif; text-transform: uppercase; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--beige-sand); }
+    .page-title { font-size: clamp(32px, 5vw, 52px); font-weight: 700; color: var(--navy-deep); line-height: 1.25; margin-bottom: 10px; }
+    .page-title-en { font-family: 'Poppins', sans-serif; font-size: clamp(12px, 2vw, 15px); font-weight: 300; color: var(--navy-light); letter-spacing: 0.14em; text-transform: uppercase; }
+
+    /* ── Exec Summary ── */
+    .exec-summary { background-color: var(--navy-deep); padding: 44px 48px; margin-bottom: 80px; position: relative; overflow: hidden; }
+    .exec-summary::before { content: ''; position: absolute; top: -50px; left: -50px; width: 220px; height: 220px; border: 1px solid rgba(237,233,227,0.06); border-radius: 50%; }
+    .exec-summary::after  { content: ''; position: absolute; bottom: -80px; right: 60px; width: 300px; height: 300px; border: 1px solid rgba(237,233,227,0.04); border-radius: 50%; }
+    .exec-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 20px; display: block; }
+    .exec-summary p { font-size: 17px; font-weight: 300; line-height: 2; color: var(--beige-warm); position: relative; z-index: 1; }
+    .exec-summary strong { font-weight: 600; color: #fff; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 80px; }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .section-num { font-family: 'Poppins', sans-serif; font-size: 11px; color: var(--beige-sand); font-weight: 400; letter-spacing: 0.1em; flex-shrink: 0; }
+    .section-title { font-size: 22px; font-weight: 700; color: var(--navy-deep); }
+    .section-title-en { font-family: 'Poppins', sans-serif; font-size: 10px; color: var(--text-light); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
+    .section-body { font-size: 15.5px; color: var(--text-body); line-height: 2; margin-bottom: 28px; }
+
+    /* ── Why Memberships ── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 28px; }
+    .why-cell { background: #fff; padding: 30px 24px; }
+    .why-cell:hover { background: var(--beige-warm); }
+    .why-icon { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--beige-sand); margin-bottom: 14px; display: block; }
+    .why-title { font-size: 15px; font-weight: 700; color: var(--navy-deep); margin-bottom: 10px; }
+    .why-desc { font-size: 13.5px; color: var(--text-body); line-height: 1.85; }
+
+    /* ── Revenue Logic ── */
+    .revenue-block { background: var(--beige-warm); border-right: 4px solid var(--navy-light); padding: 32px 28px; margin-bottom: 28px; }
+    .revenue-block p { font-size: 15.5px; color: var(--navy-deep); line-height: 2; }
+    .revenue-block strong { font-weight: 700; }
+
+    .revenue-math {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+    }
+    .math-cell { background: var(--white-soft); padding: 26px 20px; text-align: center; }
+    .math-cell.dark { background: var(--navy-deep); }
+    .math-num { font-family: 'Poppins', sans-serif; font-size: 30px; font-weight: 300; color: var(--navy-deep); line-height: 1; margin-bottom: 8px; }
+    .math-cell.dark .math-num { color: #fff; }
+    .math-unit { font-size: 13px; font-weight: 600; }
+    .math-desc { font-size: 12.5px; color: var(--text-light); margin-top: 8px; line-height: 1.6; }
+    .math-cell.dark .math-desc { color: var(--beige-sand); }
+    .math-op { display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 300; color: var(--beige-sand); }
+
+    /* ── Membership Cards ── */
+    .membership-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+
+    .mem-card { position: relative; overflow: hidden; border: 1px solid var(--border); }
+    .mem-card.featured { border-color: var(--navy-light); }
+
+    .mem-card-header { padding: 28px 28px 20px; }
+    .mem-card.tier-1 .mem-card-header { background: var(--white-soft); }
+    .mem-card.tier-2 .mem-card-header { background: var(--navy-mid); }
+    .mem-card.tier-3 .mem-card-header { background: var(--navy-deep); }
+    .mem-card.tier-4 .mem-card-header { background: #0a1e38; }
+
+    .mem-badge {
+      display: inline-block; font-family: 'Poppins', sans-serif; font-size: 8px;
+      letter-spacing: 0.24em; text-transform: uppercase; padding: 5px 12px;
+      margin-bottom: 16px;
+    }
+    .tier-1 .mem-badge { background: var(--beige-warm); color: var(--navy-mid); }
+    .tier-2 .mem-badge { background: rgba(255,255,255,0.12); color: var(--beige-sand); }
+    .tier-3 .mem-badge { background: rgba(176,150,90,0.2); color: var(--gold-light); }
+    .tier-4 .mem-badge { background: rgba(255,255,255,0.08); color: var(--beige-sand); }
+
+    .mem-tier-name { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; letter-spacing: 0.08em; line-height: 1; margin-bottom: 4px; }
+    .mem-tier-sub { font-family: 'Poppins', sans-serif; font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase; margin-bottom: 20px; display: block; }
+    .tier-1 .mem-tier-name { color: var(--navy-deep); }
+    .tier-1 .mem-tier-sub  { color: var(--text-light); }
+    .tier-2 .mem-tier-name, .tier-3 .mem-tier-name, .tier-4 .mem-tier-name { color: #fff; }
+    .tier-2 .mem-tier-sub  { color: rgba(237,233,227,0.5); }
+    .tier-3 .mem-tier-sub  { color: var(--gold-muted); }
+    .tier-4 .mem-tier-sub  { color: rgba(237,233,227,0.45); }
+
+    .mem-pricing { margin-bottom: 8px; }
+    .mem-price-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+    .tier-1 .mem-price-label { color: var(--text-light); }
+    .tier-2 .mem-price-label, .tier-3 .mem-price-label, .tier-4 .mem-price-label { color: rgba(237,233,227,0.5); }
+
+    .mem-price-row { display: flex; align-items: baseline; gap: 8px; }
+    .mem-price-num { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 300; line-height: 1; }
+    .mem-price-currency { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; }
+    .mem-price-period { font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.08em; }
+    .tier-1 .mem-price-num { color: var(--navy-deep); }
+    .tier-1 .mem-price-currency, .tier-1 .mem-price-period { color: var(--text-light); }
+    .tier-2 .mem-price-num, .tier-2 .mem-price-currency, .tier-2 .mem-price-period { color: #fff; }
+    .tier-3 .mem-price-num { color: var(--gold-light); }
+    .tier-3 .mem-price-currency, .tier-3 .mem-price-period { color: rgba(212,185,122,0.7); }
+    .tier-4 .mem-price-num, .tier-4 .mem-price-currency, .tier-4 .mem-price-period { color: #fff; }
+
+    .mem-price-note { font-size: 11.5px; margin-top: 8px; }
+    .tier-1 .mem-price-note { color: var(--text-light); }
+    .tier-2 .mem-price-note, .tier-3 .mem-price-note, .tier-4 .mem-price-note { color: rgba(237,233,227,0.45); }
+
+    .mem-card-body { background: #fff; padding: 24px 28px; }
+    .mem-target { font-size: 12px; font-family: 'Poppins', sans-serif; letter-spacing: 0.1em; color: var(--text-light); margin-bottom: 16px; text-transform: uppercase; }
+    .mem-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .mem-features li { font-size: 13.5px; color: var(--text-body); padding-right: 18px; position: relative; line-height: 1.7; }
+    .mem-features li::before { content: '—'; position: absolute; right: 0; color: var(--navy-light); font-size: 11px; top: 3px; }
+    .mem-features li strong { color: var(--navy-deep); font-weight: 600; }
+
+    .mem-sla { background: var(--beige-warm); padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+    .sla-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-light); flex-shrink: 0; }
+    .sla-val { font-size: 13px; font-weight: 700; color: var(--navy-deep); }
+
+    /* Featured ribbon */
+    .featured-ribbon {
+      position: absolute; top: 20px; left: 0;
+      background: var(--gold-muted); color: #fff;
+      font-family: 'Poppins', sans-serif; font-size: 8px; letter-spacing: 0.18em;
+      text-transform: uppercase; padding: 5px 14px;
+    }
+
+    /* ── Comparison Table ── */
+    .compare-scroll { overflow-x: auto; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 640px; }
+    .compare-table thead tr { background: var(--navy-deep); }
+    .compare-table thead th { padding: 16px 16px; text-align: center; font-weight: 500; font-size: 11px; color: var(--beige-warm); letter-spacing: 0.06em; }
+    .compare-table thead th:first-child { text-align: right; padding-right: 20px; }
+    .compare-table tbody tr { border-bottom: 1px solid var(--border); }
+    .compare-table tbody tr:nth-child(even) { background: var(--beige-warm); }
+    .compare-table tbody tr:nth-child(odd) { background: #fff; }
+    .compare-table tbody td { padding: 14px 16px; color: var(--text-body); text-align: center; vertical-align: middle; line-height: 1.55; }
+    .compare-table tbody td:first-child { text-align: right; padding-right: 20px; font-weight: 600; color: var(--navy-deep); font-size: 13px; }
+    .check { color: var(--navy-light); font-size: 15px; font-weight: 700; }
+    .dash  { color: var(--beige-sand); font-size: 15px; }
+    .compare-table .col-highlight { background: rgba(31,70,109,0.06); }
+
+    /* ── Additional Revenue ── */
+    .addl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 8px; }
+    .addl-card { background: #fff; border: 1px solid var(--border); padding: 30px 26px; }
+    .addl-card-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy-light); margin-bottom: 14px; display: block; }
+    .addl-card-title { font-size: 16px; font-weight: 700; color: var(--navy-deep); margin-bottom: 10px; }
+    .addl-card-desc { font-size: 13.5px; color: var(--text-body); line-height: 1.85; margin-bottom: 16px; }
+    .addl-examples { display: flex; flex-wrap: wrap; gap: 7px; }
+    .addl-tag { font-size: 11.5px; padding: 5px 12px; background: var(--beige-warm); color: var(--navy-mid); font-weight: 500; }
+
+    /* ── Gift Packages ── */
+    .gift-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+    }
+    .gift-cell { background: var(--white-soft); padding: 28px 22px; }
+    .gift-cell:hover { background: #fff; }
+    .gift-tier { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--beige-sand); margin-bottom: 12px; display: block; }
+    .gift-title { font-size: 15px; font-weight: 700; color: var(--navy-deep); margin-bottom: 10px; }
+    .gift-what { font-size: 13px; color: var(--text-body); line-height: 1.8; margin-bottom: 14px; }
+    .gift-range { font-family: 'Poppins', sans-serif; font-size: 12px; color: var(--navy-light); font-weight: 500; }
+
+    /* ── CLV Model ── */
+    .clv-block { background: var(--navy-deep); padding: 44px 48px; position: relative; overflow: hidden; }
+    .clv-block::after { content: ''; position: absolute; bottom: -60px; left: 40px; width: 250px; height: 250px; border: 1px solid rgba(237,233,227,0.05); border-radius: 50%; }
+    .clv-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; color: var(--beige-sand); text-transform: uppercase; margin-bottom: 24px; display: block; }
+    .clv-intro { font-size: 15px; color: var(--beige-warm); font-weight: 300; line-height: 2; margin-bottom: 32px; position: relative; z-index: 1; }
+    .clv-tiers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); position: relative; z-index: 1; }
+    .clv-tier { background: rgba(255,255,255,0.04); padding: 22px 16px; text-align: center; }
+    .clv-tier-name { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beige-sand); margin-bottom: 10px; display: block; }
+    .clv-annual { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 300; color: #fff; line-height: 1; margin-bottom: 6px; }
+    .clv-annual small { font-size: 11px; color: var(--beige-sand); }
+    .clv-breakdown { font-size: 12px; color: rgba(237,233,227,0.5); line-height: 1.6; margin-top: 8px; }
+
+    /* ── Pricing Logic ── */
+    .logic-row { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 28px; }
+    .logic-item { background: #fff; display: grid; grid-template-columns: 240px 1fr; }
+    .logic-item + .logic-item { border-top: 1px solid var(--border); }
+    .logic-q { background: var(--beige-warm); padding: 20px 22px; font-size: 14px; font-weight: 700; color: var(--navy-deep); display: flex; align-items: center; }
+    .logic-a { padding: 20px 22px; font-size: 13.5px; color: var(--text-body); line-height: 1.8; }
+
+    /* ── Closing ── */
+    .closing-section { margin-top: 80px; padding-top: 48px; border-top: 1px solid var(--border); }
+    .closing-label { font-family: 'Poppins', sans-serif; font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-light); margin-bottom: 24px; display: block; }
+    .closing-section h3 { font-size: 22px; font-weight: 700; color: var(--navy-deep); margin-bottom: 20px; line-height: 1.5; }
+    .closing-section p { font-size: 15px; color: var(--text-body); line-height: 2; }
+
+    /* ── Footer ── */
+    .site-footer { margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.18em; color: var(--navy-deep); }
+    .footer-meta { font-size: 11px; color: var(--text-light); font-family: 'Poppins', sans-serif; }
+
+    /* ── Print ── */
+    @media print {
+      .pattern-bg { display: none; }
+      body { background: #fff; }
+      .exec-summary, .clv-block, .compare-table thead tr,
+      .mem-card.tier-2 .mem-card-header,
+      .mem-card.tier-3 .mem-card-header,
+      .mem-card.tier-4 .mem-card-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { page-break-inside: avoid; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 720px) {
+      .page-wrapper { padding: 0 20px 60px; }
+      .exec-summary { padding: 32px 22px; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .revenue-math { grid-template-columns: 1fr; }
+      .membership-grid { grid-template-columns: 1fr; }
+      .addl-grid { grid-template-columns: 1fr; }
+      .gift-row { grid-template-columns: 1fr; }
+      .clv-block { padding: 32px 22px; }
+      .clv-tiers { grid-template-columns: 1fr 1fr; }
+      .logic-item { grid-template-columns: 1fr; }
+      .logic-q { border-bottom: 1px solid var(--border); }
+      .site-footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .clv-tiers { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="pattern-bg"></div>
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo-block">
+      <span class="logo-name">WOSOL</span>
+      <span class="logo-sub">CONCIERGE</span>
+    </div>
+    <div class="header-meta">Membership & Monetization · 2025</div>
+  </header>
+
+  <!-- Title -->
+  <div class="title-block">
+    <span class="doc-label">Strategy 05 of 07</span>
+    <h1 class="page-title">استراتيجية العضويات والإيرادات</h1>
+    <p class="page-title-en">Membership & Monetization Strategy</p>
+  </div>
+
+  <!-- Exec Summary -->
+  <div class="exec-summary">
+    <span class="exec-label">Executive Summary</span>
+    <p>
+      نموذج الطلبات المنفصلة يُنتج إيرادات — لكنه لا يُنتج استقراراً أو نمواً.
+      العضوية تُحوّل العميل من "صاحب طلب" إلى <strong>شريك في علاقة مستمرة</strong>.
+      لكن قبل بناء نظام العضوية، يجب فهم ظاهرة واحدة:
+      بعض أفضل عملاء WOSOL لا يُرشّحون — لأنهم يريدون الاحتفاظ بهذه الخدمة لأنفسهم.
+      <strong>نظام العضوية المبني بذكاء يُحل هذه المعادلة.</strong>
+    </p>
+  </div>
+
+  <!-- Section 1: Why Memberships -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">لماذا العضوية هي النموذج الأنسب — والأذكى</div>
+        <div class="section-title-en">Why a Membership Model Works</div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-cell">
+        <span class="why-icon">Benefit 01</span>
+        <div class="why-title">دخل متكرر وقابل للتنبؤ</div>
+        <div class="why-desc">بدلاً من طلبات متفرقة، الإيرادات الشهرية تصبح معروفة مسبقاً. يُتيح التخطيط والتوسع بثقة حقيقية.</div>
+      </div>
+      <div class="why-cell">
+        <span class="why-icon">Benefit 02</span>
+        <div class="why-title">فلترة طبيعية للعملاء</div>
+        <div class="why-desc">رسوم العضوية تُصفي تلقائياً من لا يتوافق مع المستوى. الملتزم بالعضوية عميل جاد يُقدّر ما يحصل عليه — وهذا هو الهدف.</div>
+      </div>
+      <div class="why-cell">
+        <span class="why-icon">Benefit 03</span>
+        <div class="why-title">عمق علاقة أعلى</div>
+        <div class="why-desc">العضو لا يُقارن مع كل طلب — يثق ويُفوّض. يُتيح لـ WOSOL بناء فهم أعمق وتقديم خدمة أكثر استباقية.</div>
+      </div>
+      <div class="why-cell">
+        <span class="why-icon">Benefit 04</span>
+        <div class="why-title">رفع CLV بشكل طبيعي</div>
+        <div class="why-desc">العضو يستخدم الخدمة أكثر لأنه يشعر بالملكية. يرفع إجمالي ما ينفقه سنوياً دون جهد مبيعاتي إضافي.</div>
+      </div>
+      <div class="why-cell">
+        <span class="why-icon">Benefit 05</span>
+        <div class="why-title">الحصرية تحمي البراند</div>
+        <div class="why-desc">العضوية تجعل WOSOL حصرية بطبيعتها. لا يدخلها إلا من اختار الالتزام — وهذا يرفع مكانة البراند تلقائياً.</div>
+      </div>
+      <div class="why-cell">
+        <span class="why-icon">Benefit 06</span>
+        <div class="why-title">قوة الإحالة المُرسّخة</div>
+        <div class="why-desc">العضو يُعرّف نفسه بانتمائه لـ WOSOL. هذا الشعور بالانتماء يحوله إلى مسوّق طبيعي — خاصة حين يتم تشجيعه بالطريقة الصحيحة.</div>
+      </div>
+    </div>
+
+    <div class="revenue-block">
+      <p>
+        <strong>منطق بسيط:</strong> عميل بلا عضوية قد يطلب مرة كل شهرين.
+        عضو ملتزم يطلب أسبوعياً — لأنه يشعر بأن الخدمة متاحة له وجزء من حياته.
+        الفرق في الإيراد يتجاوز 3-4 أضعاف للعميل الواحد.
+        ولا تحتاج CRM معقداً في البداية — Google Sheet بسيط يكفي حتى تصل لـ 20 عضواً.
+      </p>
+    </div>
+
+    <div class="revenue-math">
+      <div class="math-cell">
+        <div class="math-num">12<span class="math-unit">K</span></div>
+        <div class="math-desc">متوسط طلب منفصل من عميل غير عضو سنوياً (4 طلبات × 3K ريال)</div>
+      </div>
+      <div class="math-cell" style="display:flex; align-items:center; justify-content:center; background:var(--beige-warm);">
+        <div style="font-family:'Poppins',sans-serif; font-size:28px; color:var(--beige-sand); font-weight:300;">VS</div>
+      </div>
+      <div class="math-cell dark">
+        <div class="math-num">800<span class="math-unit">K+</span></div>
+        <div class="math-desc">متوسط إنفاق العضو الواحد سنوياً — رسوم + طلبات + خدمات إضافية</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Membership Tiers -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">مستويات العضوية الأربعة</div>
+        <div class="section-title-en">Membership Tiers</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>كل مستوى مصمم لشريحة محددة. الهدف ليس المفاضلة — بل أن يجد كل عميل المستوى الذي يمثله ويلتزم به.</p>
+    </div>
+
+    <div class="membership-grid">
+
+      <!-- Tier 1: Access -->
+      <div class="mem-card tier-1">
+        <div class="mem-card-header">
+          <span class="mem-badge">Entry Level</span>
+          <div class="mem-tier-name">WOSOL Access</div>
+          <span class="mem-tier-sub">الوصول الأساسي</span>
+          <div class="mem-pricing">
+            <span class="mem-price-label">رسوم العضوية السنوية</span>
+            <div class="mem-price-row">
+              <span class="mem-price-num">24,000</span>
+              <span class="mem-price-currency">—</span>
+              <span class="mem-price-period">48,000 ريال / سنة</span>
+            </div>
+            <div class="mem-price-note">+ رسوم تنفيذ بحسب كل طلب</div>
+          </div>
+        </div>
+        <div class="mem-card-body">
+          <div class="mem-target">مناسب لـ: المدير التنفيذي الصاعد، رجل الأعمال الناشئ</div>
+          <ul class="mem-features">
+            <li>وصول لخدمات WOSOL الأساسية عبر واتساب والتطبيق</li>
+            <li>مدير حساب مشترك ضمن فريق متخصص</li>
+            <li><strong>SLA:</strong> رد خلال 4 ساعات عمل</li>
+            <li>خدمات السفر، التنقلات، والمواعيد</li>
+            <li>اشتراك في قائمة الأولويات للعروض الخاصة</li>
+            <li>نقاط على كل طلب منفّذ</li>
+          </ul>
+          <div class="mem-sla">
+            <span class="sla-label">SLA</span>
+            <span class="sla-val">رد خلال 4 ساعات · دعم أيام العمل</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 2: Signature -->
+      <div class="mem-card tier-2 featured">
+        <div class="featured-ribbon">الأكثر طلباً</div>
+        <div class="mem-card-header">
+          <span class="mem-badge">Core Tier</span>
+          <div class="mem-tier-name">WOSOL Signature</div>
+          <span class="mem-tier-sub">العضوية المميزة</span>
+          <div class="mem-pricing">
+            <span class="mem-price-label">رسوم العضوية السنوية</span>
+            <div class="mem-price-row">
+              <span class="mem-price-num">60,000</span>
+              <span class="mem-price-currency">—</span>
+              <span class="mem-price-period">120,000 ريال / سنة</span>
+            </div>
+            <div class="mem-price-note">+ Service Fee مخفض على الطلبات</div>
+          </div>
+        </div>
+        <div class="mem-card-body">
+          <div class="mem-target">مناسب لـ: رجل الأعمال الراسخ، المدير التنفيذي رفيع المستوى</div>
+          <ul class="mem-features">
+            <li>جميع خدمات WOSOL بأولوية على مستوى Access</li>
+            <li><strong>مدير حساب شخصي</strong> مخصص حصرياً</li>
+            <li><strong>SLA:</strong> رد خلال ساعتين — 7 أيام</li>
+            <li>إدارة السفر الكاملة، اليخوت، الطيران الخاص</li>
+            <li>التسوق والهدايا والمناسبات الشخصية</li>
+            <li>تقرير شهري بالخدمات والمتابعة</li>
+            <li>نقاط مضاعفة + أولوية الوصول لعروض الشركاء</li>
+          </ul>
+          <div class="mem-sla">
+            <span class="sla-label">SLA</span>
+            <span class="sla-val">رد خلال ساعتين · 7 أيام أسبوعياً</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 3: Private -->
+      <div class="mem-card tier-3">
+        <div class="mem-card-header">
+          <span class="mem-badge">Ultra Premium</span>
+          <div class="mem-tier-name">WOSOL Private</div>
+          <span class="mem-tier-sub">عضوية الخصوصية المطلقة</span>
+          <div class="mem-pricing">
+            <span class="mem-price-label">رسوم العضوية السنوية</span>
+            <div class="mem-price-row">
+              <span class="mem-price-num">200,000</span>
+              <span class="mem-price-currency">+</span>
+              <span class="mem-price-period">ريال / سنة</span>
+            </div>
+            <div class="mem-price-note">خدمات تنفيذية مشمولة جزئياً — بحسب الاتفاق</div>
+          </div>
+        </div>
+        <div class="mem-card-body">
+          <div class="mem-target">مناسب لـ: أصحاب الثروات الكبرى، أفراد العائلات التجارية، شخصيات استثنائية</div>
+          <ul class="mem-features">
+            <li>مدير حساب مخصص <strong>حصرياً</strong> — لا يخدم سوى 3 عملاء</li>
+            <li><strong>SLA:</strong> متاحية فورية — 24/7 بلا استثناء</li>
+            <li>إدارة حياة كاملة: سفر، صحة، تعليم، استثمار وقت</li>
+            <li>طائرات خاصة، يخوت، إقامات مخصصة حول العالم</li>
+            <li>خدمات صحة وعافية، رعاية أسرية، تعليم أبناء</li>
+            <li>وصول لشبكة علاقات WOSOL الدولية</li>
+            <li>تقرير ربع سنوي استراتيجي لإدارة الوقت والحياة</li>
+          </ul>
+          <div class="mem-sla">
+            <span class="sla-label">SLA</span>
+            <span class="sla-val">متاحية فورية · 24 / 7 / 365</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 4: Corporate -->
+      <div class="mem-card tier-4">
+        <div class="mem-card-header">
+          <span class="mem-badge">Enterprise</span>
+          <div class="mem-tier-name">WOSOL Corporate</div>
+          <span class="mem-tier-sub">عضوية الشركات والمؤسسات</span>
+          <div class="mem-pricing">
+            <span class="mem-price-label">رسوم سنوية — بحسب الحجم</span>
+            <div class="mem-price-row">
+              <span class="mem-price-num">Custom</span>
+              <span class="mem-price-currency"></span>
+              <span class="mem-price-period">تسعير مفصّل لكل شركة</span>
+            </div>
+            <div class="mem-price-note">يشمل عدد المستخدمين التنفيذيين وحجم الطلبات</div>
+          </div>
+        </div>
+        <div class="mem-card-body">
+          <div class="mem-target">مناسب لـ: الشركات الكبرى، العائلات التجارية، المجموعات الاستثمارية</div>
+          <ul class="mem-features">
+            <li>حساب مؤسسي يشمل فريقاً تنفيذياً من 5 إلى 20 شخصاً</li>
+            <li>إدارة سفر الموظفين التنفيذيين بالكامل</li>
+            <li>تنظيم الفعاليات والمناسبات المؤسسية والضيافة</li>
+            <li>هدايا شركات وعطاءات فاخرة للعملاء والشركاء</li>
+            <li>مدير حساب مؤسسي مخصص مع فريق دعم</li>
+            <li>تقارير شهرية تفصيلية وتحكم ميزانية مرن</li>
+          </ul>
+          <div class="mem-sla">
+            <span class="sla-label">SLA</span>
+            <span class="sla-val">رد خلال ساعة · فريق مؤسسي مخصص</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section 3: Comparison -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">مقارنة مستويات العضوية</div>
+        <div class="section-title-en">Tier Comparison Matrix</div>
+      </div>
+    </div>
+
+    <div class="compare-scroll">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>الميزة</th>
+            <th>Access</th>
+            <th class="col-highlight">Signature</th>
+            <th>Private</th>
+            <th>Corporate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>مدير حساب شخصي</td>
+            <td><span class="dash">مشترك</span></td>
+            <td class="col-highlight"><span class="check">حصري</span></td>
+            <td><span class="check">حصري 3 عملاء فقط</span></td>
+            <td><span class="check">فريق مخصص</span></td>
+          </tr>
+          <tr>
+            <td>وقت الاستجابة SLA</td>
+            <td>4 ساعات</td>
+            <td class="col-highlight">ساعتان · 7 أيام</td>
+            <td>فوري · 24/7</td>
+            <td>ساعة · أيام العمل</td>
+          </tr>
+          <tr>
+            <td>إدارة السفر الكاملة</td>
+            <td><span class="check">✓</span></td>
+            <td class="col-highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓ دولي وخاص</span></td>
+            <td><span class="check">✓ فريق + ضيوف</span></td>
+          </tr>
+          <tr>
+            <td>يخوت وطيران خاص</td>
+            <td><span class="dash">بطلب + رسوم</span></td>
+            <td class="col-highlight"><span class="check">✓ أولوية</span></td>
+            <td><span class="check">✓ مشمول جزئياً</span></td>
+            <td><span class="check">✓ بترتيب مسبق</span></td>
+          </tr>
+          <tr>
+            <td>صحة وعافية وتعليم</td>
+            <td><span class="dash">—</span></td>
+            <td class="col-highlight"><span class="dash">—</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="dash">—</span></td>
+          </tr>
+          <tr>
+            <td>هدايا وعطاءات فاخرة</td>
+            <td><span class="dash">بطلب</span></td>
+            <td class="col-highlight"><span class="check">✓ أولوية</span></td>
+            <td><span class="check">✓ مخصص</span></td>
+            <td><span class="check">✓ مؤسسي</span></td>
+          </tr>
+          <tr>
+            <td>نظام النقاط</td>
+            <td><span class="check">✓</span></td>
+            <td class="col-highlight"><span class="check">✓ مضاعف</span></td>
+            <td><span class="check">✓ VIP</span></td>
+            <td><span class="check">✓ مؤسسي</span></td>
+          </tr>
+          <tr>
+            <td>وصول لعروض الشركاء</td>
+            <td><span class="check">✓</span></td>
+            <td class="col-highlight"><span class="check">✓ أولوية</span></td>
+            <td><span class="check">✓ حصري</span></td>
+            <td><span class="check">✓ تجاري</span></td>
+          </tr>
+          <tr>
+            <td>تقارير دورية</td>
+            <td><span class="dash">—</span></td>
+            <td class="col-highlight"><span class="check">شهري</span></td>
+            <td><span class="check">ربع سنوي استراتيجي</span></td>
+            <td><span class="check">شهري تفصيلي</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Section 4: Additional Revenue -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">مصادر الإيراد الإضافية</div>
+        <div class="section-title-en">Additional Revenue Streams</div>
+      </div>
+    </div>
+
+    <div class="addl-grid">
+      <div class="addl-card">
+        <span class="addl-card-label">Revenue Stream 01</span>
+        <div class="addl-card-title">رسوم تنفيذ الطلبات — Service Fee</div>
+        <div class="addl-card-desc">بالإضافة لرسوم العضوية، كل طلب تنفيذي يحمل رسوم خدمة تتناسب مع حجمه وتعقيده. هذا يجعل الإيراد غير محدود بالسقف السنوي للعضوية.</div>
+        <div class="addl-examples">
+          <span class="addl-tag">طلبات السفر 5 – 15%</span>
+          <span class="addl-tag">الفعاليات 10 – 20%</span>
+          <span class="addl-tag">الطيران الخاص 8 – 12%</span>
+          <span class="addl-tag">الهدايا الفاخرة 15%+</span>
+        </div>
+      </div>
+      <div class="addl-card">
+        <span class="addl-card-label">Revenue Stream 02</span>
+        <div class="addl-card-title">نظام النقاط وتعزيز العلاقة</div>
+        <div class="addl-card-desc">كل ريال يُنفقه العضو يُحوّل إلى نقاط قابلة للاستخدام في ترقيات العضوية أو خدمات مجانية. النقاط تُحفّز الاستخدام المتكرر وترفع متوسط الإنفاق.</div>
+        <div class="addl-examples">
+          <span class="addl-tag">نقطة لكل 100 ريال</span>
+          <span class="addl-tag">مضاعفة في Signature+</span>
+          <span class="addl-tag">ترقية مجانية بالنقاط</span>
+          <span class="addl-tag">هدايا حصرية بالنقاط</span>
+        </div>
+      </div>
+      <div class="addl-card">
+        <span class="addl-card-label">Revenue Stream 03</span>
+        <div class="addl-card-title">شراكات وعمولات الشركاء</div>
+        <div class="addl-card-desc">كل حجز يتم عبر WOSOL لدى شركاء الفنادق والطيران والمطاعم يُدر عمولة. هذه الإيرادات تُضاف لرسوم الخدمة ولا تُقتطع من قيمة العميل.</div>
+        <div class="addl-examples">
+          <span class="addl-tag">فنادق فاخرة 8 – 15%</span>
+          <span class="addl-tag">إيجار يخوت 10%</span>
+          <span class="addl-tag">مطاعم 5 – 8%</span>
+          <span class="addl-tag">تأمين سفر وصحة</span>
+        </div>
+      </div>
+      <div class="addl-card">
+        <span class="addl-card-label">Revenue Stream 04</span>
+        <div class="addl-card-title">باقات الهدايا المؤسسية</div>
+        <div class="addl-card-desc">شركات وأفراد يطلبون هدايا فاخرة مخصصة لعملائهم أو مناسباتهم. WOSOL تصمم الهدية، تُعبّئها، وتُوصلها بأسلوب يعكس قيمة الشخص الذي يُهديه.</div>
+        <div class="addl-examples">
+          <span class="addl-tag">هدايا End of Year</span>
+          <span class="addl-tag">مناسبات VIP</span>
+          <span class="addl-tag">عطاءات مؤسسية</span>
+          <span class="addl-tag">هدايا مخصصة</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Gift Packages -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">نظام الإهداء — Gift Packages</div>
+        <div class="section-title-en">Luxury Gift System</div>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p>باقات الإهداء ليست منتجاً ثانوياً — بل بوابة لعملاء جدد وإيراد إضافي بلا تكلفة اكتساب تقريباً. المهدي له قد يتحول إلى عميل عضو.</p>
+    </div>
+
+    <div class="gift-row">
+      <div class="gift-cell">
+        <span class="gift-tier">Gift · Tier 01</span>
+        <div class="gift-title">The Welcome Gift</div>
+        <div class="gift-what">باقة ترحيبية للعميل الجديد أو لشريك عمل. تتضمن منتجات فاخرة مختارة، رسالة مكتوبة بخط اليد، وتغليف WOSOL الفاخر.</div>
+        <div class="gift-range">النطاق المقترح: 500 — 3,000 ريال</div>
+      </div>
+      <div class="gift-cell">
+        <span class="gift-tier">Gift · Tier 02</span>
+        <div class="gift-title">The Signature Experience</div>
+        <div class="gift-what">تجربة مخصصة كاملة: عشاء خاص، رحلة ليلة واحدة، أو جلسة صحة وعافية فاخرة لشخصين — مرتبة ومُدارة بالكامل من WOSOL.</div>
+        <div class="gift-range">النطاق المقترح: 5,000 — 20,000 ريال</div>
+      </div>
+      <div class="gift-cell">
+        <span class="gift-tier">Gift · Tier 03</span>
+        <div class="gift-title">The Milestone Gift</div>
+        <div class="gift-what">للمناسبات الاستثنائية: ذكرى سنوية، إتمام صفقة كبرى، ميلاد طفل. تجربة حياة كاملة مصممة خصيصاً للشخص المُهدى إليه.</div>
+        <div class="gift-range">النطاق المقترح: 20,000 — 100,000+ ريال</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: CLV Model -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">نموذج متوسط قيمة العميل السنوية</div>
+        <div class="section-title-en">Customer Lifetime Value Model</div>
+      </div>
+    </div>
+
+    <div class="clv-block">
+      <span class="clv-label">CLV Projection Model</span>
+      <div class="clv-intro">
+        الأرقام التالية تمثل توقعات إيراد لكل مستوى عضوية بحسب منطق الاستخدام الطبيعي.
+        العميل الواحد في WOSOL Private قد يُعادل إيراده 16 عميلاً في Access.
+      </div>
+      <div class="clv-tiers">
+        <div class="clv-tier">
+          <span class="clv-tier-name">Access</span>
+          <div class="clv-annual">90K<small> ريال</small></div>
+          <div class="clv-breakdown">رسوم 36K + طلبات 54K<br>متوسط سنوي مُقدَّر</div>
+        </div>
+        <div class="clv-tier">
+          <span class="clv-tier-name">Signature</span>
+          <div class="clv-annual">350K<small> ريال</small></div>
+          <div class="clv-breakdown">رسوم 90K + طلبات 260K<br>متوسط سنوي مُقدَّر</div>
+        </div>
+        <div class="clv-tier">
+          <span class="clv-tier-name">Private</span>
+          <div class="clv-annual">900K<small>+</small></div>
+          <div class="clv-breakdown">رسوم 200K + تنفيذ 700K+<br>بحسب أسلوب الحياة</div>
+        </div>
+        <div class="clv-tier">
+          <span class="clv-tier-name">Corporate</span>
+          <div class="clv-annual">500K<small>+</small></div>
+          <div class="clv-breakdown">بحسب عدد الموظفين<br>وحجم الطلبات المؤسسية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7: Pricing Logic -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">منطق التسعير — أسئلة جوهرية</div>
+        <div class="section-title-en">Pricing Logic</div>
+      </div>
+    </div>
+
+    <div class="logic-row">
+      <div class="logic-item">
+        <div class="logic-q">لماذا لا نُعلن الأسعار علنياً؟</div>
+        <div class="logic-a">لأن العميل الـ VIP لا يبدأ من السعر — يبدأ من القيمة. إعلان الأسعار يُحوّل WOSOL إلى خدمة قابلة للمقارنة، وهذا ما نريد تجنبه. السعر يُناقش في سياق العلاقة.</div>
+      </div>
+      <div class="logic-item">
+        <div class="logic-q">كيف نُبرر ارتفاع رسوم العضوية؟</div>
+        <div class="logic-a">رسوم العضوية تُشترى مرة واحدة وتُغني عن ساعات لا تُعدّ من البحث والتنسيق. إذا وفّرت WOSOL على العميل 10 ساعات شهرياً، فقيمة هذه الساعات لمدير تنفيذي تتجاوز رسوم العضوية وحدها.</div>
+      </div>
+      <div class="logic-item">
+        <div class="logic-q">هل نُقدم خصومات أو عروضاً؟</div>
+        <div class="logic-a">لا تُقدَّم خصومات على رسوم العضوية — هذا يضر بالحصرية. بدلاً من ذلك، يمكن تقديم قيمة مضافة: طلب مجاني أول، نقاط ترحيبية مضاعفة، أو ترقية لمدة محدودة. القيمة، لا الخصم.</div>
+      </div>
+      <div class="logic-item">
+        <div class="logic-q">شهري أم سنوي؟</div>
+        <div class="logic-a">الاشتراك السنوي المدفوع مقدماً هو الأفضل لاستقرار التدفق النقدي. يُمكن تقديم خيار ربع سنوي كاستثناء. الاشتراك الشهري يُضعف الالتزام ويُعقّد إدارة الفريق — يُتجنّب للعضويات العليا.</div>
+      </div>
+      <div class="logic-item">
+        <div class="logic-q">كيف نُحدد سعر طلب التنفيذ؟</div>
+        <div class="logic-a">رسوم التنفيذ تعكس: تعقيد الطلب + النادرة في الوصول + الوقت المستثمر. لا توجد قائمة ثابتة — كل طلب يُقدَّر بحسب سياقه ويُوافَق عليه مع العميل مسبقاً بشفافية تامة.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closing -->
+  <div class="closing-section">
+    <span class="closing-label">Executive Conclusion</span>
+    <h3>العضوية ليست سعراً — هي قرار بأسلوب حياة مختلف</h3>
+    <p>
+      حين يتعامل العميل مع WOSOL كعضو لا كمشترٍ، تتغير طبيعة العلاقة من أساسها.
+      هو يُفوّض، وWOSOL تُنجز. هو يعيش، وWOSOL تُدير.
+      هذا النموذج لا يُوجد الدخل المتكرر فحسب — بل يُنتج نوع العلاقة التي تجعل
+      العميل يُوصي بـ WOSOL لكل من يهمه أن يحيا بنفس المستوى.
+      الإيراد هو النتيجة. الثقة هي المنتج الحقيقي.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span class="footer-logo">WOSOL <span style="font-weight:300; letter-spacing:0.28em; font-size:8px; color: var(--text-light);">CONCIERGE</span></span>
+    <span class="footer-meta">Membership & Monetization · Confidential · 2025</span>
+  </footer>
+
+</div>
+</body>
+</html>
