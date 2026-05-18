@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ────────────────────────────────────────────────────────────
+   WOSOL × Kingdom Centre — Editorial Luxury Type & Color System
+   Inspired by Aman, Ritz-Carlton, Architectural Digest editorial.
+   ──────────────────────────────────────────────────────────── */
+
+:root {
+  /* Fonts are loaded via <link> tag in app/layout.tsx — see CSS variables below. */
+  --font-sans: "Inter", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+  --font-serif: "Cormorant Garamond", "EB Garamond", "Playfair Display", Georgia, serif;
+  --font-arabic: "IBM Plex Sans Arabic", "Noto Sans Arabic", system-ui, sans-serif;
+
+  --color-ink: #0B1220;
+  --color-cream: #F5EFE4;
+  --color-cream-warm: #FBF8F2;
+  --color-champagne: #B89968;
+  --color-marble: #E8E2D2;
+
+  /* The brand's quiet luxury rule: NEVER more than two tonal layers competing. */
+  color-scheme: light;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-cream);
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-feature-settings: "ss01", "cv11";
+}
+
+html[lang="ar"] body,
+html[dir="rtl"] body {
+  font-family: var(--font-arabic);
+}
+
+/* Editorial heading defaults — serif for English, refined sans for Arabic */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4 {
+  font-family: var(--font-arabic);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+::selection {
+  background-color: var(--color-champagne);
+  color: var(--color-cream);
+}
+
+/* ───── Custom Scrollbar — discreet, cream/champagne ───── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 153, 104, 0.35);
+  border-radius: 999px;
+  border: 2px solid var(--color-cream);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(184, 153, 104, 0.55);
+}
+
+/* ───── Editorial utility primitives ───── */
+
+@layer components {
+
+  /* The eyebrow label — small caps, wide tracking. Used on every chapter. */
+  .eyebrow {
+    @apply text-eyebrow uppercase font-sans font-medium tracking-widest text-champagne-300;
+  }
+  html[lang="ar"] .eyebrow,
+  html[dir="rtl"] .eyebrow {
+    font-family: var(--font-arabic);
+    letter-spacing: 0.18em;
+    text-transform: none;
+  }
+
+  /* The hairline — a 1px champagne rule used everywhere as the brand's signature mark. */
+  .hairline {
+    display: inline-block;
+    width: 3.5rem;
+    height: 1px;
+    background-color: var(--color-champagne);
+    opacity: 0.65;
+  }
+  .hairline-long {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(184, 153, 104, 0.4) 20%,
+      rgba(184, 153, 104, 0.4) 80%,
+      transparent 100%
+    );
+  }
+
+  /* Editorial container — narrow, generous margins. */
+  .container-editorial {
+    @apply mx-auto w-full max-w-editorial px-6 sm:px-10 lg:px-16;
+  }
+  .container-wide {
+    @apply mx-auto w-full max-w-wide px-6 sm:px-10 lg:px-16;
+  }
+  .container-prose {
+    @apply mx-auto w-full max-w-prose;
+  }
+
+  /* The card surface — used for strategy cards, image briefs, pillars. */
+  .surface {
+    @apply bg-cream-50 border border-champagne-50/40 transition-all duration-700 ease-editorial;
+  }
+  .surface-ink {
+    @apply bg-ink text-cream border border-champagne-300/20;
+  }
+
+  /* Cinematic numbered chapters — Roman-numeral style index. */
+  .chapter-number {
+    @apply font-serif text-eyebrow tracking-widest text-champagne-300;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* The pull-quote block — used for manifesto and CEO voice. */
+  .pullquote {
+    @apply font-serif text-display-md leading-snug text-ink-800;
+    font-style: italic;
+  }
+  html[lang="ar"] .pullquote,
+  html[dir="rtl"] .pullquote {
+    font-family: var(--font-arabic);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* CTA — quiet, restrained, no shadow, no gradient. */
+  .btn-quiet {
+    @apply inline-flex items-center gap-3 px-7 py-4 border border-ink/20 text-ink
+           text-sm tracking-widest uppercase font-medium transition-all duration-500 ease-editorial
+           hover:bg-ink hover:text-cream hover:border-ink;
+  }
+  html[lang="ar"] .btn-quiet,
+  html[dir="rtl"] .btn-quiet {
+    text-transform: none;
+    letter-spacing: 0.04em;
+  }
+
+  .btn-champagne {
+    @apply inline-flex items-center gap-3 px-7 py-4 border border-champagne-300 bg-champagne-300/10
+           text-ink text-sm tracking-widest uppercase font-medium transition-all duration-500 ease-editorial
+           hover:bg-champagne-300 hover:text-cream;
+  }
+
+  /* Backdrop variations */
+  .backdrop-cream {
+    background:
+      radial-gradient(circle at 20% 10%, rgba(184,153,104,0.06) 0%, transparent 45%),
+      radial-gradient(circle at 80% 90%, rgba(184,153,104,0.05) 0%, transparent 50%),
+      var(--color-cream);
+  }
+  .backdrop-ink {
+    background:
+      radial-gradient(circle at 10% 0%, rgba(184,153,104,0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 100%, rgba(184,153,104,0.05) 0%, transparent 45%),
+      var(--color-ink);
+  }
+  .backdrop-marble {
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.6) 0%, transparent 60%),
+      radial-gradient(circle at 70% 80%, rgba(184,153,104,0.08) 0%, transparent 55%),
+      var(--color-marble);
+  }
+}
+
+/* ───── Subtle entry animations ───── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes drawHairline {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes ambientFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -8px, 0); }
+}
+
+.animate-fade-up { animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-up-delay-1 { animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both; }
+.animate-fade-up-delay-2 { animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+.animate-fade-up-delay-3 { animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both; }
+.animate-fade-up-delay-4 { animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both; }
+.animate-draw-hairline {
+  transform-origin: left;
+  animation: drawHairline 1.2s cubic-bezier(0.65, 0, 0.35, 1) 0.4s both;
+}
+html[dir="rtl"] .animate-draw-hairline { transform-origin: right; }
+
+.animate-ambient-float { animation: ambientFloat 8s ease-in-out infinite; }
+
+/* Print-friendly: this hub doubles as a board-room printout. */
+@media print {
+  body { background: white; color: black; }
+  .no-print { display: none !important; }
+}
